@@ -17,6 +17,12 @@ boot_splash/bg_color=Color(0.913725, 0.992157, 0.870588, 1)
 boot_splash/fullsize=false
 boot_splash/image="uid://cwkvy4433vg3c"
 
+[autoload]
+
+TransitionManager="*res://addons/shaker/components/ui/transition_manager/transition_manager.tscn"
+UIManager="*res://addons/shaker/components/ui/ui_manager/ui_manager.tscn"
+PauseManager="*res://addons/shaker/components/core/pause_manager/pause_manager.tscn"
+
 [display]
 
 window/size/viewport_width=320
@@ -24,6 +30,10 @@ window/size/viewport_height=180
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
 
 [rendering]
 
