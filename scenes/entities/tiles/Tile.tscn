@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6py640fww0s3"]
+
+[ext_resource type="Script" uid="uid://g43gutd7nx52" path="res://scenes/entities/tiles/tile.gd" id="1_7t7di"]
+[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="2_2yiub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7fyc"]
+atlas = ExtResource("2_2yiub")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7t7di"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7fyc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t7di"]
+size = Vector2(28, 28)
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_7t7di")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, 15)
+sprite_frames = SubResource("SpriteFrames_7t7di")
+
+[node name="MouseArea" type="Area2D" parent="."]
+position = Vector2(15, 15)
+
+[node name="Shape" type="CollisionShape2D" parent="MouseArea"]
+shape = SubResource("RectangleShape2D_7t7di")
+
+[connection signal="input_event" from="MouseArea" to="." method="_on_mouse_area_input_event"]

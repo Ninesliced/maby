@@ -1,15 +1,17 @@
 [gd_resource type="Resource" script_class="Action" load_steps=4 format=3 uid="uid://oyv5toem51nb"]
 
 [ext_resource type="Script" uid="uid://cb0m53acfjbnw" path="res://resources/actions/action.gd" id="1_y0174"]
-[ext_resource type="Texture2D" uid="uid://vcx7ddf1espq" path="res://assets/images/actions/action_spritesheet.png" id="2_n6r4o"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lt7w4"]
-atlas = ExtResource("2_n6r4o")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pi7qa"]
+load_path = "res://.godot/imported/action_spritesheet.png-8eb4a14118544c9913904c269a53195f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0174"]
+atlas = SubResource("CompressedTexture2D_pi7qa")
 region = Rect2(0, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_y0174")
 name = "rotate_clock"
-texture = SubResource("AtlasTexture_lt7w4")
+texture = SubResource("AtlasTexture_y0174")
 temporary = false
 metadata/_custom_type_script = "uid://cb0m53acfjbnw"

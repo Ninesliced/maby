@@ -8,5 +8,5 @@ class_name Action
 @export_group("Properties")
 @export var temporary: bool = false
 
-func execute_action():
+func execute_action(tile):
     pass
