@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3tx6vywgljwx"]
+
+[ext_resource type="PackedScene" uid="uid://dxvmmk3gh1th5" path="res://scenes/entities/player/player.tscn" id="1_f58cr"]
+[ext_resource type="PackedScene" uid="uid://c6py640fww0s3" path="res://scenes/entities/tiles/Tile.tscn" id="2_m6vsx"]
+
+[node name="Guigui" type="Node2D"]
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_f58cr")]
+position = Vector2(28, 91)
+
+[node name="Tile" parent="." instance=ExtResource("2_m6vsx")]
+position = Vector2(64, 80)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ActionList" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0

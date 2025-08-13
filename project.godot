@@ -36,6 +36,10 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
 
+[global_group]
+
+Player=""
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
