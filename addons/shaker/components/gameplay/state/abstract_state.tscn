@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsujflbnwn61o"]
+
+[ext_resource type="Script" uid="uid://bm4w8b6b84py6" path="res://lib/shaker/state/abstract_state.gd" id="1_os11l"]
+
+[node name="AbstractState" type="Node2D"]
+script = ExtResource("1_os11l")
