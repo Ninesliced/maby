@@ -22,6 +22,7 @@ boot_splash/image="uid://cwkvy4433vg3c"
 TransitionManager="*res://addons/shaker/components/ui/transition_manager/transition_manager.tscn"
 UIManager="*res://addons/shaker/components/ui/ui_manager/ui_manager.tscn"
 PauseManager="*res://addons/shaker/components/core/pause_manager/pause_manager.tscn"
+SignalBus="*res://Globals/signal_bus.gd"
 
 [display]
 
