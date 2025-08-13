@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm1jdbdyovx5e"]
 
 [ext_resource type="PackedScene" uid="uid://rsjs7kqwau4m" path="res://scenes/game.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://cffi6mm04q5y0" path="res://scenes/ui/ui.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cffi6mm04q5y0" path="res://scenes/ui/hud.tscn" id="2_0xm2m"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -21,6 +21,6 @@ render_target_update_mode = 4
 
 [node name="Game" parent="GameLayer/SubViewportContainer/GameplayViewport" instance=ExtResource("1_ig7tw")]
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="HUDLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="UILayer" instance=ExtResource("2_0xm2m")]
+[node name="HUD" parent="HUDLayer" instance=ExtResource("2_0xm2m")]
