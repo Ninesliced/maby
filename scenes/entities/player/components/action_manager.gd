@@ -50,3 +50,7 @@ func pop_front() -> Action:
 func append(action: Action):
 	_actions.append(action)
 	action_appended.emit(action)
+
+## Get actions, don't modify the returned array
+func get_actions() -> Array[Action]:
+	return _actions

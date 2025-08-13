@@ -39,6 +39,7 @@ script = ExtResource("1_nh4ur")
 player_data = ExtResource("2_bjvvg")
 
 [node name="ActionManager" parent="." instance=ExtResource("2_635qg")]
+unique_name_in_owner = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_58kc7")
