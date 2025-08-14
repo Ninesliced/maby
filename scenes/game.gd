@@ -5,7 +5,7 @@ var has_game_started: bool = false
 
 func _ready() -> void:
 	GameGlobal.game = self
-	pass # Replace with function body.
+	SignalBus.on_player_event.connect(start_game)
 
-func _process(delta: float) -> void:
-	pass
+func start_game() -> void:
+	has_game_started = true

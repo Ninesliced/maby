@@ -4,7 +4,7 @@ extends Node2D
 @export var speed_increase_per_min : float = 2
 
 func _physics_process(delta):
-	if !GameGlobal.game and !GameGlobal.game.has_game_started:
+	if !GameGlobal.game or !GameGlobal.game.has_game_started:
 		return
 	if !GameGlobal.camera:
 		return
@@ -22,7 +22,6 @@ func _physics_process(delta):
 
 
 func _on_tile_mover_area_area_entered(area: Area2D) -> void:
-	print("Tile Mover Area Entered")
 	var selected_actor = area.get_parent()
 	if (selected_actor is not Tile): #and (selected_actor is not Enemy):
 		return

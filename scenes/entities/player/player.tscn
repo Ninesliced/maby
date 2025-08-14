@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://dxvmmk3gh1th5"]
+[gd_scene load_steps=14 format=4 uid="uid://dxvmmk3gh1th5"]
 
 [ext_resource type="Script" uid="uid://oxfpy1jnvlqm" path="res://scenes/entities/player/player.gd" id="1_nh4ur"]
 [ext_resource type="PackedScene" uid="uid://cwswecef6l2hi" path="res://scenes/entities/player/components/action_manager.tscn" id="2_635qg"]
 [ext_resource type="Resource" uid="uid://g6cd142ligtc" path="res://resources/player/player_default.tres" id="2_bjvvg"]
+[ext_resource type="PackedScene" uid="uid://cxmkxm2gg6q2" path="res://addons/shaker/components/gameplay/state/state_machine.tscn" id="3_8akj5"]
 [ext_resource type="Script" uid="uid://ch680ki1f1nq6" path="res://scenes/entities/player/components/movement_component.gd" id="5_bjvvg"]
 [ext_resource type="Script" uid="uid://dfg1tymra6u8s" path="res://scenes/entities/player/sprite.gd" id="6_8akj5"]
+[ext_resource type="Script" uid="uid://dnt575dxlnfdu" path="res://scenes/entities/player/normal.gd" id="6_bj7e2"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_bjvvg"]
 _data = PackedByteArray("AAADAAUAAAABAAAAIAAAACAAAAAYAQAAUklGRhABAABXRUJQVlA4TAMBAAAvH8AHEEegIJIN6jX4UcCooH81NRQ1kqSsA/oxnX+Np6CNFOYVDFCAhuVfGgKCIv9HCwD8/+cdANoqrakkEOm2B6Ta2uM2vycA37/y9lMqJUtlBFAIhmAxMAN3VdzW/6sjgIj+K3LbtmHHVYCfITktcR2kcbJS+WqD4iYiOW3hZQDLIFKUWIf7/Xzg4QSCQ9oUJJ8VDkoccJMcLZhzk2Iy09l6v0eT6c33uV+SAkDF8IGZ9nFKYbm/hbA6jcEUM/b5MnkJO+YdvVeCOb38g5PTFl7NQFFiHVqBEwh+EUA7kCNIE7CKVpMP3KPduwZI9EmrVsDtPfmA27sR8Hv7gN/727sLAA==")
@@ -65,6 +67,13 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("5_bjvvg")
 grid_position = Vector2i(2, 2)
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("default_state") instance=ExtResource("3_8akj5")]
+default_state = NodePath("Normal")
+
+[node name="Normal" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("movement_component")]
+script = ExtResource("6_bj7e2")
+movement_component = NodePath("../../MovementComponent")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

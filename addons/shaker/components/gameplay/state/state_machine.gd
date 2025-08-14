@@ -1,7 +1,7 @@
 extends AbstractState
 class_name StateMachine
 
-@export var default_state: String = ""
+@export var default_state: AbstractState
 
 var _states = []
 var current_state_name: String
@@ -15,7 +15,7 @@ func _ready() -> void:
 		state.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	if default_state:
-		set_state(default_state)
+		set_state(default_state.name)
 
 func set_state(name: String):
 	var node = get_node_or_null(name)

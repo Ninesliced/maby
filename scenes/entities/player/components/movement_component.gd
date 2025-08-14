@@ -3,6 +3,7 @@ class_name MovementComponent
 
 @export var duration_between_moves: float = 0.4
 
+var enabled: bool = true
 var parent : Player
 var is_moving : bool = false
 
@@ -37,6 +38,8 @@ func _ready():
 
 
 func _process(_delta):
+	if not enabled:
+		return
 	if is_moving:
 		return
 	

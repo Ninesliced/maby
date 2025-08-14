@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dkfavlx3m8kdi"]
 
-[ext_resource type="Script" uid="uid://bpqjpkhit0v31" path="res://lib/shaker/state/state.gd" id="1_1utg5"]
+[ext_resource type="Script" uid="uid://1w7r4q2cxoqs" path="res://addons/shaker/components/gameplay/state/state.gd" id="1_1utg5"]
 
 [node name="State" type="Node2D"]
 script = ExtResource("1_1utg5")
