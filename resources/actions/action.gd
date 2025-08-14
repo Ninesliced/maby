@@ -9,10 +9,34 @@ class_name Action
 @export var temporary: bool = false
 
 func execute_action(tile) -> bool:
-	return true
+	return is_valid(tile)
 
 func get_action_zone() -> Array[Vector2i]:
 	return [Vector2i(0, 0)]
+
+func get_tiles_in_action_zone(selected_tile: Tile):
+	var map: Map = GameGlobal.map
+	var tiles: Array[Tile] = []
+	if not map:
+		push_error("Map is not initialized.")
+		return null
+
+	var zones: Array[Vector2i] = get_action_zone()
+	for pos in zones:
+		var grid_pos = (selected_tile.grid_position + pos) % GameGlobal.map.grid_size
+		if grid_pos.x < 0:
+			grid_pos.x += GameGlobal.map.grid_size.x
+		if grid_pos.y < 0:
+			grid_pos.y += GameGlobal.map.grid_size.y
+
+		var tile: Tile = GameGlobal.map.grid[grid_pos.x][grid_pos.y]
+		if tile and tile.outline:
+			tiles.append(tile)
+		
+	return tiles
+
+func is_valid(tile) -> bool:
+	return !is_player_in_zone(tile)
 
 func is_player_in_zone(tile: Tile) -> bool:
 	var player: Player = GameGlobal.player

@@ -8,3 +8,9 @@ class_name Player
 
 func _ready() -> void:
     GameGlobal.player = self
+
+
+# HELPER METHODS
+
+func has_any_action() -> bool:
+    return action_manager.get_front() != null

@@ -3,7 +3,7 @@ extends Action
 @export var target_tile_scene: PackedScene
 
 func execute_action(tile: Tile) -> bool:
-	if is_player_in_zone(tile):
+	if super(tile) == false:
 		return false
 	var map = GameGlobal.map
 	assert(map != null, "Map is not initialized")

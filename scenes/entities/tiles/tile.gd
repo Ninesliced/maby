@@ -155,17 +155,17 @@ func tile_clicked(way: int) -> void:
 		tile_rotation += 4
 
 
-func tile_hovered() -> void:
-	return #FXME no game global now
-	if len(GameGlobal.action_stacks) == 0: return
-	var action = GameGlobal.action_stacks[0]
+func tile_hovered() -> void: #FIXME add outline management in a component
+	if !GameGlobal.player or !GameGlobal.player.has_any_action():
+		return
+	var action = GameGlobal.player.action_manager.get_front()
 	spawn_outline(action)
 
 
 func tile_unhovered() -> void:
-	return #FXME no game global now
-	if len(GameGlobal.action_stacks) == 0: return
-	var action = GameGlobal.action_stacks[0]
+	if !GameGlobal.player or !GameGlobal.player.has_any_action():
+		return
+	var action = GameGlobal.player.action_manager.get_front()
 	clear_outline(action)
 
 
@@ -176,42 +176,18 @@ func on_action(action) -> void:
 
 
 func clear_outline(action) -> void:
-	var action_property = GameGlobal.dict[action]
-	var action_zone = action_property["action_zone"]
-	
-	for pos in action_zone:
-		var grid_pos = (grid_position + pos) % GameGlobal.map.grid_size
-		if grid_pos.x < 0:
-			grid_pos.x += GameGlobal.map.grid_size.x
-		if grid_pos.y < 0:
-			grid_pos.y += GameGlobal.map.grid_size.y
-		
-		var tile: Tile = GameGlobal.map.grid[grid_pos.x][grid_pos.y]
+	var tiles = action.get_tiles_in_action_zone(self)
+	for tile in tiles:
 		if tile and tile.outline:
 			tile.hide_outline()
 
 
 func spawn_outline(action) -> void:
-	var action_property = GameGlobal.dict[action]
-	var action_zone = action_property["action_zone"]
+	var is_action_valid = action.is_valid(self)
 
-	var is_action_valid: bool = true
-	var tiles := []
-	
-	for pos in action_zone:
-		var grid_pos = (grid_position + pos) % GameGlobal.map.grid_size
-		if grid_pos.x < 0:
-			grid_pos.x += GameGlobal.map.grid_size.x
-		if grid_pos.y < 0:
-			grid_pos.y += GameGlobal.map.grid_size.y
-
-		var tile: Tile = GameGlobal.map.grid[grid_pos.x][grid_pos.y]
-		if tile and tile.outline:
-			tiles.append(tile)
-		
-		if tile.grid_position == GameGlobal.player.get_movement_component().grid_position:
-			is_action_valid = false
-	
+	var tiles = action.get_tiles_in_action_zone(self)
+	if not tiles:
+		return
 	for tile in tiles:
 		if is_action_valid:
 			tile.outline.modulate = Color(1, 1, 1, 0.5)
