@@ -38,3 +38,6 @@ material = SubResource("ShaderMaterial_gpb7i")
 [node name="Sprite" parent="Visual" index="1"]
 material = SubResource("ShaderMaterial_j4nor")
 sprite_frames = SubResource("SpriteFrames_j4nor")
+
+[node name="Shape" parent="Area" index="0"]
+debug_color = Color(0, 0.596078, 0.701961, 0)

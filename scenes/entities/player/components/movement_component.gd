@@ -81,7 +81,7 @@ func update_position():
 		parent.position = target_position
 		is_moving = true
 		var tween = create_tween()
-		tween.tween_interval(duration_between_moves)
+		tween.tween_interval(duration_between_moves / 2)
 		tween.tween_callback(_stop_movement)
 
 
