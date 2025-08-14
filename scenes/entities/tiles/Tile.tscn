@@ -73,22 +73,6 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_i7in2"]
-resource_name = "rotate_lock"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.1875, 0.25),
-"transitions": PackedFloat32Array(0.5, 0.378929, 0.574349, 1),
-"update": 0,
-"values": [0.0, 0.174533, -0.174533, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_ewfg4"]
 resource_name = "full"
 length = 0.2
@@ -115,6 +99,22 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.669858, 1),
 "update": 0,
 "values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i7in2"]
+resource_name = "rotate_lock"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.1875, 0.25),
+"transitions": PackedFloat32Array(0.5, 0.378929, 0.574349, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1qs4h"]

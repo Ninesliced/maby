@@ -28,16 +28,28 @@ func _ready():
 func _execute_action(tile):
 	if not enabled:
 		return
-	var action : Action = pop_front()
+
+	var result = false
+	var action : Action = get_front()
+
 	if action:
-		action.execute_action(tile)
-	
-	if action.temporary:
+		result = action.execute_action(tile)
+
+	if !result:
 		return
-	append(action)
+
+	pop_front()
+
+	if !action.temporary:
+		append(action)
 
 
 # PUBLIC METHODS
+
+func get_front() -> Action:
+	if _actions.size() == 0:
+		return null
+	return _actions[0]
 
 ## Returns the first action in the queue
 func pop_front() -> Action:

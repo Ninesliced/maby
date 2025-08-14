@@ -8,5 +8,31 @@ class_name Action
 @export_group("Properties")
 @export var temporary: bool = false
 
-func execute_action(tile):
-    pass
+func execute_action(tile) -> bool:
+	return true
+
+func get_action_zone() -> Array[Vector2i]:
+	return [Vector2i(0, 0)]
+
+func is_player_in_zone(tile: Tile) -> bool:
+	var player: Player = GameGlobal.player
+	if not player or not player.movement_component:
+		push_error("Player or movement component is not initialized.")
+		return true
+	var map: Map = GameGlobal.map
+	if not map:
+		push_error("Map is not initialized.")
+		return true
+
+	var zones: Array[Vector2i] = get_action_zone()
+
+	for pos in zones:
+		var target_pos = (tile.grid_position + pos) % map.grid_size
+		if target_pos.x < 0:
+			target_pos.x += map.grid_size.x
+		if target_pos.y < 0:
+			target_pos.y += map.grid_size.y
+		
+		if target_pos == player.movement_component.grid_position:
+			return true
+	return false

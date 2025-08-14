@@ -24,6 +24,14 @@ func _ready() -> void:
 	generate_grid()
 	# print(GameGlobal)	
 
+# PUBLIC METHODS
+
+func get_tile_at(grid_pos: Vector2i) -> Tile:
+	return grid[grid_pos.x % grid_size.x][grid_pos.y % grid_size.y]
+
+
+##PRIVATE
+
 func _update_grid() -> void:
 	for child in grid:
 		for tile in child:
