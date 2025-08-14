@@ -1,37 +1,179 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6py640fww0s3"]
+[gd_scene load_steps=14 format=3 uid="uid://bkuf38ni4q62k"]
 
-[ext_resource type="Script" uid="uid://g43gutd7nx52" path="res://scenes/entities/tiles/tile.gd" id="1_7t7di"]
-[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="2_2yiub"]
+[ext_resource type="Script" uid="uid://ckoaogse5dba6" path="res://scenes/entities/tiles/tile.gd" id="1_4t6fi"]
+[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="2_4t6fi"]
+[ext_resource type="Material" path="res://scenes/entities/tiles/tile_material.tres" id="2_iawyn"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_ewfg4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g7fyc"]
-atlas = ExtResource("2_2yiub")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qs4h"]
+resource_local_to_scene = true
+shader = ExtResource("3_ewfg4")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1163x"]
+atlas = ExtResource("2_4t6fi")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7t7di"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_1163x"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g7fyc")
+"texture": SubResource("AtlasTexture_1163x")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t7di"]
-size = Vector2(28, 28)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewfg4"]
+atlas = ExtResource("2_4t6fi")
+region = Rect2(32, 96, 32, 32)
 
-[node name="Tile" type="Node2D"]
-script = ExtResource("1_7t7di")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4t6fi"]
+size = Vector2(36.129, 36.129)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(15, 15)
-sprite_frames = SubResource("SpriteFrames_7t7di")
+[sub_resource type="Animation" id="Animation_1qs4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("3DShader/Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("3DShader/Sprite:material:shader_parameter/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3DShader/Sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
-[node name="MouseArea" type="Area2D" parent="."]
-position = Vector2(15, 15)
+[sub_resource type="Animation" id="Animation_ewfg4"]
+resource_name = "full"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("3DShader/Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("3DShader/Sprite:material:shader_parameter/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.669858, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
 
-[node name="Shape" type="CollisionShape2D" parent="MouseArea"]
-shape = SubResource("RectangleShape2D_7t7di")
+[sub_resource type="Animation" id="Animation_i7in2"]
+resource_name = "rotate_lock"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("3DShader/Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.1875, 0.25),
+"transitions": PackedFloat32Array(0.5, 0.378929, 0.574349, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533, 0.0]
+}
 
-[connection signal="input_event" from="MouseArea" to="." method="_on_mouse_area_input_event"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qs4h"]
+_data = {
+&"RESET": SubResource("Animation_1qs4h"),
+&"full": SubResource("Animation_ewfg4"),
+&"rotate_lock": SubResource("Animation_i7in2")
+}
+
+[node name="Tile2" type="Node2D" node_paths=PackedStringArray("rotation_sound_effect", "idle_rotation_sound_effect")]
+script = ExtResource("1_4t6fi")
+rotation_sound_effect = NodePath("RotationSoundEffect")
+idle_rotation_sound_effect = NodePath("IdleRotationSoundEffect")
+chance_action_spawn = 0.05
+
+[node name="3DShader" type="Node2D" parent="."]
+material = ExtResource("2_iawyn")
+position = Vector2(16, 16)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="3DShader"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1qs4h")
+sprite_frames = SubResource("SpriteFrames_1163x")
+speed_scale = 0.0
+
+[node name="Outline" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+position = Vector2(16, 16)
+texture = SubResource("AtlasTexture_ewfg4")
+
+[node name="Area" type="Area2D" parent="."]
+position = Vector2(16, 16)
+collision_layer = 8
+collision_mask = 16
+
+[node name="Shape" type="CollisionShape2D" parent="Area"]
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(0.775, 0.775)
+shape = SubResource("RectangleShape2D_4t6fi")
+debug_color = Color(0, 0.595, 0.7, 0.627451)
+
+[node name="TileBigger" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_1qs4h")
+}
+
+[node name="ActionHolder" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="RotationSoundEffect" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="IdleRotationSoundEffect" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]
+[connection signal="input_event" from="Area" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area" to="." method="_on_area_2d_mouse_exited"]
