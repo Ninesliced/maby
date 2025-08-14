@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b84hbrx3t8xfx"]
+
+[ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="1_3is3f"]
+[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="2_c7pfg"]
+[ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="4_h4rvu"]
+[ext_resource type="Texture2D" uid="uid://cd26j4sn6lueq" path="res://assets/images/tiles/tilesheet_seasons2.png" id="4_piu8t"]
+
+[node name="Map" instance=ExtResource("1_3is3f")]
+
+[node name="Spritesheet" type="Sprite2D" parent="." index="0"]
+position = Vector2(37.5, 63)
+scale = Vector2(0.33125, 0.33125)
+texture = ExtResource("2_c7pfg")
+
+[node name="Tile" parent="." index="1" instance=ExtResource("4_h4rvu")]
+
+[node name="TilesheetSeasons2" type="Sprite2D" parent="." index="2"]
+position = Vector2(122, 75)
+scale = Vector2(0.193359, 0.193359)
+texture = ExtResource("4_piu8t")
