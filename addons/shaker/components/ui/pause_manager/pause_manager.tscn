@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d23mogp1jfilt"]
+
+[ext_resource type="Script" uid="uid://uy6v7p3yrvvt" path="res://addons/shaker/components/ui/pause_manager/pause_manager.gd" id="1_rhkus"]
+
+[node name="PauseManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_rhkus")

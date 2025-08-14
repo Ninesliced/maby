@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx68eqiiepmt2"]
+[gd_scene load_steps=6 format=3 uid="uid://bx68eqiiepmt2"]
 
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://krn8107seivb" path="res://scenes/ui/action_list/action_list.tscn" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://d23mogp1jfilt" path="res://addons/shaker/components/ui/pause_manager/pause_manager.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://dxvmmk3gh1th5" path="res://scenes/entities/player/player.tscn" id="4_p57ef"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_yqjtg")
+
+[node name="PauseManager" parent="." instance=ExtResource("2_lnu2h")]
+pause_menu = "uid://dev218r5gmd1d"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
