@@ -43,10 +43,10 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 3.0,
+"duration": 3.5,
 "texture": SubResource("AtlasTexture_5sj0x")
 }, {
-"duration": 3.0,
+"duration": 2.5,
 "texture": SubResource("AtlasTexture_8akj5")
 }],
 "loop": true,
@@ -64,15 +64,13 @@ unique_name_in_owner = true
 [node name="MovementComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_bjvvg")
-duration_between_moves = 0.5
+grid_position = Vector2i(2, 2)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ovg4i")
 animation = &"run"
 autoplay = "idle"
-frame = 1
-frame_progress = 0.204849
 script = ExtResource("6_8akj5")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}

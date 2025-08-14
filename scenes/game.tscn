@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx68eqiiepmt2"]
+[gd_scene load_steps=7 format=3 uid="uid://bx68eqiiepmt2"]
 
 [ext_resource type="Script" uid="uid://bw7tomdqk6vre" path="res://scenes/game.gd" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://krn8107seivb" path="res://scenes/ui/action_list/action_list.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://d23mogp1jfilt" path="res://addons/shaker/components/ui/pause_manager/pause_manager.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://dxvmmk3gh1th5" path="res://scenes/entities/player/player.tscn" id="4_p57ef"]
+[ext_resource type="Script" uid="uid://dahg3gn860yf6" path="res://scenes/game/camera_2d.gd" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://v6wht25gui7" path="res://scenes/game/border/border.tscn" id="6_p57ef"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -12,13 +13,16 @@ script = ExtResource("1_yqjtg")
 [node name="PauseManager" parent="." instance=ExtResource("2_lnu2h")]
 pause_menu = "uid://dev218r5gmd1d"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ActionList" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_lbhrr")]
-player = NodePath("../../Player")
-
 [node name="Map" parent="." instance=ExtResource("3_iywne")]
 position = Vector2(0, 24)
+grid_size = Vector2i(25, 5)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("4_p57ef")]
 position = Vector2(16, 104)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 91)
+script = ExtResource("5_iywne")
+
+[node name="Border" parent="." instance=ExtResource("6_p57ef")]
+position = Vector2(-33, 59)

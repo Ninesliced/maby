@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dt7aag0f6admg" path="res://scenes/ui/action_list/action_list.gd" id="1_acudf"]
 
-[node name="ActionList" type="Control" node_paths=PackedStringArray("player")]
+[node name="ActionList" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 16.0
@@ -10,5 +10,4 @@ offset_top = 24.0
 offset_right = 16.0
 offset_bottom = 24.0
 script = ExtResource("1_acudf")
-player = NodePath("")
 metadata/_edit_use_anchors_ = true

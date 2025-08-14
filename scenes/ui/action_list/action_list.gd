@@ -1,7 +1,7 @@
 extends Control
 class_name ActionListUI
 
-@export var player: Player
+var player: Player
 
 var action_ui_scene: PackedScene = preload("res://scenes/ui/action_list/action_ui.tscn")
 var action_manager: ActionManager
@@ -9,10 +9,13 @@ var action_manager: ActionManager
 var action_ui_list: Array[ActionUI] = []
 
 func _ready():
-	if !player.is_processing():
-		await player.ready
+	if !GameGlobal.player:
+		await GameGlobal.on_player_added
+	player = GameGlobal.player
+	print("Player is ready, setting up action list UI")
 	action_manager = player.action_manager
 	set_ui(action_manager.get_actions())
+	update_ui()
 	action_manager.action_appended.connect(_append_action_ui)
 	action_manager.action_popped_front.connect(_pop_action_ui)
 
@@ -52,6 +55,16 @@ func _create_action_ui(action: Action) -> ActionUI:
 func update_ui():
 	if action_ui_list.size() == 0:
 		return
+	await _reposition_action_ui()
+
+	# if action_ui_list.size() > 0:
+	# 	var first_ui: ActionUI = action_ui_list[0]
+	# 	first_ui.scale = Vector2(1.2, 1.2)
+	# 	for i in range(1, action_ui_list.size()):
+	# 		var ui: ActionUI = action_ui_list[i]
+	# 		ui.scale = Vector2(1, 1)
+
+func _reposition_action_ui():
 	var tween
 	for i in range(action_ui_list.size()):
 		var ui: ActionUI = action_ui_list[i]

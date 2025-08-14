@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4khvtud3ww0l"]
+[gd_scene load_steps=5 format=3 uid="uid://d4khvtud3ww0l"]
 
 [ext_resource type="Script" uid="uid://bqx8jbasrlep3" path="res://scenes/ui/action_list/action_ui.gd" id="1_3ux37"]
 [ext_resource type="Texture2D" uid="uid://vcx7ddf1espq" path="res://assets/images/actions/action_spritesheet.png" id="1_c4u1s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h53lr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4clnl"]
 atlas = ExtResource("1_c4u1s")
@@ -14,6 +16,7 @@ script = ExtResource("1_3ux37")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_h53lr")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
