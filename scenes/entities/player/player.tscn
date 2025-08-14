@@ -1,38 +1,57 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxvmmk3gh1th5"]
+[gd_scene load_steps=12 format=4 uid="uid://dxvmmk3gh1th5"]
 
 [ext_resource type="Script" uid="uid://oxfpy1jnvlqm" path="res://scenes/entities/player/player.gd" id="1_nh4ur"]
 [ext_resource type="PackedScene" uid="uid://cwswecef6l2hi" path="res://scenes/entities/player/components/action_manager.tscn" id="2_635qg"]
 [ext_resource type="Resource" uid="uid://g6cd142ligtc" path="res://resources/player/player_default.tres" id="2_bjvvg"]
-[ext_resource type="Texture2D" uid="uid://2mhkwx4u5d0j" path="res://assets/images/player/player_idle.png" id="4_nh4ur"]
 [ext_resource type="Script" uid="uid://ch680ki1f1nq6" path="res://scenes/entities/player/components/movement_component.gd" id="5_bjvvg"]
+[ext_resource type="Script" uid="uid://dfg1tymra6u8s" path="res://scenes/entities/player/sprite.gd" id="6_8akj5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bjvvg"]
-atlas = ExtResource("4_nh4ur")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_bjvvg"]
+_data = PackedByteArray("AAADAAUAAAABAAAAIAAAACAAAAAYAQAAUklGRhABAABXRUJQVlA4TAMBAAAvH8AHEEegIJIN6jX4UcCooH81NRQ1kqSsA/oxnX+Np6CNFOYVDFCAhuVfGgKCIv9HCwD8/+cdANoqrakkEOm2B6Ta2uM2vycA37/y9lMqJUtlBFAIhmAxMAN3VdzW/6sjgIj+K3LbtmHHVYCfITktcR2kcbJS+WqD4iYiOW3hZQDLIFKUWIf7/Xzg4QSCQ9oUJJ8VDkoccJMcLZhzk2Iy09l6v0eT6c33uV+SAkDF8IGZ9nFKYbm/hbA6jcEUM/b5MnkJO+YdvVeCOb38g5PTFl7NQFFiHVqBEwh+EUA7kCNIE7CKVpMP3KPduwZI9EmrVsDtPfmA27sR8Hv7gN/727sLAA==")
+size_override = Vector2(32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8akj5"]
-atlas = ExtResource("4_nh4ur")
+atlas = SubResource("PortableCompressedTexture2D_bjvvg")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bj7e2"]
-atlas = ExtResource("4_nh4ur")
-region = Rect2(32, 0, 16, 16)
+atlas = SubResource("PortableCompressedTexture2D_bjvvg")
+region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_58kc7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1murt"]
+atlas = SubResource("PortableCompressedTexture2D_bjvvg")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sj0x"]
+atlas = SubResource("PortableCompressedTexture2D_bjvvg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovg4i"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bjvvg")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8akj5")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bj7e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1murt")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_5sj0x")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_8akj5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -45,8 +64,33 @@ unique_name_in_owner = true
 [node name="MovementComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_bjvvg")
-duration_between_moves = 0.2
+duration_between_moves = 0.5
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_58kc7")
-animation = &"idle"
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ovg4i")
+animation = &"run"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.204849
+script = ExtResource("6_8akj5")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://assets/images/player/player.ase",
+"source_uid": 7459505762053098952
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5e46b245de9524e0748fc82bdecce78d"
+
+[connection signal="on_idle" from="MovementComponent" to="Sprite" method="_on_movement_component_on_idle"]
+[connection signal="on_move" from="MovementComponent" to="Sprite" method="_on_movement_component_on_move"]
