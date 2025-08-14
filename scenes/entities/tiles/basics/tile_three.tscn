@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d3nx65gycyxa3"]
 
 [ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_hypdh"]
-[ext_resource type="Script" uid="uid://bdp6dnfj6afct" path="res://scenes/entities/tiles/tile_three.gd" id="2_gpb7i"]
+[ext_resource type="Script" uid="uid://bdp6dnfj6afct" path="res://scenes/entities/tiles/basics/tile_three.gd" id="2_gpb7i"]
 [ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="2_uykbq"]
 [ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="3_uykbq"]
 
@@ -41,3 +41,6 @@ sprite_frames = SubResource("SpriteFrames_j4nor")
 
 [node name="Shape" parent="Area" index="0"]
 debug_color = Color(0, 0.596078, 0.701961, 0)
+
+[node name="TileBigger" parent="." index="2"]
+script = null

@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu0rheggw347"]
+[gd_scene load_steps=6 format=3 uid="uid://bu0rheggw347"]
 
 [ext_resource type="Material" uid="uid://cq0d1tmn3yyf6" path="res://scenes/entities/map/map.tres" id="1_58xl4"]
 [ext_resource type="Script" uid="uid://b65iv5evnp0r0" path="res://scenes/entities/map/map.gd" id="1_v8qew"]
-[ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="3_doonb"]
-[ext_resource type="PackedScene" uid="uid://d3nx65gycyxa3" path="res://scenes/entities/tiles/tile_three.tscn" id="3_v8qew"]
+[ext_resource type="PackedScene" uid="uid://d3nx65gycyxa3" path="res://scenes/entities/tiles/basics/tile_three.tscn" id="3_v8qew"]
+[ext_resource type="PackedScene" uid="uid://ii53nhehe86f" path="res://scenes/entities/tiles/basics/tile_corner.tscn" id="5_doonb"]
+[ext_resource type="PackedScene" uid="uid://bbdhvmyjyyqx2" path="res://scenes/entities/tiles/basics/tile_four.tscn" id="5_kh1ou"]
 
 [node name="Map" type="CanvasGroup"]
 material = ExtResource("1_58xl4")
 script = ExtResource("1_v8qew")
-tiles = Array[PackedScene]([ExtResource("3_doonb"), ExtResource("3_v8qew")])
+tiles = Array[PackedScene]([ExtResource("3_v8qew"), ExtResource("5_doonb"), ExtResource("5_kh1ou")])
 grid_size = Vector2i(10, 5)

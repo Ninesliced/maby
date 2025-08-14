@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkuf38ni4q62k"]
+[gd_scene load_steps=15 format=3 uid="uid://bkuf38ni4q62k"]
 
 [ext_resource type="Script" uid="uid://ckoaogse5dba6" path="res://scenes/entities/tiles/tile.gd" id="1_4t6fi"]
 [ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="2_4t6fi"]
 [ext_resource type="Material" path="res://scenes/entities/tiles/tile_material.tres" id="2_iawyn"]
 [ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_ewfg4"]
+[ext_resource type="Script" uid="uid://bmtrxu1r4nv2n" path="res://scenes/entities/tiles/tile_animation.gd" id="5_77fym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewfg4"]
 atlas = ExtResource("2_4t6fi")
@@ -72,6 +73,22 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_i7in2"]
+resource_name = "rotate_lock"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.1875, 0.25),
+"transitions": PackedFloat32Array(0.5, 0.378929, 0.574349, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_ewfg4"]
 resource_name = "full"
 length = 0.2
@@ -98,22 +115,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.669858, 1),
 "update": 0,
 "values": [1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_i7in2"]
-resource_name = "rotate_lock"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.1875, 0.25),
-"transitions": PackedFloat32Array(0.5, 0.378929, 0.574349, 1),
-"update": 0,
-"values": [0.0, 0.174533, -0.174533, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1qs4h"]
@@ -161,6 +162,14 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_1qs4h")
 }
+script = ExtResource("5_77fym")
+
+[node name="TileLock" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_1qs4h")
+}
+script = ExtResource("5_77fym")
 
 [node name="ActionHolder" type="Node2D" parent="."]
 unique_name_in_owner = true

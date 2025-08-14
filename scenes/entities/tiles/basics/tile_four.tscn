@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://bbdhvmyjyyqx2"]
+
+[ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_h1vht"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_2k5q6"]
+[ext_resource type="Script" uid="uid://8n88uqbgvhf0" path="res://scenes/helper/sprites/sprite_randomizer_component.gd" id="4_h1vht"]
+[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="4_nek4d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpb7i"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4nor"]
+resource_local_to_scene = true
+shader = ExtResource("3_2k5q6")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1vht"]
+atlas = ExtResource("4_nek4d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1vht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1vht")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4uo3"]
+atlas = ExtResource("4_nek4d")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k5q6"]
+atlas = ExtResource("4_nek4d")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nek4d"]
+atlas = ExtResource("4_nek4d")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqcn2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4uo3")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k5q6")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nek4d")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[node name="Tile" instance=ExtResource("1_h1vht")]
+lock_rotation = true
+
+[node name="Visual" parent="." index="0"]
+material = SubResource("ShaderMaterial_gpb7i")
+
+[node name="Sprite" parent="Visual" index="1"]
+material = SubResource("ShaderMaterial_j4nor")
+sprite_frames = SubResource("SpriteFrames_h1vht")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Visual/Sprite" index="0"]
+modulate = Color(0.0509537, 0.0467583, 0.216836, 0.352941)
+sprite_frames = SubResource("SpriteFrames_rqcn2")
+animation = &"3"
+
+[node name="SpriteRandomizerComponent" type="Node" parent="Visual/Sprite/Sprite2D" index="0"]
+script = ExtResource("4_h1vht")
+
+[node name="Shape" parent="Area" index="0"]
+debug_color = Color(0, 0.596078, 0.701961, 0)

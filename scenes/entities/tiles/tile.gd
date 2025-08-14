@@ -12,6 +12,8 @@ func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int
 
 
 @onready var tile_bigger: AnimationPlayer = %TileBigger
+@onready var tile_lock: AnimationPlayer = %TileLock
+
 @onready var outline: Node2D = %Outline
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var action_holder: Node2D = %ActionHolder
@@ -144,7 +146,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 
 func tile_clicked(way: int) -> void:
 	if lock_rotation:
-		tile_bigger.play("rotate_lock")
+		tile_lock.play("rotate_lock")
 		return
 		
 	tile_rotation = (tile_rotation + way) % 4

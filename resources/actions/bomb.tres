@@ -1,17 +1,19 @@
-[gd_resource type="Resource" script_class="Action" load_steps=4 format=3 uid="uid://c7a8ehucedrdt"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c7a8ehucedrdt"]
 
-[ext_resource type="Script" uid="uid://cb0m53acfjbnw" path="res://resources/actions/action.gd" id="1_rkgp5"]
+[ext_resource type="Script" uid="uid://bkciqsy473h7u" path="res://resources/actions/bomb.gd" id="1_rkgp5"]
+[ext_resource type="PackedScene" uid="uid://bbdhvmyjyyqx2" path="res://scenes/entities/tiles/basics/tile_four.tscn" id="2_oaku5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pi7qa"]
 load_path = "res://.godot/imported/action_spritesheet.png-8eb4a14118544c9913904c269a53195f.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rkgp5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaku5"]
 atlas = SubResource("CompressedTexture2D_pi7qa")
 region = Rect2(64, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_rkgp5")
+target_tile_scene = ExtResource("2_oaku5")
 name = "Bomb"
-texture = SubResource("AtlasTexture_rkgp5")
+texture = SubResource("AtlasTexture_oaku5")
 temporary = false
 metadata/_custom_type_script = "uid://cb0m53acfjbnw"
