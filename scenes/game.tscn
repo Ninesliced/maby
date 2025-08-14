@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://rsjs7kqwau4m"]
+[gd_scene load_steps=4 format=3 uid="uid://bx68eqiiepmt2"]
 
-[ext_resource type="Texture2D" uid="uid://dji4tw1swaehw" path="res://icon.svg" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://krn8107seivb" path="res://scenes/ui/action_list/action_list.tscn" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="3_iywne"]
+[ext_resource type="PackedScene" uid="uid://dxvmmk3gh1th5" path="res://scenes/entities/player/player.tscn" id="4_p57ef"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(108, 68)
-rotation = 0.426771
-scale = Vector2(0.46, 0.46)
-texture = ExtResource("1_uwrxv")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ActionList" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_lbhrr")]
+player = NodePath("../../Player")
+
+[node name="Map" parent="." instance=ExtResource("3_iywne")]
+position = Vector2(0, 24)
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("4_p57ef")]
+position = Vector2(16, 104)
