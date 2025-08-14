@@ -18,6 +18,7 @@ var grid : Array[Array] = []
 
 func _ready() -> void:
 	# await GameGlobal.ready
+	GameGlobal.map = self
 	_update_grid()
 	# print("Generate grid")
 	generate_grid()

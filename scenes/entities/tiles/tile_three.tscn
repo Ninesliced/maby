@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3nx65gycyxa3"]
+
+[ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_hypdh"]
+[ext_resource type="Script" uid="uid://bdp6dnfj6afct" path="res://scenes/entities/tiles/tile_three.gd" id="2_gpb7i"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="2_uykbq"]
+[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="3_uykbq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpb7i"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4nor"]
+resource_local_to_scene = true
+shader = ExtResource("2_uykbq")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpb7i"]
+atlas = ExtResource("3_uykbq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4nor"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpb7i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Tile" instance=ExtResource("1_hypdh")]
+script = ExtResource("2_gpb7i")
+
+[node name="Visual" parent="." index="0"]
+material = SubResource("ShaderMaterial_gpb7i")
+
+[node name="Sprite" parent="Visual" index="1"]
+material = SubResource("ShaderMaterial_j4nor")
+sprite_frames = SubResource("SpriteFrames_j4nor")

@@ -26,9 +26,6 @@ render_target_update_mode = 4
 
 [node name="Game" parent="GameLayer/SubViewportContainer/GameplayViewport" instance=ExtResource("1_ig7tw")]
 
-[node name="Button" type="Button" parent="GameLayer/SubViewportContainer"]
-layout_mode = 2
-
 [node name="HUDLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUDLayer" instance=ExtResource("2_0xm2m")]

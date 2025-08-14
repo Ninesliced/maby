@@ -7,13 +7,6 @@ func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int
 			SignalBus.tile_clicked.emit(self)
 			pass
 
-enum Rotation {
-	UP = 0,
-	RIGHT = 1,
-	DOWN = 2,
-	LEFT = 3
-}
-
 # Never used
 # signal on_tile_full
 
@@ -35,7 +28,7 @@ var outline_tween: Tween = null
 @export var idle_rotation_sound_effect: AudioStreamPlayer
 
 @export var is_changeable := true
-@export var tile_rotation : Rotation = Rotation.UP : 
+@export var tile_rotation : Enums.Direction = Enums.Direction.UP : 
 	set(new_rotation):
 		if lock_rotation:
 			return
@@ -310,7 +303,7 @@ func translation_animated(target: Vector2) -> void:
 	tween.set_trans(Tween.TRANS_LINEAR)
 
 
-func transform_to_another_type(new_tile: PackedScene, play_animation: bool = true, new_tile_rotation: Rotation = tile_rotation) -> Tile:
+func transform_to_another_type(new_tile: PackedScene, play_animation: bool = true, new_tile_rotation: Enums.Direction = tile_rotation) -> Tile:
 	# print(new_tile.resource_name)
 	if not is_changeable:
 		return self
@@ -367,7 +360,7 @@ func rotate_right_by_one(text: String) -> String:
 	return text[-1] + text.substr(0, text.length() - 1)
 
 
-func transform_with_1ddl_less(direction: Rotation, play_animation: bool = true) -> Tile:
+func transform_with_1ddl_less(direction: Enums.Direction, play_animation: bool = true) -> Tile:
 	if not is_changeable:
 		return self
 	if is_player_inside:
@@ -390,13 +383,13 @@ func transform_with_1ddl_less(direction: Rotation, play_animation: bool = true) 
 	var encodage = equivalance_tile_pos[tileName]
 	var direction_to_depop = (direction - tile_rotation + 8) % 4
 
-	if direction_to_depop == Rotation.UP:
+	if direction_to_depop == Enums.Direction.UP:
 		encodage[0] = "1"
-	elif direction_to_depop == Rotation.RIGHT:
+	elif direction_to_depop == Enums.Direction.RIGHT:
 		encodage[1] = "1"
-	elif direction_to_depop == Rotation.DOWN:
+	elif direction_to_depop == Enums.Direction.DOWN:
 		encodage[2] = "1"
-	elif direction_to_depop == Rotation.LEFT:
+	elif direction_to_depop == Enums.Direction.LEFT:
 		encodage[3] = "1"
 	if encodage.count("1") >= 3:
 		var tile = transform_to_another_type(equivalance_pos_tile["1111"], true) 
@@ -429,7 +422,7 @@ func transform_with_1ddl_less(direction: Rotation, play_animation: bool = true) 
 	return self
 
 
-func can_pass(direction: Rotation) -> bool:
+func can_pass(direction: Enums.Direction) -> bool:
 	return true
 
 
