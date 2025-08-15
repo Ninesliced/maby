@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://c7c8pgcm72uur"
-path="res://.godot/imported/main_theme_calfed.ogg-0249633e30686e8a424141fad487c37a.oggvorbisstr"
+path="res://.godot/imported/main_theme_calfed.ogg-de439772fd5cf68f2a3e3a01987dbf26.oggvorbisstr"
 
 [deps]
 
-source_file="res://assets/music/work/main_theme_calfed.ogg"
-dest_files=["res://.godot/imported/main_theme_calfed.ogg-0249633e30686e8a424141fad487c37a.oggvorbisstr"]
+source_file="res://assets/work/main_theme_calfed.ogg"
+dest_files=["res://.godot/imported/main_theme_calfed.ogg-de439772fd5cf68f2a3e3a01987dbf26.oggvorbisstr"]
 
 [params]
 
