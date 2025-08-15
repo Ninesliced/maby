@@ -1,4 +1,5 @@
 extends AnimationPlayer
+class_name TileAnimation
 
 func play_full(delay: float = 0.0, blend = -1.0) -> void:
 	if delay > 0.0:

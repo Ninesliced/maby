@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://do55m1a3u6q1y" path="res://resources/player/player_data.gd" id="3_yv5hl"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("3_yv5hl")
 actions = Array[ExtResource("1_lgkf5")]([ExtResource("3_kbqvx"), ExtResource("2_kbqvx"), ExtResource("2_kbqvx"), ExtResource("3_kbqvx")])
 metadata/_custom_type_script = "uid://do55m1a3u6q1y"

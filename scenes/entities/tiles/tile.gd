@@ -11,8 +11,8 @@ func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int
 # signal on_tile_full
 
 
-@onready var tile_bigger: AnimationPlayer = %TileBigger
-@onready var tile_lock: AnimationPlayer = %TileLock
+@onready var tile_bigger: TileAnimation = %TileBigger as TileAnimation
+@onready var tile_lock: TileAnimation = %TileLock as TileAnimation
 
 # @onready var outline: Node2D = %Outline
 @onready var outline_component: OutlineComponent = %OutlineComponent
@@ -143,7 +143,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 			SignalBus.tile_clicked.emit(self)
 			pass
 
-
 func tile_clicked(way: int) -> void:
 	if lock_rotation:
 		tile_lock.play("rotate_lock")
@@ -154,110 +153,19 @@ func tile_clicked(way: int) -> void:
 	if tile_rotation < 0:
 		tile_rotation += 4
 
-
-# func tile_hovered() -> void: #FIXME add outline management in a component
-# 	if !GameGlobal.player or !GameGlobal.player.has_any_action():
-# 		return
-# 	var action = GameGlobal.player.action_manager.get_front()
-# 	spawn_outline(action)
-
-
-# func tile_unhovered() -> void:
-# 	if !GameGlobal.player or !GameGlobal.player.has_any_action():
-# 		return
-# 	var action = GameGlobal.player.action_manager.get_front()
-# 	clear_outline(action)
-
-
-# func on_action(action) -> void:
-# 	clear_outline(action)
-# 	var new_action = GameGlobal.action_stacks[0] if len(GameGlobal.action_stacks) > 0 else action
-# 	spawn_outline(new_action)
-
-
-# func clear_outline(action) -> void:
-# 	var tiles = action.get_tiles_in_action_zone(self)
-# 	for tile in tiles:
-# 		if tile and tile.outline_component:
-# 			tile.hide_outline()
-
-
-# func spawn_outline(action) -> void:
-# 	var is_action_valid = action.is_valid(self)
-
-# 	var tiles = action.get_tiles_in_action_zone(self)
-# 	if not tiles:
-# 		return
-# 	for tile in tiles:
-# 		if is_action_valid:
-# 			tile.outline_component.modulate = Color(1, 1, 1, 0.5)
-# 		else:
-# 			tile.outline_component.modulate = Color(1, 50./255., 50./255., 1)
-# 		outline_component.show_outline()
-
-
-# func show_outline() -> void:
-# 	outline.visible = true
-# 	low_visibility_outline()
-
-
-# func hide_outline() -> void:
-# 	outline.visible = false
-# 	if outline_tween:
-# 		outline_tween.stop()
-
-
-# func low_visibility_outline() -> void:
-# 	if not outline.visible:
-# 		return
-	
-# 	var color := outline.modulate
-# 	outline_tween = create_tween()
-# 	outline_tween.tween_property(outline, "modulate", Color(color.r, color.g, color.b, 0.5), 0.6)
-# 	outline_tween.set_ease(Tween.EASE_IN_OUT)
-# 	outline_tween.tween_callback(high_visibility_outline)
-
-
-# func high_visibility_outline() -> void:
-# 	if not outline.visible:
-# 		return
-	
-# 	var color := outline.modulate
-# 	outline_tween = create_tween()
-# 	outline_tween.tween_property(outline, "modulate", Color(color.r, color.g, color.b, 0.9), 0.6)
-# 	outline_tween.set_ease(Tween.EASE_IN_OUT)
-# 	outline_tween.tween_callback(low_visibility_outline)
-
-
-func _process(delta: float) -> void:
-	# label.text = str(grid_position)
-	pass
-
-
 func _on_area_body_exited(body: Node2D) -> void:
 	if not body is Player:
 		return
 		
 	if not is_changeable:
 		return
-#	is_player_inside = false
-#	if !_transform_to_full:
-#		return
-#	_transform_to_full = false
-#	transform_to_another_type(load("res://actors/tile/full.tscn"))
-	# var tile: Tile = transform_to_another_type(tiles[GameGlobal.rng.randi() % tiles.size()])
-	# tile.tile_rotation = randi() % 4
-	# var direction = GameGlobal.player.movement_component.last_inside_direction
-	# var tile: Tile = transform_with_1ddl_less(direction, true)
-	# if !tile:
-	# 	return
-	# tile.tile_bigger.play_full()
-	# tile._play_idle_rotation_sound()
+	var direction = GameGlobal.player.movement_component.last_inside_direction
+	var tile: Tile = transform_with_1ddl_less(direction, true)
+	if !tile:
+		return
 	
 	
 func rotate_animated(new_rotation: int) -> void:
-	# print(new_rotation)
-	# print(%Sprite.rotation, " vs ", PI / 2 * new_rotation)
 	if abs(%Sprite.rotation - PI / 2 * new_rotation) > PI:
 		if %Sprite.rotation < PI / 2 * new_rotation:
 			%Sprite.rotation += PI * 2
@@ -304,11 +212,11 @@ func transform_to_another_type(new_tile: PackedScene, play_animation: bool = tru
 	return tile_instance
 	
 var equivalance_pos_tile_classique: Dictionary = {
-	# "1111": load("res://actors/tile/full.tscn"),
-	# "1000": load("res://actors/tile/t.tscn"),
-	# "1010": load("res://actors/tile/line.tscn"),
-	# "1100": load("res://actors/tile/corner.tscn"),
-	# "0000": load("res://actors/tile/four.tscn")
+	"1111": load("res://scenes/entities/tiles/basics/tile_full.tscn"),
+	"1000": load("res://scenes/entities/tiles/basics/tile_three.tscn"),
+	"1010": load("res://scenes/entities/tiles/basics/tile_line.tscn"),
+	"1100": load("res://scenes/entities/tiles/basics/tile_corner.tscn"),
+	"0000": load("res://scenes/entities/tiles/basics/tile_four.tscn")
 }
 var equivalance_pos_tile_spike: Dictionary = {
 	# "1111": load("res://actors/tile/spike/full_spike.tscn"),
@@ -382,35 +290,8 @@ func transform_with_1ddl_less(direction: Enums.Direction, play_animation: bool =
 			return tile
 
 		encodage = rotate_right_by_one(encodage)
-
-	print("Error: Not found rotation")
-	"""var tile_instance: Tile = new_tile.instantiate()
-	tile_instance.position = position
-	tile_instance.grid_position = grid_position
-	tile_instance.tile_rotation = tile_rotation
-	if get_parent():
-		get_parent().add_child(tile_instance)
-	else:
-		push_error("why does this tile have no parent?")
-	if tile_instance.tile_bigger and play_animation:
-		tile_instance.tile_bigger.play_full()
-	GameGlobal.map.grid[grid_position.x][grid_position.y] = tile_instance
-	queue_free()
-	return tile_instance"""
 	return self
 
 
 func can_pass(direction: Enums.Direction) -> bool:
 	return true
-
-
-#func _on_area_body_entered(body):
-#	if not body is Player:
-#		return
-#	var player: Player = body
-#	is_player_inside = true
-#	if player.randomTileCount < player.randomTileMax and player.randomTileMax > 0:
-#		player.randomTileCount += 1
-#		if player.randomTileCount >= player.randomTileMax:
-#			_transform_to_full = true
-#			player.randomTileCount = 0

@@ -48,7 +48,6 @@ func spawn_outline() -> void:
 	if not tiles:
 		return
 	for tile in tiles:
-		print("spawning outline for tile: ", tile.grid_position)
 		if is_action_valid:
 			tile.outline_component.outline.modulate = Color(1, 1, 1, 0.5)
 		else:

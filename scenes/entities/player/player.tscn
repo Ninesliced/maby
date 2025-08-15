@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dxvmmk3gh1th5"]
+[gd_scene load_steps=15 format=4 uid="uid://dxvmmk3gh1th5"]
 
 [ext_resource type="Script" uid="uid://oxfpy1jnvlqm" path="res://scenes/entities/player/player.gd" id="1_nh4ur"]
 [ext_resource type="PackedScene" uid="uid://cwswecef6l2hi" path="res://scenes/entities/player/components/action_manager.tscn" id="2_635qg"]
@@ -56,7 +56,12 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bj7e2"]
+radius = 4.0
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_nh4ur")
 player_data = ExtResource("2_bjvvg")
 
@@ -98,6 +103,9 @@ metadata/_aseprite_wizard_config_ = {
 "source_uid": 7459505762053098952
 }
 metadata/_aseprite_wizard_source_file_hash_ = "5e46b245de9524e0748fc82bdecce78d"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bj7e2")
 
 [connection signal="on_idle" from="MovementComponent" to="Sprite" method="_on_movement_component_on_idle"]
 [connection signal="on_move" from="MovementComponent" to="Sprite" method="_on_movement_component_on_move"]
