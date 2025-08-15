@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbdhvmyjyyqx2"]
+[gd_scene load_steps=17 format=3 uid="uid://bbdhvmyjyyqx2"]
 
 [ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_h1vht"]
 [ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_2k5q6"]
 [ext_resource type="Script" uid="uid://8n88uqbgvhf0" path="res://scenes/helper/sprites/sprite_randomizer_component.gd" id="4_h1vht"]
 [ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="4_nek4d"]
+[ext_resource type="Texture2D" uid="uid://cd26j4sn6lueq" path="res://assets/images/tiles/tilesheet_seasons2.png" id="4_y4uo3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gpb7i"]
 resource_local_to_scene = true
@@ -14,18 +15,54 @@ shader = ExtResource("3_2k5q6")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/force = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h1vht"]
-atlas = ExtResource("4_nek4d")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiyul"]
+atlas = ExtResource("4_y4uo3")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd1ly"]
+atlas = ExtResource("4_y4uo3")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqcn2"]
+atlas = ExtResource("4_y4uo3")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n724y"]
+atlas = ExtResource("4_y4uo3")
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h1vht"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h1vht")
+"texture": SubResource("AtlasTexture_xiyul")
 }],
 "loop": true,
-"name": &"default",
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd1ly")
+}],
+"loop": true,
+"name": &"spring",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqcn2")
+}],
+"loop": true,
+"name": &"summer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n724y")
+}],
+"loop": true,
+"name": &"winter",
 "speed": 5.0
 }]
 
@@ -77,6 +114,7 @@ material = SubResource("ShaderMaterial_gpb7i")
 [node name="Sprite" parent="Visual" index="0"]
 material = SubResource("ShaderMaterial_j4nor")
 sprite_frames = SubResource("SpriteFrames_h1vht")
+animation = &"winter"
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Visual/Sprite" index="0"]
 modulate = Color(0.0509537, 0.0467583, 0.216836, 0.352941)
