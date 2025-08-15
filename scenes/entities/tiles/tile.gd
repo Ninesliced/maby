@@ -62,7 +62,7 @@ func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int
 ## DEPRECATED
 @export var tileName: String = ""
 
-var force_transform_to_scene: PackedScene = null
+@export var force_transform_to_scene: PackedScene = null
 
 var _transform_to_full: bool = false
 

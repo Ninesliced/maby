@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SingleTileAction" load_steps=5 format=3 uid="uid://bhn0jrljq7phm"]
+
+[ext_resource type="Script" uid="uid://nuv0sxu30wqx" path="res://resources/actions/single_tile.gd" id="1_5t2dw"]
+[ext_resource type="PackedScene" uid="uid://wignnaopo2ag" path="res://scenes/entities/tiles/carrot/tile_carrot.tscn" id="2_acd21"]
+[ext_resource type="Texture2D" uid="uid://vcx7ddf1espq" path="res://assets/images/actions/action_spritesheet.png" id="2_s8t13"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecxy7"]
+atlas = ExtResource("2_s8t13")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_5t2dw")
+tile_to_transform = ExtResource("2_acd21")
+name = "Carrot"
+texture = SubResource("AtlasTexture_ecxy7")
+temporary = false
+keep_always_one = false
+metadata/_custom_type_script = "uid://nuv0sxu30wqx"

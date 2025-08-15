@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://wignnaopo2ag"]
+
+[ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_c25ds"]
+[ext_resource type="PackedScene" uid="uid://bhmw28bkvxtdp" path="res://scenes/entities/tiles/basics/tile_full.tscn" id="2_0hifb"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="2_h8a17"]
+[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="4_df56d"]
+[ext_resource type="Script" uid="uid://bl1sxg1a13wtl" path="res://scenes/entities/tiles/carrot/carrot_eat_component.gd" id="6_k4q5n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpb7i"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4nor"]
+resource_local_to_scene = true
+shader = ExtResource("2_h8a17")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8a17"]
+atlas = ExtResource("4_df56d")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c25ds"]
+atlas = ExtResource("4_df56d")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1vht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8a17")
+}],
+"loop": true,
+"name": &"carrot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c25ds")
+}],
+"loop": true,
+"name": &"no_carrot",
+"speed": 5.0
+}]
+
+[node name="Tile" instance=ExtResource("1_c25ds")]
+lock_rotation = true
+force_transform_to_scene = ExtResource("2_0hifb")
+
+[node name="Visual" parent="." index="1"]
+material = SubResource("ShaderMaterial_gpb7i")
+
+[node name="Sprite" parent="Visual" index="0"]
+material = SubResource("ShaderMaterial_j4nor")
+sprite_frames = SubResource("SpriteFrames_h1vht")
+animation = &"carrot"
+
+[node name="SpriteRandomizerComponent" parent="Visual/Sprite" index="0"]
+prefix = "carrot"
+
+[node name="Shape" parent="Area" index="0"]
+debug_color = Color(0, 0.596078, 0.701961, 0)
+
+[node name="CarrotEatComponent" type="Node" parent="." index="8" node_paths=PackedStringArray("area", "sprite", "tile_bigger")]
+script = ExtResource("6_k4q5n")
+area = NodePath("../Area")
+sprite = NodePath("../Visual/Sprite")
+tile_bigger = NodePath("../TileBigger")

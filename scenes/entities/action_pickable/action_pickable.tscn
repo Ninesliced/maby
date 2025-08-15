@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://css33ay61epvg"]
+[gd_scene load_steps=20 format=3 uid="uid://css33ay61epvg"]
 
 [ext_resource type="Script" uid="uid://bdxnxa0cfakpc" path="res://scenes/entities/action_pickable/action_pickable.gd" id="1_lri3x"]
 [ext_resource type="Texture2D" uid="uid://vcx7ddf1espq" path="res://assets/images/actions/action_spritesheet.png" id="2_0i1e8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://c7a8ehucedrdt" path="res://resources/actions/bomb.tres" id="3_fc7e1"]
 [ext_resource type="Resource" uid="uid://oyv5toem51nb" path="res://resources/actions/rotate_tile.tres" id="4_cwnh7"]
 [ext_resource type="Resource" uid="uid://chabm6c23hgt6" path="res://resources/actions/wolf_action.tres" id="5_i58iv"]
+[ext_resource type="Resource" uid="uid://bhn0jrljq7phm" path="res://resources/actions/carrot.tres" id="6_sy7yx"]
 
 [sub_resource type="Resource" id="Resource_fc7e1"]
 script = ExtResource("2_dvud1")
@@ -24,6 +25,12 @@ metadata/_custom_type_script = "uid://wjuj58qdnpse"
 [sub_resource type="Resource" id="Resource_sy7yx"]
 script = ExtResource("2_dvud1")
 action = ExtResource("5_i58iv")
+probability = 1.0
+metadata/_custom_type_script = "uid://wjuj58qdnpse"
+
+[sub_resource type="Resource" id="Resource_pg4jb"]
+script = ExtResource("2_dvud1")
+action = ExtResource("6_sy7yx")
 probability = 1.0
 metadata/_custom_type_script = "uid://wjuj58qdnpse"
 
@@ -151,7 +158,7 @@ _data = {
 [node name="ActionPickable" type="Node2D"]
 z_index = 5
 script = ExtResource("1_lri3x")
-actions = Array[ExtResource("2_dvud1")]([SubResource("Resource_fc7e1"), SubResource("Resource_cwnh7"), SubResource("Resource_sy7yx")])
+actions = Array[ExtResource("2_dvud1")]([SubResource("Resource_fc7e1"), SubResource("Resource_cwnh7"), SubResource("Resource_sy7yx"), SubResource("Resource_pg4jb")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
