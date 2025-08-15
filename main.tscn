@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cm1jdbdyovx5e"]
+[gd_scene load_steps=8 format=3 uid="uid://cm1jdbdyovx5e"]
 
 [ext_resource type="PackedScene" uid="uid://bx68eqiiepmt2" path="res://scenes/game.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cffi6mm04q5y0" path="res://scenes/ui/hud.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://c3xh7flyjm5dw" path="res://scenes/ui/menus/menu.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://c3xh7flyjm5dw" path="res://scenes/ui/menus/pause_menu.tscn" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://krn8107seivb" path="res://scenes/ui/action_list/action_list.tscn" id="3_h2yge"]
 [ext_resource type="Theme" uid="uid://c06a0wpkb3qyr" path="res://resources/theme/theme.tres" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://d26qyy127b8jm" path="res://scenes/ui/score/score_ui.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bi4gq7xlh8bub" path="res://scenes/ui/game_over/game_over.tscn" id="7_272bh"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -34,14 +35,17 @@ render_target_update_mode = 4
 [node name="HUDLayer" type="CanvasLayer" parent="."]
 
 [node name="ActionList" parent="HUDLayer" instance=ExtResource("3_h2yge")]
+offset_left = 16.0
 offset_top = 16.0
+offset_right = 16.0
 offset_bottom = 16.0
 
 [node name="ScoreManager" type="Control" parent="HUDLayer"]
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 24.0
+offset_top = 8.0
+offset_bottom = 32.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 script = ExtResource("4_lquwl")
@@ -62,6 +66,9 @@ text = "Score: 1000"
 [node name="HUD" parent="HUDLayer" instance=ExtResource("2_0xm2m")]
 visible = false
 mouse_filter = 2
+
+[node name="GameOver" parent="HUDLayer" instance=ExtResource("7_272bh")]
+visible = false
 
 [node name="Menu" parent="HUDLayer" instance=ExtResource("2_7mycd")]
 process_mode = 3

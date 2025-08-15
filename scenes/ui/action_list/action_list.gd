@@ -28,6 +28,8 @@ func set_ui(actions: Array[Action]) -> void:
 
 
 func _pop_action_ui_at(number: int) -> void:
+	if !is_inside_tree(): #hack
+		return
 	var action_ui: ActionUI = action_ui_list.pop_at(number)
 	var tween = get_tree().create_tween()
 

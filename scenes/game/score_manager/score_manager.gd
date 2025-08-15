@@ -14,6 +14,7 @@ var score: int = 0:
 var player_max_x: int = -1
 
 func _ready() -> void:
+    GameGlobal.score_manager = self
     if !GameGlobal.player:
         await GameGlobal.on_player_added
 

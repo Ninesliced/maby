@@ -1,13 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://krn8107seivb"]
+[gd_scene load_steps=3 format=3 uid="uid://krn8107seivb"]
 
 [ext_resource type="Script" uid="uid://dt7aag0f6admg" path="res://scenes/ui/action_list/action_list.gd" id="1_acudf"]
+[ext_resource type="Texture2D" uid="uid://biulrryb2ofmi" path="res://assets/images/ui/in_game/action_holder.png" id="2_ptpte"]
 
 [node name="ActionList" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 16.0
-offset_top = 24.0
-offset_right = 16.0
-offset_bottom = 24.0
 script = ExtResource("1_acudf")
 metadata/_edit_use_anchors_ = true
+
+[node name="ActionHolder" type="Sprite2D" parent="."]
+position = Vector2(48, 0)
+texture = ExtResource("2_ptpte")

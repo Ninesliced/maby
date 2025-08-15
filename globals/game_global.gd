@@ -14,6 +14,7 @@ var hovered_tile: Tile:
     set(value):
         hovered_tile = value
         SignalBus.on_tile_hovered.emit(value)
+var score_manager: ScoreManager
         
 
 signal on_player_added(player: Player)
@@ -28,3 +29,4 @@ func reset() -> void:
     game = null
     camera = null
     hovered_tile = null
+    score_manager = null
