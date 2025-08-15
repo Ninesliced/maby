@@ -78,6 +78,7 @@ _data = {
 [node name="ActionUI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_3ux37")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -96,6 +97,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("AtlasTexture_4clnl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

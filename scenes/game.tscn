@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bx68eqiiepmt2"]
+[gd_scene load_steps=20 format=3 uid="uid://bx68eqiiepmt2"]
 
 [ext_resource type="Script" uid="uid://bw7tomdqk6vre" path="res://scenes/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ks74tjx3lahn" path="res://scenes/game/score_manager/score_manager.tscn" id="2_ca42v"]
 [ext_resource type="PackedScene" uid="uid://d23mogp1jfilt" path="res://addons/shaker/components/ui/pause_manager/pause_manager.tscn" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://d4khvtud3ww0l" path="res://scenes/ui/action_list/action_ui.tscn" id="2_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="3_iywne"]
+[ext_resource type="Script" uid="uid://bg113k8m5bhdc" path="res://scenes/game/mouse_action_ui/action_current.gd" id="3_rysoc"]
 [ext_resource type="PackedScene" uid="uid://dxvmmk3gh1th5" path="res://scenes/entities/player/player.tscn" id="4_p57ef"]
 [ext_resource type="PackedScene" uid="uid://d3nx65gycyxa3" path="res://scenes/entities/tiles/basics/tile_three.tscn" id="4_trtic"]
 [ext_resource type="PackedScene" uid="uid://ii53nhehe86f" path="res://scenes/entities/tiles/basics/tile_corner.tscn" id="5_ir15t"]
@@ -26,9 +28,14 @@ metadata/_custom_type_script = "uid://do55m1a3u6q1y"
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
 
-[node name="ScoreManager" parent="." instance=ExtResource("2_ca42v")]
+[node name="ActionUI" parent="." instance=ExtResource("2_ssvqc")]
+modulate = Color(1, 1, 1, 0.823529)
+z_index = 20
 
-[node name="MouseActionUI" type="Node" parent="."]
+[node name="ActionCurrentComponent" type="Node2D" parent="ActionUI"]
+script = ExtResource("3_rysoc")
+
+[node name="ScoreManager" parent="." instance=ExtResource("2_ca42v")]
 
 [node name="PauseManager" parent="." instance=ExtResource("2_lnu2h")]
 pause_menu = "uid://dev218r5gmd1d"
