@@ -16,6 +16,7 @@ shader_parameter/force = 0.0
 [node name="Spike" instance=ExtResource("1_rjogy")]
 script = ExtResource("2_6ajxb")
 is_action_spawnable = false
+tile_type = 4
 tileName = "FullSpikeTile"
 
 [node name="Visual" parent="." index="1"]

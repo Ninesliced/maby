@@ -5,6 +5,7 @@ class_name Player
 
 @onready var action_manager: ActionManager = %ActionManager
 @onready var movement_component: MovementComponent = %MovementComponent
+@onready var skill_component: SkillComponent = %SkillComponent
 
 func _ready() -> void:
     GameGlobal.player = self

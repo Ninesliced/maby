@@ -23,7 +23,7 @@ func set_ui(actions: Array[Action]) -> void:
 		ui.queue_free()
 	action_ui_list.clear()
 	for i in range(actions.size()):
-		var action_ui: ActionUI = _create_action_ui(actions[i])
+		var action_ui: ActionUI = _create_action_ui(actions[i], i)
 		action_ui.position = Vector2(i * 18, 0)
 
 
@@ -40,16 +40,15 @@ func _pop_action_ui_at(number: int) -> void:
 	await update_ui()
 	action_ui.queue_free()
 
-func _append_action_ui(action: Action) -> void:
-	var action_ui: ActionUI = _create_action_ui(action)
-	action_ui.position = Vector2(action_ui_list.size() * 18, 0)
+func _append_action_ui(action: Action, index: int) -> void:
+	var action_ui: ActionUI = _create_action_ui(action, index)
+	action_ui.position = Vector2(index * 18, 0)
 	update_ui()
 
-
-func _create_action_ui(action: Action) -> ActionUI:
+func _create_action_ui(action: Action, index: int):
 	var action_ui: ActionUI = action_ui_scene.instantiate()
 	add_child(action_ui)
-	action_ui_list.append(action_ui)
+	action_ui_list.insert(index, action_ui)
 	action_ui.set_texture(action.texture)
 	action_ui.play_add()
 	return action_ui

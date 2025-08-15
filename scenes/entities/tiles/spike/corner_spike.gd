@@ -1,15 +1,15 @@
 extends Spike
 
-func can_pass(direction: Rotation) -> bool:
-	var dir_rotation: Rotation = tile_rotation
+func can_pass(direction: Enums.Direction) -> bool:
+	var dir_rotation: Enums.Direction = tile_rotation
 
-	if direction == Rotation.UP:
-		return dir_rotation == Rotation.DOWN or dir_rotation == Rotation.RIGHT
-	elif direction == Rotation.RIGHT:
-		return dir_rotation == Rotation.LEFT or dir_rotation == Rotation.DOWN
-	elif direction == Rotation.DOWN:
-		return dir_rotation == Rotation.LEFT or dir_rotation == Rotation.UP
-	elif direction == Rotation.LEFT:
-		return dir_rotation == Rotation.RIGHT or dir_rotation == Rotation.UP
+	if direction == Enums.Direction.UP:
+		return dir_rotation == Enums.Direction.DOWN or dir_rotation == Enums.Direction.RIGHT
+	elif direction == Enums.Direction.RIGHT:
+		return dir_rotation == Enums.Direction.LEFT or dir_rotation == Enums.Direction.DOWN
+	elif direction == Enums.Direction.DOWN:
+		return dir_rotation == Enums.Direction.LEFT or dir_rotation == Enums.Direction.UP
+	elif direction == Enums.Direction.LEFT:
+		return dir_rotation == Enums.Direction.RIGHT or dir_rotation == Enums.Direction.UP
 
 	return true

@@ -5,7 +5,7 @@ signal tile_clicked(tile: Tile)
 signal on_player_move(player: Player, direction: Enums.Direction)
 signal on_player_event()
 signal on_player_action(player: Player, action: Action)
-
+signal on_player_skill()
 signal on_player_idle(player: Player)
 signal on_player_died()
 signal on_new_current_action(action: Action)

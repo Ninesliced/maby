@@ -2,18 +2,18 @@ extends Node2D
 class_name Tile
 
 enum TileType {
-	FOUR = 0,
-	THREE = 1,
-	LINE = 2,
-	CORNER = 3,
-	FULL = 4,
+    FOUR = 0,
+    THREE = 1,
+    LINE = 2,
+    CORNER = 3,
+    FULL = 4,
 }
 
 func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
-	if event is InputEventMouseButton:
-		if !event.pressed and event.button_index < 3:
-			SignalBus.tile_clicked.emit(self)
-			pass
+    if event is InputEventMouseButton:
+        if !event.pressed and event.button_index < 3:
+            SignalBus.tile_clicked.emit(self)
+            pass
 
 # Never used
 # signal on_tile_full
@@ -38,20 +38,20 @@ func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int
 
 @export var is_changeable := true
 @export var tile_rotation : Enums.Direction = Enums.Direction.UP : 
-	set(new_rotation):
-		if lock_rotation:
-			return
+    set(new_rotation):
+        if lock_rotation:
+            return
 
-		# var clockwise = x > tile_rotation
-		# var new_rotation = x
-		# if not is_inside_tree():
-		# 	return
-		if is_inside_tree() && get_tree():
-			rotate_animated(new_rotation)
-		else:
-			%Sprite.rotation = PI / 2 * new_rotation
-		
-		tile_rotation = new_rotation % 4
+        # var clockwise = x > tile_rotation
+        # var new_rotation = x
+        # if not is_inside_tree():
+        # 	return
+        if is_inside_tree() && get_tree():
+            rotate_animated(new_rotation)
+        else:
+            %Sprite.rotation = PI / 2 * new_rotation
+        
+        tile_rotation = new_rotation % 4
 
 @export var is_action_spawnable: bool = true
 @export_range(0,1,0.01) var chance_action_spawn: float = 0.025
@@ -73,237 +73,232 @@ var is_player_inside: bool = false
 ### PUBLIC
 
 func is_transform_to_full() -> bool:
-	return _transform_to_full
+    return _transform_to_full
 
 func set_grid_position(new_grid_position: Vector2i) -> void:
-	grid_position = new_grid_position
+    grid_position = new_grid_position
 
 func rotate_clock() -> void:
-	tile_clicked(1)
+    tile_clicked(1)
 
 func rotate_counter_clock() -> void:
-	tile_clicked(-1)
+    tile_clicked(-1)
 
 func swap(map: Map,vector : Vector2i) -> void:
-	var tile_size = map.tile_size
-	
-	var neighbor = map.grid[(grid_position.x+vector.x)%map.grid_size.x][(grid_position.y+vector.y)%map.grid_size.y]
-	
-	var pos_neigh = neighbor.position
-	var pos = position
-	
-	translation_animated(pos_neigh)
-	neighbor.translation_animated(pos)
-	
-	map.swap_tiles(grid_position,(grid_position+vector)%map.grid_size)
+    var tile_size = map.tile_size
+    
+    var neighbor = map.grid[(grid_position.x+vector.x)%map.grid_size.x][(grid_position.y+vector.y)%map.grid_size.y]
+    
+    var pos_neigh = neighbor.position
+    var pos = position
+    
+    translation_animated(pos_neigh)
+    neighbor.translation_animated(pos)
+    
+    map.swap_tiles(grid_position,(grid_position+vector)%map.grid_size)
 
 func horizontal_swap(map: Map) -> void:
-	swap(map,Vector2i(1,0))
-	
+    swap(map,Vector2i(1,0))
+    
 
 func vertical_swap(map: Map) -> void:
-	swap(map,Vector2i(0,1))
+    swap(map,Vector2i(0,1))
 
 
 func _play_rotation_sound() -> void:
-	rotation_sound_effect.pitch_scale = randf_range(0.6, 1.0)
-	# FIXME: Godot is broken
-	rotation_sound_effect.volume_db = -5.0
-	rotation_sound_effect.play()
+    rotation_sound_effect.pitch_scale = randf_range(0.6, 1.0)
+    # FIXME: Godot is broken
+    rotation_sound_effect.volume_db = -5.0
+    rotation_sound_effect.play()
 
 
 func _play_idle_rotation_sound() -> void:
-	idle_rotation_sound_effect.pitch_scale = randf_range(0.6, 1.0)
-	# FIXME: Godot is broken
-	idle_rotation_sound_effect.volume_db = -5.0
-	idle_rotation_sound_effect.play()
+    idle_rotation_sound_effect.pitch_scale = randf_range(0.6, 1.0)
+    # FIXME: Godot is broken
+    idle_rotation_sound_effect.volume_db = -5.0
+    idle_rotation_sound_effect.play()
 
 func _ready() -> void:
-	# Generation de l'action
-	sprite.speed_scale = 0
-	
-	if is_action_spawnable:
-		if GameGlobal.rng.randf() < chance_action_spawn:
-			#FIXME commented but it's spawning actions
-			var action_load: PackedScene = load("res://scenes/entities/action_pickable/action_pickable.tscn")
-			var action = action_load.instantiate()
-			action.choose_an_random_action()
-			action.position = Vector2i(8,8)
-			%ActionHolder.add_child(action)
-			pass
-	
-	var season_len : int = 25 / 4 #horrible valeur 25 = GameGlobal.map.grid_size.x hardcode
-	var i : int = grid_position.x / season_len % 4
-	var season = seasons[i]
-	%SpriteRandomizerComponent.prefix = season #FIXME: make it a var
-	sprite.play(season)
+    # Generation de l'action
+    sprite.speed_scale = 0
+    
+    if is_action_spawnable:
+        if GameGlobal.rng.randf() < chance_action_spawn:
+            #FIXME commented but it's spawning actions
+            var action_load: PackedScene = load("res://scenes/entities/action_pickable/action_pickable.tscn")
+            var action = action_load.instantiate()
+            action.choose_an_random_action()
+            action.position = Vector2i(8,8)
+            %ActionHolder.add_child(action)
+            pass
+    
+    var season_len : int = 25 / 4 #horrible valeur 25 = GameGlobal.map.grid_size.x hardcode
+    var i : int = grid_position.x / season_len % 4
+    var season = seasons[i]
+    %SpriteRandomizerComponent.prefix = season #FIXME: make it a var
+    sprite.play(season)
 
 
 func _on_area_2d_mouse_entered() -> void:
-	GameGlobal.hovered_tile = self
-	is_hover = true
+    GameGlobal.hovered_tile = self
+    is_hover = true
 
 
 func _on_area_2d_mouse_exited() -> void:
-	if GameGlobal.hovered_tile == self:
-		GameGlobal.hovered_tile = null
-	is_hover = false
+    if GameGlobal.hovered_tile == self:
+        GameGlobal.hovered_tile = null
+    is_hover = false
 
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton:
-		if !event.pressed and event.button_index < 3:
-			SignalBus.tile_clicked.emit(self)
-			pass
+    if event is InputEventMouseButton:
+        if !event.pressed and event.button_index < 3:
+            SignalBus.tile_clicked.emit(self)
+            pass
 
 func tile_clicked(way: int) -> void:
-	if lock_rotation:
-		tile_lock.play("rotate_lock")
-		return
-		
-	tile_rotation = (tile_rotation + way) % 4
-	
-	if tile_rotation < 0:
-		tile_rotation += 4
+    if lock_rotation:
+        tile_lock.play("rotate_lock")
+        return
+        
+    tile_rotation = (tile_rotation + way) % 4
+    
+    if tile_rotation < 0:
+        tile_rotation += 4
 
 func _on_area_body_exited(body: Node2D) -> void: # REFACTORABLE IN ANOTHER COMPONENT
-	if not body is Player:
-		return
-		
-	if not is_changeable:
-		return
-	var direction = GameGlobal.player.movement_component.last_inside_direction
-	var tile: Tile = transform_with_1ddl_less(direction, true)
-	if !tile:
-		return
-	
-	
+    if not body is Player:
+        return
+        
+    if not is_changeable:
+        return
+    var direction = GameGlobal.player.movement_component.last_inside_direction
+    var tile: Tile = transform_with_1ddl_less(direction, true)
+    if !tile:
+        return
+    
+    
 func rotate_animated(new_rotation: int) -> void:
-	if abs(%Sprite.rotation - PI / 2 * new_rotation) > PI:
-		if %Sprite.rotation < PI / 2 * new_rotation:
-			%Sprite.rotation += PI * 2
-		else:
-			%Sprite.rotation -= PI * 2
+    if abs(%Sprite.rotation - PI / 2 * new_rotation) > PI:
+        if %Sprite.rotation < PI / 2 * new_rotation:
+            %Sprite.rotation += PI * 2
+        else:
+            %Sprite.rotation -= PI * 2
 
-	var tween = get_tree().create_tween()
-	tween.tween_property(%Sprite, "rotation", PI / 2 * new_rotation, rotation_speed)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_ELASTIC)
-	
-	_play_rotation_sound()
-	
+    var tween = get_tree().create_tween()
+    tween.tween_property(%Sprite, "rotation", PI / 2 * new_rotation, rotation_speed)
+    tween.set_ease(Tween.EASE_OUT)
+    tween.set_trans(Tween.TRANS_ELASTIC)
+    
+    _play_rotation_sound()
+    
 func translation_animated(target: Vector2) -> void:
-	var pos = position
-	%Sprite.position -= target - pos
-	position = target
-	var tween = get_tree().create_tween()
-	tween.tween_property(%Sprite, "position", Vector2(0,0), 0.2)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_LINEAR)
+    var pos = position
+    %Sprite.position -= target - pos
+    position = target
+    var tween = get_tree().create_tween()
+    tween.tween_property(%Sprite, "position", Vector2(0,0), 0.2)
+    tween.set_ease(Tween.EASE_IN_OUT)
+    tween.set_trans(Tween.TRANS_LINEAR)
 
 
 func transform_to_another_type(new_tile: PackedScene, play_animation: bool = true, new_tile_rotation: Enums.Direction = tile_rotation) -> Tile:
-	# print(new_tile.resource_name)
-	if not is_changeable:
-		return self
-	if is_player_inside:
-		print("Player is still inside the tile, cannot transform")
-		return null
-	var tile_instance: Tile = new_tile.instantiate()
-	tile_instance.position = position
-	tile_instance.grid_position = grid_position
-	tile_instance.tile_rotation = new_tile_rotation
-	if get_parent():
-		get_parent().add_child(tile_instance)
-	else:
-		push_error("why does this tile have no parent?")
-	if tile_instance.tile_bigger and play_animation:
-		tile_instance.tile_bigger.play_full()
-	GameGlobal.map.grid[grid_position.x][grid_position.y] = tile_instance
-	queue_free()
+    # print(new_tile.resource_name)
+    if not is_changeable:
+        return self
+    if is_player_inside:
+        print("Player is still inside the tile, cannot transform")
+        return null
+    var tile_instance: Tile = new_tile.instantiate()
+    tile_instance.position = position
+    tile_instance.grid_position = grid_position
+    tile_instance.tile_rotation = new_tile_rotation
+    if get_parent():
+        get_parent().add_child(tile_instance)
+    else:
+        push_error("why does this tile have no parent?")
+    if tile_instance.tile_bigger and play_animation:
+        tile_instance.tile_bigger.play_full()
+    GameGlobal.map.grid[grid_position.x][grid_position.y] = tile_instance
+    queue_free()
 
-	return tile_instance
-	
+    return tile_instance
+    
 var equivalance_pos_tile_classique: Dictionary = {
-	"1111": load("res://scenes/entities/tiles/basics/tile_full.tscn"),
-	"1000": load("res://scenes/entities/tiles/basics/tile_three.tscn"),
-	"1010": load("res://scenes/entities/tiles/basics/tile_line.tscn"),
-	"1100": load("res://scenes/entities/tiles/basics/tile_corner.tscn"),
-	"0000": load("res://scenes/entities/tiles/basics/tile_four.tscn")
+    "1111": load("res://scenes/entities/tiles/basics/tile_full.tscn"),
+    "1000": load("res://scenes/entities/tiles/basics/tile_three.tscn"),
+    "1010": load("res://scenes/entities/tiles/basics/tile_line.tscn"),
+    "1100": load("res://scenes/entities/tiles/basics/tile_corner.tscn"),
+    "0000": load("res://scenes/entities/tiles/basics/tile_four.tscn")
 }
 var equivalance_pos_tile_spike: Dictionary = {
-	# "1111": load("res://actors/tile/spike/full_spike.tscn"),
-	# "1000": load("res://actors/tile/spike/t_spike.tscn"),
-	# "1010": load("res://actors/tile/spike/line_spike.tscn"),
-	# "1100": load("res://actors/tile/spike/corner_spike.tscn"),
-	# "0000": load("res://actors/tile/spike/four_spike.tscn")
+    "1111": load("res://scenes/entities/tiles/spike/full_spike.tscn"),
+    "1000": load("res://scenes/entities/tiles/spike/t_spike.tscn"),
+    "1010": load("res://scenes/entities/tiles/spike/line_spike.tscn"),
+    "1100": load("res://scenes/entities/tiles/spike/corner_spike.tscn"),
+    "0000": load("res://scenes/entities/tiles/spike/four_spike.tscn")
 }
 var equivalance_tile_pos: Dictionary = {
-	# 1 c'est un mur
-	TileType.FULL : "1111",
-	TileType.THREE: "1000",
-	TileType.LINE: "1010",
-	TileType.CORNER: "1100",
-	TileType.FOUR: "0000",
-	"FullSpikeTile": "1111",
-	"TSpikeTile": "1000",
-	"LineSpikeTile": "1010",
-	"CornerSpikeTile": "1100",
-	"FourSpikeTile": "0000"
+    # 1 c'est un mur
+    TileType.FULL : "1111",
+    TileType.THREE: "1000",
+    TileType.LINE: "1010",
+    TileType.CORNER: "1100",
+    TileType.FOUR: "0000",
 }
 
 
 func rotate_right_by_one(text: String) -> String:
-	if text.length() == 0:
-		return text
-	return text[-1] + text.substr(0, text.length() - 1)
+    if text.length() == 0:
+        return text
+    return text[-1] + text.substr(0, text.length() - 1)
 
 
 func transform_with_1ddl_less(direction: Enums.Direction, play_animation: bool = true) -> Tile:
-	if not is_changeable:
-		return self
-	if is_player_inside:
-		print("Player is still inside the tile, cannot transform")
-		return null
-	 
-	var is_spike = "Spike" in tileName
-	var equivalance_pos_tile = equivalance_pos_tile_spike if is_spike else equivalance_pos_tile_classique
+    if not is_changeable:
+        return self
+    if is_player_inside:
+        print("Player is still inside the tile, cannot transform")
+        return null
+     
+    var is_spike = "Spike" in tileName
+    var equivalance_pos_tile = equivalance_pos_tile_spike if is_spike else equivalance_pos_tile_classique
 
-	if force_transform_to_scene:
-		var tile: Tile = transform_to_another_type(force_transform_to_scene, play_animation)
-		# tile.tile_rotation = (tile.tile_rotation - direction + 8) % 4 # FIXME: if later update :3
-		return tile
-	
-	if tile_type not in equivalance_tile_pos.keys():
-		print("Tile name not found in equivalence_tile_pos: ", tile_type)
-		var tile: Tile = transform_to_another_type(GameGlobal.map.tiles[GameGlobal.rng.randi() % GameGlobal.map.tiles.size()])
-		tile.tile_rotation = randi() % 4
-		return tile
+    if force_transform_to_scene:
+        var tile: Tile = transform_to_another_type(force_transform_to_scene, play_animation)
+        # tile.tile_rotation = (tile.tile_rotation - direction + 8) % 4 # FIXME: if later update :3
+        return tile
+    
+    if tile_type not in equivalance_tile_pos.keys():
+        print("Tile name not found in equivalence_tile_pos: ", tile_type)
+        var tile: Tile = transform_to_another_type(GameGlobal.map.tiles[GameGlobal.rng.randi() % GameGlobal.map.tiles.size()])
+        tile.tile_rotation = randi() % 4
+        return tile
 
-	var encodage = equivalance_tile_pos[tile_type]
-	var direction_to_depop = (direction - tile_rotation + 8) % 4
+    var encodage = equivalance_tile_pos[tile_type]
+    var direction_to_depop = (direction - tile_rotation + 8) % 4
 
-	if direction_to_depop == Enums.Direction.UP:
-		encodage[0] = "1"
-	elif direction_to_depop == Enums.Direction.RIGHT:
-		encodage[1] = "1"
-	elif direction_to_depop == Enums.Direction.DOWN:
-		encodage[2] = "1"
-	elif direction_to_depop == Enums.Direction.LEFT:
-		encodage[3] = "1"
-	if encodage.count("1") >= 3:
-		var tile = transform_to_another_type(equivalance_pos_tile["1111"], true) 
-		return tile
-		
-	for rot in range(4):
-		if encodage in equivalance_pos_tile.keys():
-			var to_load_tile: PackedScene = equivalance_pos_tile[encodage]
-			var tile = transform_to_another_type(to_load_tile, true, (tile_rotation - rot + 8) % 4)
-			return tile
+    if direction_to_depop == Enums.Direction.UP:
+        encodage[0] = "1"
+    elif direction_to_depop == Enums.Direction.RIGHT:
+        encodage[1] = "1"
+    elif direction_to_depop == Enums.Direction.DOWN:
+        encodage[2] = "1"
+    elif direction_to_depop == Enums.Direction.LEFT:
+        encodage[3] = "1"
+    if encodage.count("1") >= 3:
+        var tile = transform_to_another_type(equivalance_pos_tile["1111"], true) 
+        return tile
+        
+    for rot in range(4):
+        if encodage in equivalance_pos_tile.keys():
+            var to_load_tile: PackedScene = equivalance_pos_tile[encodage]
+            var tile = transform_to_another_type(to_load_tile, true, (tile_rotation - rot + 8) % 4)
+            return tile
 
-		encodage = rotate_right_by_one(encodage)
-	return self
+        encodage = rotate_right_by_one(encodage)
+    return self
 
 
 func can_pass(direction: Enums.Direction) -> bool:
-	return true
+    return true

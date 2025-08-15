@@ -20,7 +20,6 @@ func connect_signals() -> void:
 
 
 func on_action_performed(player : Player, action: Action):
-	print("SpikeComponent: on_action_performed")
 	if collision_shape_2d.disabled:
 		collision_shape_2d.disabled = false
 		sprite.play("spike_out")

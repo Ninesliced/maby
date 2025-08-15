@@ -10,7 +10,7 @@ var _actions: Array[Action] = []
 
 signal action_popped(action: Action)
 signal action_popped_at(number: int)
-signal action_appended(action: Action)
+signal action_appended(action: Action, index: int)
 signal action_set(actions: Array[Action])
 
 func _ready():
@@ -48,12 +48,19 @@ func pop_next() -> Action:
     action_popped.emit(action)
     return action
 
+func add_front(action: Action, override: bool = true) -> void:
+    if override and _actions.size() >= max_actions:
+        _try_pop_next(0)
+    _actions.insert(0, action)
+    action_appended.emit(action, 0)
+    SignalBus.on_new_current_action.emit(action)
+
 ## Appends the action to the end of the queue
 func append(action: Action):
     if _actions.size() >= max_actions:
         _try_pop_next(0)
     _actions.append(action)
-    action_appended.emit(action)
+    action_appended.emit(action, _actions.size() - 1)
 
 ## Get actions, don't modify the returned array
 func get_actions() -> Array[Action]:
@@ -76,10 +83,10 @@ func _execute_action(tile):
     _actions.pop_front()
     action_popped_at.emit(0)
     SignalBus.on_player_action.emit(GameGlobal.player, action)
-    if _actions.size() != 0:
-        SignalBus.on_new_current_action.emit(_actions[0])
     if !action.temporary:
         append(action)
+    if _actions.size() != 0:
+        SignalBus.on_new_current_action.emit(_actions[0])
 
 func _get_num_of_same_action(action: Action) -> int:
     var count: int = 0

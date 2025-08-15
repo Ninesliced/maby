@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AddActionSkill" load_steps=4 format=3 uid="uid://dvkufc28hsnvy"]
+
+[ext_resource type="Script" uid="uid://b5beahxwtmbt3" path="res://resources/skills/add_action_skills/add_action_skill.gd" id="1_07prw"]
+[ext_resource type="Resource" uid="uid://cce5qu6n6hqdn" path="res://resources/actions/carrot_temporary.tres" id="1_61ysx"]
+[ext_resource type="Texture2D" uid="uid://8s44q13akl5k" path="res://assets/images/skills/carrot.png" id="2_bk4s2"]
+
+[resource]
+script = ExtResource("1_07prw")
+action = ExtResource("1_61ysx")
+name = "Carrot Skill"
+description = "Add a temporary carrot action in your loop"
+icon = ExtResource("2_bk4s2")
+cooldown = 0
+max_cooldown = 5
+metadata/_custom_type_script = "uid://b5beahxwtmbt3"

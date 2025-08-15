@@ -32,6 +32,7 @@ animations = [{
 [node name="Spike2" instance=ExtResource("1_oo1da")]
 script = ExtResource("2_blqgg")
 lock_rotation = false
+tile_type = 1
 tileName = "TSpikeTile"
 
 [node name="Visual" parent="." index="1"]
