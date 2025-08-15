@@ -89,7 +89,6 @@ unique_name_in_owner = true
 [node name="MovementComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_bjvvg")
-grid_position = Vector2i(2, 2)
 
 [node name="LifeComponent" type="Node2D" parent="." node_paths=PackedStringArray("state_machine")]
 script = ExtResource("5_5sj0x")

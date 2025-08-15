@@ -7,6 +7,7 @@ class_name Action
 
 @export_group("Properties")
 @export var temporary: bool = false
+@export var keep_always_one: bool = false  # FIXME: temporary
 
 func execute_action(tile) -> bool:
 	return is_valid(tile)

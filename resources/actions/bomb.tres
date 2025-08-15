@@ -13,7 +13,8 @@ region = Rect2(64, 0, 16, 16)
 [resource]
 script = ExtResource("1_rkgp5")
 target_tile_scene = ExtResource("2_oaku5")
-name = "Bomb"
+name = "bomb"
 texture = SubResource("AtlasTexture_oaku5")
 temporary = true
+keep_always_one = false
 metadata/_custom_type_script = "uid://cb0m53acfjbnw"

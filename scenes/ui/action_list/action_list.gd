@@ -12,12 +12,11 @@ func _ready():
 	if !GameGlobal.player:
 		await GameGlobal.on_player_added
 	player = GameGlobal.player
-	print("Player is ready, setting up action list UI")
 	action_manager = player.action_manager
 	set_ui(action_manager.get_actions())
 	update_ui()
 	action_manager.action_appended.connect(_append_action_ui)
-	action_manager.action_popped_front.connect(_pop_action_ui)
+	action_manager.action_popped_at.connect(_pop_action_ui_at)
 
 func set_ui(actions: Array[Action]) -> void:
 	for ui in action_ui_list:
@@ -28,8 +27,8 @@ func set_ui(actions: Array[Action]) -> void:
 		action_ui.position = Vector2(i * 18, 0)
 
 
-func _pop_action_ui(action: Action) -> void:
-	var action_ui: ActionUI = action_ui_list.pop_front()
+func _pop_action_ui_at(number: int) -> void:
+	var action_ui: ActionUI = action_ui_list.pop_at(number)
 	var tween = get_tree().create_tween()
 
 	tween.tween_property(action_ui, "scale", Vector2.ZERO, 0.2)

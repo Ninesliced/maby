@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://chabm6c23hgt6"]
+
+[ext_resource type="Script" uid="uid://baycxv6833qk" path="res://resources/actions/rotate_tile.gd" id="1_kvl03"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pi7qa"]
+load_path = "res://.godot/imported/action_spritesheet.png-8eb4a14118544c9913904c269a53195f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6r4o"]
+atlas = SubResource("CompressedTexture2D_pi7qa")
+region = Rect2(112, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_kvl03")
+name = "wolf"
+texture = SubResource("AtlasTexture_n6r4o")
+temporary = false
+keep_always_one = true
+metadata/_custom_type_script = "uid://cb0m53acfjbnw"

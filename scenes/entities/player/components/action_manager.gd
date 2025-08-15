@@ -2,12 +2,14 @@ extends Node
 class_name ActionManager
 
 @export var enabled: bool = true
+@export var max_actions: int = 6
 
 var player_data: PlayerData
 
 var _actions: Array[Action] = []
 
-signal action_popped_front(action: Action)
+signal action_popped(action: Action)
+signal action_popped_at(number: int)
 signal action_appended(action: Action)
 signal action_set(actions: Array[Action])
 
@@ -25,6 +27,37 @@ func _ready():
 	action_set.emit(_actions)
 	SignalBus.tile_clicked.connect(_execute_action)
 
+
+
+# PUBLIC METHODS
+
+func get_front() -> Action:
+	if _actions.size() == 0:
+		return null
+	return _actions[0]
+
+## Returns the first action in the queue
+func pop_next() -> Action:
+	if _actions.size() == 0:
+		return null
+	var action: Action = _try_pop_next(0)
+	if not action:
+		return null
+	action_popped.emit(action)
+	return action
+
+## Appends the action to the end of the queue
+func append(action: Action):
+	if _actions.size() >= max_actions:
+		_try_pop_next(0)
+	_actions.append(action)
+	action_appended.emit(action)
+
+## Get actions, don't modify the returned array
+func get_actions() -> Array[Action]:
+	return _actions
+
+
 func _execute_action(tile):
 	if not enabled:
 		return
@@ -38,31 +71,24 @@ func _execute_action(tile):
 	if !result:
 		return
 
-	pop_front()
+	_actions.pop_front()
+	action_popped_at.emit(0)
 
 	if !action.temporary:
 		append(action)
 
+func _get_num_of_same_action(action: Action) -> int:
+	var count: int = 0
+	for a in _actions:
+		if a.name == action.name:
+			count += 1
+	return count
 
-# PUBLIC METHODS
-
-func get_front() -> Action:
-	if _actions.size() == 0:
+func _try_pop_next(number: int) -> Action:
+	if _actions.size() - 1 <= number:
 		return null
-	return _actions[0]
-
-## Returns the first action in the queue
-func pop_front() -> Action:
-	if _actions.size() == 0:
-		return null
-	action_popped_front.emit(_actions[0])
-	return _actions.pop_front()
-
-## Appends the action to the end of the queue
-func append(action: Action):
-	_actions.append(action)
-	action_appended.emit(action)
-
-## Get actions, don't modify the returned array
-func get_actions() -> Array[Action]:
-	return _actions
+	var action_to_pop: Action = _actions[number]
+	if action_to_pop.keep_always_one and _get_num_of_same_action(action_to_pop) <= 1:
+		return _try_pop_next(number + 1)
+	action_popped_at.emit(number)
+	return _actions.pop_at(number)

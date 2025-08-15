@@ -42,6 +42,8 @@ func spawn_outline() -> void:
 	clear_outlines()
 
 	var action: Action = GameGlobal.player.action_manager.get_front()
+	if not action:
+		return
 	var is_action_valid = action.is_valid(tile_parent)
 
 	var tiles = action.get_tiles_in_action_zone(tile_parent)

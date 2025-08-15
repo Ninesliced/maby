@@ -10,13 +10,14 @@ var is_moving : bool = false
 signal on_move(direction: Vector2)
 signal on_idle()
 
-@export var grid_position : Vector2i = Vector2i(0, 2):
+@export var grid_position : Vector2i = Vector2i(2, 2):
 	set(value):
 		if is_moving:
 			return
 		
 		var map = GameGlobal.map
 		if !map:
+			print()
 			return
 		grid_position.x = value.x % map.grid_size.x
 		grid_position.y = value.y % map.grid_size.y
@@ -77,7 +78,7 @@ func update_position():
 	var target_position = map.grid[grid_position.x][grid_position.y].global_position + Vector2(map.tile_size) / 2
 
 	var is_tile_near = (parent.position - target_position).length() < map.tile_size.y * 2
-
+	print(grid_position)
 	if get_tree() and is_tile_near:
 		translation_animation(target_position)
 	else:

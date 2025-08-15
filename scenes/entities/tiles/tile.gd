@@ -125,11 +125,11 @@ func _ready() -> void:
 	if is_action_spawnable:
 		if GameGlobal.rng.randf() < chance_action_spawn:
 			#FIXME commented but it's spawning actions
-			# var action_load: PackedScene = load("res://actors/action/action.tscn")
-			# var action = action_load.instantiate()
-			# action.choose_an_random_action()
-			# action.position = Vector2i(8,8)
-			# %ActionHolder.add_child(action)
+			var action_load: PackedScene = load("res://scenes/entities/action_pickable/action_pickable.tscn")
+			var action = action_load.instantiate()
+			action.choose_an_random_action()
+			action.position = Vector2i(8,8)
+			%ActionHolder.add_child(action)
 			pass
 	
 	var season_len : int = 25 / 4 #horrible valeur 25 = GameGlobal.map.grid_size.x hardcode
