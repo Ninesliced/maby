@@ -81,6 +81,7 @@ _data = {
 size = Vector2(34, 288)
 
 [node name="Border" type="Node2D"]
+z_index = 10
 script = ExtResource("1_55v3i")
 
 [node name="Background" type="TileMapLayer" parent="."]

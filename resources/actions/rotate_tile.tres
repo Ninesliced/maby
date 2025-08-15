@@ -14,4 +14,5 @@ script = ExtResource("1_y0174")
 name = "rotate_clock"
 texture = SubResource("AtlasTexture_n6r4o")
 temporary = false
+keep_always_one = false
 metadata/_custom_type_script = "uid://cb0m53acfjbnw"

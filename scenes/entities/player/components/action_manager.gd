@@ -73,7 +73,7 @@ func _execute_action(tile):
 
 	_actions.pop_front()
 	action_popped_at.emit(0)
-
+	SignalBus.on_player_action.emit(GameGlobal.player, action)
 	if !action.temporary:
 		append(action)
 

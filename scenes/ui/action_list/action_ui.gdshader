@@ -30,26 +30,26 @@ void fragment()
 	float LINE_THICKNESS = 0.4;
 	vec2 ip = UV;
 	ip = UV * (1.0 / TEXTURE_PIXEL_SIZE);
-	
+
 	/*
 		lu	u	ru
 		l	c	r
 		ld	d	rd
 	*/
-	
+
 	vec4 c = texelFetch(TEXTURE,ivec2(ip),ML);
 	vec4 l = texelFetch(TEXTURE,ivec2(ip+vec2(-1,0)),ML);
 	vec4 d = texelFetch(TEXTURE,ivec2(ip+vec2(0,1)),ML);
 	vec4 r = texelFetch(TEXTURE,ivec2(ip+vec2(1,0)),ML);
 	vec4 u = texelFetch(TEXTURE,ivec2(ip+vec2(0,-1)),ML);
-		
+
 	vec4 ld = texelFetch(TEXTURE,ivec2(ip+vec2(-1,1)),ML);
 	vec4 lu = texelFetch(TEXTURE,ivec2(ip+vec2(-1,-1)),ML);
 	vec4 rd = texelFetch(TEXTURE,ivec2(ip+vec2(1,1)),ML);
 	vec4 ru = texelFetch(TEXTURE,ivec2(ip+vec2(1,-1)),ML);
 
 	vec4 s = c;
-	
+
 	ivec4 mask = ivec4(1);
 
 	if (eq(ld, c) ) mask.x = 0;
@@ -61,12 +61,12 @@ void fragment()
 	if (mask.y == 1) s = diag(s,ip,vec2(0,-1),vec2(-1,0), l, u, LINE_THICKNESS);
 	if (mask.z == 1) s = diag(s,ip,vec2(0,1),vec2(1,0), r, d, LINE_THICKNESS);
 	if (mask.w == 1) s = diag(s,ip,vec2(1,0),vec2(0,-1), r, u, LINE_THICKNESS);
-		
+
 	vec4 f = c;
 	f = diag(f,ip,vec2(-1,0),vec2(0,1), l, d, LINE_THICKNESS);
 	f = diag(f,ip,vec2(0,-1),vec2(-1,0), l, u, LINE_THICKNESS);
 	f = diag(f,ip,vec2(0,1),vec2(1,0), r, d, LINE_THICKNESS);
 	f = diag(f,ip,vec2(1,0),vec2(0,-1), r, u, LINE_THICKNESS);
-	
+
 	COLOR = (s+f) / 2.0;
 }

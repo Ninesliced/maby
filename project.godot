@@ -45,6 +45,10 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 
 Player=""
 
+[gui]
+
+theme/custom_font="uid://8i46uymhn3cb"
+
 [input]
 
 pause={

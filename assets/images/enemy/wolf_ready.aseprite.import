@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://nkv8ekqyyqic"
+path="res://.godot/imported/wolf_ready.aseprite-366c2ef4f854eb6462f415504f41befc.res"
+
+[deps]
+
+source_file="res://assets/images/enemy/wolf_ready.aseprite"
+dest_files=["res://.godot/imported/wolf_ready.aseprite-366c2ef4f854eb6462f415504f41befc.res"]
+
+[params]
+

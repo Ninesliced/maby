@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bx68eqiiepmt2"]
+[gd_scene load_steps=18 format=3 uid="uid://bx68eqiiepmt2"]
 
 [ext_resource type="Script" uid="uid://bw7tomdqk6vre" path="res://scenes/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://ks74tjx3lahn" path="res://scenes/game/score_manager/score_manager.tscn" id="2_ca42v"]
 [ext_resource type="PackedScene" uid="uid://d23mogp1jfilt" path="res://addons/shaker/components/ui/pause_manager/pause_manager.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://dxvmmk3gh1th5" path="res://scenes/entities/player/player.tscn" id="4_p57ef"]
@@ -14,15 +15,20 @@
 [ext_resource type="Resource" uid="uid://oyv5toem51nb" path="res://resources/actions/rotate_tile.tres" id="7_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cgygutngd0574" path="res://scenes/entities/tiles/basics/tile_line.tscn" id="7_rysoc"]
 [ext_resource type="Script" uid="uid://do55m1a3u6q1y" path="res://resources/player/player_data.gd" id="8_kvuet"]
+[ext_resource type="Resource" uid="uid://chabm6c23hgt6" path="res://resources/actions/wolf_action.tres" id="10_ir15t"]
 
-[sub_resource type="Resource" id="Resource_trtic"]
+[sub_resource type="Resource" id="Resource_ca42v"]
 resource_local_to_scene = true
 script = ExtResource("8_kvuet")
-actions = Array[ExtResource("5_vtaks")]([ExtResource("6_kvpfn"), ExtResource("7_dinhu"), ExtResource("7_dinhu"), ExtResource("6_kvpfn")])
+actions = Array[ExtResource("5_vtaks")]([ExtResource("10_ir15t"), ExtResource("6_kvpfn"), ExtResource("7_dinhu"), ExtResource("7_dinhu")])
 metadata/_custom_type_script = "uid://do55m1a3u6q1y"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
+
+[node name="ScoreManager" parent="." instance=ExtResource("2_ca42v")]
+
+[node name="MouseActionUI" type="Node" parent="."]
 
 [node name="PauseManager" parent="." instance=ExtResource("2_lnu2h")]
 pause_menu = "uid://dev218r5gmd1d"
@@ -34,7 +40,7 @@ grid_size = Vector2i(25, 5)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("4_p57ef")]
 position = Vector2(80, 104)
-player_data = SubResource("Resource_trtic")
+player_data = SubResource("Resource_ca42v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 91)

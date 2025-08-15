@@ -49,6 +49,7 @@ func _create_action_ui(action: Action) -> ActionUI:
 	add_child(action_ui)
 	action_ui_list.append(action_ui)
 	action_ui.set_texture(action.texture)
+	action_ui.play_add()
 	return action_ui
 
 func update_ui():
@@ -56,19 +57,14 @@ func update_ui():
 		return
 	await _reposition_action_ui()
 
-	# if action_ui_list.size() > 0:
-	# 	var first_ui: ActionUI = action_ui_list[0]
-	# 	first_ui.scale = Vector2(1.2, 1.2)
-	# 	for i in range(1, action_ui_list.size()):
-	# 		var ui: ActionUI = action_ui_list[i]
-	# 		ui.scale = Vector2(1, 1)
-
 func _reposition_action_ui():
 	var tween
 	for i in range(action_ui_list.size()):
 		var ui: ActionUI = action_ui_list[i]
 		tween = get_tree().create_tween()
-		tween.tween_property(ui, "position", _get_position(i), 0.2).set_ease(Tween.EASE_IN_OUT)
+		var property = tween.tween_property(ui, "position", _get_position(i), 0.4)
+		property.set_ease(Tween.EASE_OUT)
+		property.set_trans(Tween.TRANS_QUINT)
 	await tween.finished
 
 func _get_position(i: int) -> Vector2:

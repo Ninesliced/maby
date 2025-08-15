@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cy11r33aig10l" path="res://scenes/entities/action_pickable/sinus.gd" id="3_c8ouv"]
 [ext_resource type="Resource" uid="uid://c7a8ehucedrdt" path="res://resources/actions/bomb.tres" id="3_fc7e1"]
 [ext_resource type="Resource" uid="uid://oyv5toem51nb" path="res://resources/actions/rotate_tile.tres" id="4_cwnh7"]
-[ext_resource type="Resource" uid="uid://chabm6c23hgt6" path="res://resources/actions/wolf.tres" id="5_i58iv"]
+[ext_resource type="Resource" uid="uid://chabm6c23hgt6" path="res://resources/actions/wolf_action.tres" id="5_i58iv"]
 
 [sub_resource type="Resource" id="Resource_fc7e1"]
 script = ExtResource("2_dvud1")
