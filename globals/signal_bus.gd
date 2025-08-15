@@ -8,10 +8,14 @@ signal on_player_event()
 signal on_player_idle(player: Player)
 
 
+# TILE
+
+signal on_tile_hovered(tile: Tile)
+
 func _ready() -> void:
-    _init_player_event_signal()
+	_init_player_event_signal()
 
 func _init_player_event_signal() -> void:
-    on_player_move.connect(func (_p, _d): on_player_event.emit())
-    tile_clicked.connect(func (_t): on_player_event.emit())
-    
+	on_player_move.connect(func (_p, _d): on_player_event.emit())
+	tile_clicked.connect(func (_t): on_player_event.emit())
+	

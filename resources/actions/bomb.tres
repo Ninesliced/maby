@@ -15,5 +15,5 @@ script = ExtResource("1_rkgp5")
 target_tile_scene = ExtResource("2_oaku5")
 name = "Bomb"
 texture = SubResource("AtlasTexture_oaku5")
-temporary = false
+temporary = true
 metadata/_custom_type_script = "uid://cb0m53acfjbnw"

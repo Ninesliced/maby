@@ -10,9 +10,22 @@ var player: Player:
             on_player_added.emit(value)
 var game: Game
 var camera: Camera2D
+var hovered_tile: Tile: 
+    set(value):
+        hovered_tile = value
+        print("Hovered tile set to: ", value)
+        SignalBus.on_tile_hovered.emit(value)
+        
 
 signal on_player_added(player: Player)
 
 func _ready() -> void:
     print("ready")
     rng.randi()
+
+func reset() -> void:
+    map = null
+    player = null
+    game = null
+    camera = null
+    hovered_tile = null

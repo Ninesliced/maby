@@ -30,7 +30,7 @@ func get_tiles_in_action_zone(selected_tile: Tile):
 			grid_pos.y += GameGlobal.map.grid_size.y
 
 		var tile: Tile = GameGlobal.map.grid[grid_pos.x][grid_pos.y]
-		if tile and tile.outline:
+		if tile:
 			tiles.append(tile)
 		
 	return tiles

@@ -18,7 +18,7 @@ position = Vector2(0, 24)
 grid_size = Vector2i(25, 5)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("4_p57ef")]
-position = Vector2(16, 104)
+position = Vector2(80, 104)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 91)

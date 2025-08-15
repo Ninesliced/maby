@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://br7k35rhwdsrd"]
+
+[ext_resource type="Script" uid="uid://bx6eaf0e56lec" path="res://scenes/entities/tiles/components/outline_component.gd" id="1_8jep2"]
+[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="2_xs32r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewfg4"]
+atlas = ExtResource("2_xs32r")
+region = Rect2(32, 96, 32, 32)
+
+[node name="OutlineComponent" type="Node2D"]
+script = ExtResource("1_8jep2")
+
+[node name="Outline" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+position = Vector2(16, 16)
+texture = SubResource("AtlasTexture_ewfg4")

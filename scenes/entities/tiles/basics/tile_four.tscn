@@ -71,10 +71,10 @@ animations = [{
 [node name="Tile" instance=ExtResource("1_h1vht")]
 lock_rotation = true
 
-[node name="Visual" parent="." index="0"]
+[node name="Visual" parent="." index="1"]
 material = SubResource("ShaderMaterial_gpb7i")
 
-[node name="Sprite" parent="Visual" index="1"]
+[node name="Sprite" parent="Visual" index="0"]
 material = SubResource("ShaderMaterial_j4nor")
 sprite_frames = SubResource("SpriteFrames_h1vht")
 

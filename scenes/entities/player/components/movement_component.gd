@@ -25,7 +25,6 @@ signal on_idle()
 			grid_position.x = map.grid_size.x - 1
 		if grid_position.y < 0:
 			grid_position.y = map.grid_size.y - 1
-		
 		update_position()
 
 func _ready():
@@ -35,6 +34,7 @@ func _ready():
 			parent = new_parent
 		else:
 			assert(false, "MovementComponent must be a child of a CharacterBody2D node.")
+	update_position()
 
 
 func _process(_delta):
@@ -66,11 +66,13 @@ func move_player(move_direction: Vector2i) -> void:
 	last_inside_direction = inside_direction # used to prevent player to go back to the previous tile
 
 	on_move.emit(move_direction)
-	SignalBus.on_player_move.emit(parent, inside_direction)
 	grid_position += move_direction
+	SignalBus.on_player_move.emit(parent, inside_direction)
 
 
 func update_position():
+	if !parent:
+		return
 	var map = GameGlobal.map
 	var target_position = map.grid[grid_position.x][grid_position.y].global_position + Vector2(map.tile_size) / 2
 
