@@ -166,7 +166,7 @@ func tile_clicked(way: int) -> void:
 	if tile_rotation < 0:
 		tile_rotation += 4
 
-func _on_area_body_exited(body: Node2D) -> void:
+func _on_area_body_exited(body: Node2D) -> void: # REFACTORABLE IN ANOTHER COMPONENT
 	if not body is Player:
 		return
 		
