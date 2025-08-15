@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_h1vht"]
 [ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_2k5q6"]
-[ext_resource type="Script" uid="uid://8n88uqbgvhf0" path="res://scenes/helper/sprites/sprite_randomizer_component.gd" id="4_h1vht"]
 [ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="4_nek4d"]
 [ext_resource type="Texture2D" uid="uid://cd26j4sn6lueq" path="res://assets/images/tiles/tilesheet_seasons2.png" id="4_y4uo3"]
+[ext_resource type="PackedScene" uid="uid://dinok8usn8wu6" path="res://scenes/helper/sprites/sprite_randomizer_component.tscn" id="5_y4uo3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gpb7i"]
 resource_local_to_scene = true
@@ -121,8 +121,7 @@ modulate = Color(0.0509537, 0.0467583, 0.216836, 0.352941)
 sprite_frames = SubResource("SpriteFrames_rqcn2")
 animation = &"3"
 
-[node name="SpriteRandomizerComponent" type="Node" parent="Visual/Sprite/Sprite2D" index="0"]
-script = ExtResource("4_h1vht")
+[node name="SpriteRandomizerComponent" parent="Visual/Sprite/Sprite2D" index="0" instance=ExtResource("5_y4uo3")]
 
 [node name="Shape" parent="Area" index="0"]
 debug_color = Color(0, 0.596078, 0.701961, 0)

@@ -32,6 +32,7 @@ animations = [{
 [node name="Tile" instance=ExtResource("1_dbx5u")]
 script = ExtResource("2_dbx5u")
 chance_action_spawn = 0.025
+tile_type = 2
 
 [node name="Visual" parent="." index="1"]
 material = SubResource("ShaderMaterial_gpb7i")
@@ -42,6 +43,3 @@ sprite_frames = SubResource("SpriteFrames_dbx5u")
 
 [node name="Shape" parent="Area" index="0"]
 debug_color = Color(0, 0.596078, 0.701961, 0)
-
-[node name="TileBigger" parent="." index="3"]
-script = null

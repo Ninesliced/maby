@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkuf38ni4q62k"]
+[gd_scene load_steps=16 format=3 uid="uid://bkuf38ni4q62k"]
 
 [ext_resource type="Script" uid="uid://ckoaogse5dba6" path="res://scenes/entities/tiles/tile.gd" id="1_4t6fi"]
 [ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="2_4t6fi"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://br7k35rhwdsrd" path="res://scenes/entities/tiles/components/outline_component.tscn" id="2_l5vre"]
 [ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_ewfg4"]
 [ext_resource type="Script" uid="uid://bmtrxu1r4nv2n" path="res://scenes/entities/tiles/tile_animation.gd" id="5_77fym"]
+[ext_resource type="PackedScene" uid="uid://dinok8usn8wu6" path="res://scenes/helper/sprites/sprite_randomizer_component.tscn" id="6_13mn1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qs4h"]
 resource_local_to_scene = true
@@ -139,6 +140,9 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_1qs4h")
 sprite_frames = SubResource("SpriteFrames_1163x")
 speed_scale = 0.0
+
+[node name="SpriteRandomizerComponent" parent="Visual/Sprite" instance=ExtResource("6_13mn1")]
+unique_name_in_owner = true
 
 [node name="Area" type="Area2D" parent="."]
 position = Vector2(16, 16)

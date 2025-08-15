@@ -13,7 +13,6 @@ var camera: Camera2D
 var hovered_tile: Tile: 
     set(value):
         hovered_tile = value
-        print("Hovered tile set to: ", value)
         SignalBus.on_tile_hovered.emit(value)
         
 

@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://0fyat4hi88sk"]
+[gd_scene load_steps=6 format=3 uid="uid://cdqouhwnuw23m"]
 
-[ext_resource type="Script" uid="uid://bmtrxu1r4nv2n" path="res://scenes/entities/tiles/tile_animation.gd" id="1_pu343"]
+[ext_resource type="Script" uid="uid://bmtrxu1r4nv2n" path="res://scenes/entities/tiles/tile_animation.gd" id="1_7a7jr"]
 
 [sub_resource type="Animation" id="Animation_1qs4h"]
 length = 0.001
@@ -92,8 +92,8 @@ _data = {
 &"rotate_lock": SubResource("Animation_i7in2")
 }
 
-[node name="TileLock" type="AnimationPlayer"]
+[node name="TileBigger" type="AnimationPlayer"]
 libraries = {
 &"": SubResource("AnimationLibrary_1qs4h")
 }
-script = ExtResource("1_pu343")
+script = ExtResource("1_7a7jr")

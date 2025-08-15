@@ -1,6 +1,14 @@
 extends Node2D
 class_name Tile
 
+enum TileType {
+	FOUR = 0,
+	THREE = 1,
+	LINE = 2,
+	CORNER = 3,
+	FULL = 4,
+}
+
 func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
 	if event is InputEventMouseButton:
 		if !event.pressed and event.button_index < 3:
@@ -48,6 +56,10 @@ func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int
 @export var is_action_spawnable: bool = true
 @export_range(0,1,0.01) var chance_action_spawn: float = 0.025
 @export var lock_rotation: bool = false
+
+@export var tile_type: TileType = TileType.FOUR
+
+## DEPRECATED
 @export var tileName: String = ""
 
 var force_transform_to_scene: PackedScene = null
@@ -112,7 +124,7 @@ func _ready() -> void:
 	
 	if is_action_spawnable:
 		if GameGlobal.rng.randf() < chance_action_spawn:
-			#FIXME
+			#FIXME commented but it's spawning actions
 			# var action_load: PackedScene = load("res://actors/action/action.tscn")
 			# var action = action_load.instantiate()
 			# action.choose_an_random_action()
@@ -123,6 +135,7 @@ func _ready() -> void:
 	var season_len : int = 25 / 4 #horrible valeur 25 = GameGlobal.map.grid_size.x hardcode
 	var i : int = grid_position.x / season_len % 4
 	var season = seasons[i]
+	%SpriteRandomizerComponent.prefix = season #FIXME: make it a var
 	sprite.play(season)
 
 
@@ -227,11 +240,11 @@ var equivalance_pos_tile_spike: Dictionary = {
 }
 var equivalance_tile_pos: Dictionary = {
 	# 1 c'est un mur
-	"FullTile": "1111",
-	"TTile": "1000",
-	"LineTile": "1010",
-	"CornerTile": "1100",
-	"FourTile": "0000",
+	TileType.FULL : "1111",
+	TileType.THREE: "1000",
+	TileType.LINE: "1010",
+	TileType.CORNER: "1100",
+	TileType.FOUR: "0000",
 	"FullSpikeTile": "1111",
 	"TSpikeTile": "1000",
 	"LineSpikeTile": "1010",
@@ -261,14 +274,15 @@ func transform_with_1ddl_less(direction: Enums.Direction, play_animation: bool =
 		# tile.tile_rotation = (tile.tile_rotation - direction + 8) % 4 # FIXME: if later update :3
 		return tile
 	
-	if tileName not in equivalance_tile_pos.keys():
+	if tile_type not in equivalance_tile_pos.keys():
+		print("Tile name not found in equivalence_tile_pos: ", tile_type)
 		var tile: Tile = transform_to_another_type(GameGlobal.map.tiles[GameGlobal.rng.randi() % GameGlobal.map.tiles.size()])
 		tile.tile_rotation = randi() % 4
 		return tile
 
-	var encodage = equivalance_tile_pos[tileName]
+	var encodage = equivalance_tile_pos[tile_type]
 	var direction_to_depop = (direction - tile_rotation + 8) % 4
-
+	print("Direction to depop: ", direction_to_depop, " Encodage before: ", encodage)
 	if direction_to_depop == Enums.Direction.UP:
 		encodage[0] = "1"
 	elif direction_to_depop == Enums.Direction.RIGHT:
@@ -284,9 +298,7 @@ func transform_with_1ddl_less(direction: Enums.Direction, play_animation: bool =
 	for rot in range(4):
 		if encodage in equivalance_pos_tile.keys():
 			var to_load_tile: PackedScene = equivalance_pos_tile[encodage]
-			var tile = transform_to_another_type(to_load_tile, false, (tile_rotation - rot + 8) % 4)
-			# ation = rot
-			# tile.tile_rotation = (0 - rot) % 4
+			var tile = transform_to_another_type(to_load_tile, true, (tile_rotation - rot + 8) % 4)
 			return tile
 
 		encodage = rotate_right_by_one(encodage)

@@ -31,6 +31,7 @@ animations = [{
 
 [node name="Tile" instance=ExtResource("1_hypdh")]
 script = ExtResource("2_gpb7i")
+tile_type = 1
 
 [node name="Visual" parent="." index="1"]
 material = SubResource("ShaderMaterial_gpb7i")
@@ -41,6 +42,3 @@ sprite_frames = SubResource("SpriteFrames_j4nor")
 
 [node name="Shape" parent="Area" index="0"]
 debug_color = Color(0, 0.596078, 0.701961, 0)
-
-[node name="TileBigger" parent="." index="3"]
-script = null

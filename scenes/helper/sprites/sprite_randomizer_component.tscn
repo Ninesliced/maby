@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dinok8usn8wu6"]
+
+[ext_resource type="Script" uid="uid://8n88uqbgvhf0" path="res://scenes/helper/sprites/sprite_randomizer_component.gd" id="1_ah7d1"]
+
+[node name="SpriteRandomizerComponent" type="Node"]
+script = ExtResource("1_ah7d1")
