@@ -78,7 +78,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1tfl"]
-size = Vector2(34, 204)
+size = Vector2(34, 288)
 
 [node name="Border" type="Node2D"]
 script = ExtResource("1_55v3i")
@@ -99,11 +99,11 @@ libraries = {
 }
 autoplay = "border_animation"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DieBorder" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DieBorder"]
 position = Vector2(0, 88)
 shape = SubResource("RectangleShape2D_p1tfl")
 

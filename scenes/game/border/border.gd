@@ -17,7 +17,6 @@ func _physics_process(delta):
 		
 	speed += speed_increase_per_min * delta/60
 		
-	# print(((GameGlobal.camera.global_position.x-GameGlobal.camera.get_viewport().get_visible_rect().size.x/2) - global_position.x)*delta*3)
 	global_position.x += delta * speed
 
 

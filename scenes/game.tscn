@@ -41,4 +41,4 @@ position = Vector2(160, 91)
 script = ExtResource("5_iywne")
 
 [node name="Border" parent="." instance=ExtResource("6_p57ef")]
-position = Vector2(-24, 60)
+position = Vector2(-20, 0)

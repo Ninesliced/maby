@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgygutngd0574"]
+[gd_scene load_steps=12 format=3 uid="uid://cgygutngd0574"]
 
 [ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_dbx5u"]
 [ext_resource type="Script" uid="uid://ce0eujfbr3t6r" path="res://scenes/entities/tiles/basics/tile_line.gd" id="2_dbx5u"]
 [ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_b8dvm"]
-[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="4_qjvkn"]
 [ext_resource type="Texture2D" uid="uid://cd26j4sn6lueq" path="res://assets/images/tiles/tilesheet_seasons2.png" id="5_5qpv6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gpb7i"]
@@ -20,7 +19,7 @@ atlas = ExtResource("5_5qpv6")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dbx5u"]
-atlas = ExtResource("4_qjvkn")
+atlas = ExtResource("5_5qpv6")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_acact"]
@@ -77,7 +76,7 @@ material = SubResource("ShaderMaterial_gpb7i")
 [node name="Sprite" parent="Visual" index="0"]
 material = SubResource("ShaderMaterial_j4nor")
 sprite_frames = SubResource("SpriteFrames_dbx5u")
-animation = &"summer"
+animation = &"spring"
 
 [node name="Shape" parent="Area" index="0"]
 debug_color = Color(0, 0.596078, 0.701961, 0)

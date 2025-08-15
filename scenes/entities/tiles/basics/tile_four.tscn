@@ -114,7 +114,7 @@ material = SubResource("ShaderMaterial_gpb7i")
 [node name="Sprite" parent="Visual" index="0"]
 material = SubResource("ShaderMaterial_j4nor")
 sprite_frames = SubResource("SpriteFrames_h1vht")
-animation = &"fall"
+animation = &"spring"
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Visual/Sprite" index="0"]
 modulate = Color(0.0509537, 0.0467583, 0.216836, 0.352941)

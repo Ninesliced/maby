@@ -6,6 +6,7 @@ class_name StateMachine
 var _states = []
 var current_state_name: String
 var current_state: AbstractState = null
+signal state_changed(name: String)
 
 func _ready() -> void:
 	var children = get_children()
@@ -31,3 +32,5 @@ func set_state(name: String):
 	
 	current_state_name = name
 	current_state = node
+
+	state_changed.emit(name)
