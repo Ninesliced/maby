@@ -282,7 +282,7 @@ func transform_with_1ddl_less(direction: Enums.Direction, play_animation: bool =
 
 	var encodage = equivalance_tile_pos[tile_type]
 	var direction_to_depop = (direction - tile_rotation + 8) % 4
-	print("Direction to depop: ", direction_to_depop, " Encodage before: ", encodage)
+
 	if direction_to_depop == Enums.Direction.UP:
 		encodage[0] = "1"
 	elif direction_to_depop == Enums.Direction.RIGHT:
