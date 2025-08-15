@@ -118,7 +118,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ovg4i")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.694348
+frame_progress = 0.489779
 script = ExtResource("6_8akj5")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}

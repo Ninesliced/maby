@@ -93,8 +93,8 @@ func translation_animation(target_position: Vector2) -> void:
     var tween: Tween = create_tween()
     var property = tween.tween_property(parent, "position", target_position, duration_between_moves)
     tween.tween_callback(_stop_movement)
-    property.set_ease(Tween.EASE_OUT)
-    property.set_trans(Tween.TRANS_SINE)
+    # property.set_ease(Tween.EASE_OUT)
+    # property.set_trans(Tween.TRANS_SINE)
     is_moving = true
 
 func _stop_movement() -> void:
