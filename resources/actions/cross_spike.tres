@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MultipleTypeAction" load_steps=3 format=3 uid="uid://di38trked8gcm"]
+
+[ext_resource type="Script" uid="uid://bkciqsy473h7u" path="res://resources/actions/multiple_type.gd" id="1_3b0k1"]
+[ext_resource type="PackedScene" uid="uid://1jdfma4sfqko" path="res://scenes/entities/tiles/spike/four_spike.tscn" id="2_wujye"]
+
+[resource]
+script = ExtResource("1_3b0k1")
+target_tile_scene = ExtResource("2_wujye")
+action_zone_type = "Cross"
+name = ""
+temporary = false
+keep_always_one = false
+metadata/_custom_type_script = "uid://bkciqsy473h7u"

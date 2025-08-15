@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://lch1hj6crvy8"]
+
+[ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_wybci"]
+[ext_resource type="Script" uid="uid://dvisy31qkpoao" path="res://scenes/entities/tiles/spike/spike.gd" id="2_w7enm"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_w7enm"]
+[ext_resource type="Texture2D" uid="uid://cd26j4sn6lueq" path="res://assets/images/tiles/tilesheet_seasons2.png" id="4_jgrlr"]
+[ext_resource type="PackedScene" uid="uid://pp6pg03hbkuj" path="res://scenes/entities/tiles/components/spike_component.tscn" id="5_4w6y0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oris2"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wqfit"]
+resource_local_to_scene = true
+shader = ExtResource("3_w7enm")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu1mg"]
+atlas = ExtResource("4_jgrlr")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4d7j"]
+atlas = ExtResource("4_jgrlr")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ehav3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu1mg")
+}],
+"loop": true,
+"name": &"spike_in",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4d7j")
+}],
+"loop": true,
+"name": &"spike_out",
+"speed": 5.0
+}]
+
+[node name="Spike2" instance=ExtResource("1_wybci")]
+script = ExtResource("2_w7enm")
+chance_action_spawn = 0.025
+lock_rotation = true
+
+[node name="Visual" parent="." index="1"]
+material = SubResource("ShaderMaterial_oris2")
+
+[node name="Sprite" parent="Visual" index="0"]
+material = SubResource("ShaderMaterial_wqfit")
+sprite_frames = SubResource("SpriteFrames_ehav3")
+animation = &"spike_out"
+
+[node name="SpikeComponent" parent="." index="5" instance=ExtResource("5_4w6y0")]

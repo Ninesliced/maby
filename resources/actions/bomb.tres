@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://c7a8ehucedrdt"]
 
-[ext_resource type="Script" uid="uid://bkciqsy473h7u" path="res://resources/actions/bomb.gd" id="1_rkgp5"]
+[ext_resource type="Script" uid="uid://bkciqsy473h7u" path="res://resources/actions/multiple_type.gd" id="1_rkgp5"]
 [ext_resource type="PackedScene" uid="uid://bbdhvmyjyyqx2" path="res://scenes/entities/tiles/basics/tile_four.tscn" id="2_oaku5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pi7qa"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://1jdfma4sfqko"]
+
+[ext_resource type="PackedScene" uid="uid://lch1hj6crvy8" path="res://scenes/entities/tiles/spike/spike.tscn" id="1_jbjxv"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_2eui3"]
+[ext_resource type="Texture2D" uid="uid://cd26j4sn6lueq" path="res://assets/images/tiles/tilesheet_seasons2.png" id="4_e2kij"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ai40u"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_buqjq"]
+resource_local_to_scene = true
+shader = ExtResource("3_2eui3")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrdb8"]
+atlas = ExtResource("4_e2kij")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7htrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrdb8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Spike2" instance=ExtResource("1_jbjxv")]
+tileName = "FourSpikeTile"
+
+[node name="Visual" parent="." index="1"]
+material = SubResource("ShaderMaterial_ai40u")
+
+[node name="Sprite" parent="Visual" index="0"]
+material = SubResource("ShaderMaterial_buqjq")
+sprite_frames = SubResource("SpriteFrames_7htrq")
+animation = &"default"
+
+[node name="RotationSoundEffect" parent="." index="7"]
+volume_db = -30.0
+
+[node name="IdleRotationSoundEffect" parent="." index="8"]
+volume_db = -35.0

@@ -1,6 +1,8 @@
 extends Action
+class_name MultipleTypeAction
 
 @export var target_tile_scene: PackedScene
+@export_enum("Square", "Cross") var action_zone_type: String = "Square"
 
 func execute_action(tile: Tile) -> bool:
 	if super(tile) == false:
@@ -22,8 +24,31 @@ func execute_action(tile: Tile) -> bool:
 	return true
 
 func get_action_zone() -> Array[Vector2i]:
+	match action_zone_type:
+		"Square":
+			return get_action_zone_square()
+		"Cross":
+			return get_action_zone_cross()
+		_:
+			return get_action_zone_square()
+
+func get_action_zone_square() -> Array[Vector2i]:
 	var list : Array[Vector2i] = []
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			list.append(Vector2i(i, j))
+	return list
+
+func get_action_zone_cross() -> Array[Vector2i]:
+	var list: Array[Vector2i] = []
+	for i in range(-1, 2):
+		for j in range(-1, 2):
+			list.append(Vector2i(i, j))
+
+	# exclude border tiles
+	list.erase(Vector2i(-1, -1))
+	list.erase(Vector2i(-1, 1))
+	list.erase(Vector2i(1, -1))
+	list.erase(Vector2i(1, 1))
+
 	return list

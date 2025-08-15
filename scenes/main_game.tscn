@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnyvpk650r0jb"]
+
+[ext_resource type="PackedScene" uid="uid://dure1oyjsaeoa" path="res://scenes/main.tscn" id="1_s3esy"]
+[ext_resource type="PackedScene" uid="uid://bx68eqiiepmt2" path="res://scenes/game/game.tscn" id="1_wi4c7"]
+[ext_resource type="PackedScene" uid="uid://krn8107seivb" path="res://scenes/ui/action_list/action_list.tscn" id="2_70vka"]
+[ext_resource type="Script" uid="uid://d26qyy127b8jm" path="res://scenes/ui/score/score_ui.gd" id="3_2l77h"]
+[ext_resource type="Theme" uid="uid://c06a0wpkb3qyr" path="res://resources/theme/theme.tres" id="4_nqdth"]
+[ext_resource type="PackedScene" uid="uid://cffi6mm04q5y0" path="res://scenes/ui/hud.tscn" id="5_5cypo"]
+
+[node name="Node2D" instance=ExtResource("1_s3esy")]
+
+[node name="Game" parent="GameLayer/SubViewportContainer/GameplayViewport" index="0" instance=ExtResource("1_wi4c7")]
+
+[node name="ActionList" parent="HUDLayer" index="0" instance=ExtResource("2_70vka")]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="ScoreManager" type="Control" parent="HUDLayer" index="1"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 32.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("3_2l77h")
+
+[node name="Label" type="Label" parent="HUDLayer/ScoreManager" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 128.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("4_nqdth")
+text = "Score: 1000"
+
+[node name="HUD" parent="HUDLayer" index="2" instance=ExtResource("5_5cypo")]
+visible = false
+mouse_filter = 2

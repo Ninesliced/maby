@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dure1oyjsaeoa"]
+
+[ext_resource type="PackedScene" uid="uid://bi4gq7xlh8bub" path="res://scenes/ui/game_over/game_over.tscn" id="6_3611u"]
+[ext_resource type="PackedScene" uid="uid://c3xh7flyjm5dw" path="res://scenes/ui/menus/pause_menu.tscn" id="7_6kmwy"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GameLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GameLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+mouse_target = true
+
+[node name="GameplayViewport" type="SubViewport" parent="GameLayer/SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+physics_object_picking = true
+physics_object_picking_sort = true
+physics_object_picking_first_only = true
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOver" parent="HUDLayer" instance=ExtResource("6_3611u")]
+visible = false
+
+[node name="Menu" parent="HUDLayer" instance=ExtResource("7_6kmwy")]
+process_mode = 3
+visible = false

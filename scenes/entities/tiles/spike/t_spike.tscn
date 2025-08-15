@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://di4xkcr017rao"]
+
+[ext_resource type="PackedScene" uid="uid://lch1hj6crvy8" path="res://scenes/entities/tiles/spike/spike.tscn" id="1_oo1da"]
+[ext_resource type="Script" uid="uid://ce2uosu7lyhy1" path="res://scenes/entities/tiles/spike/t_spike.gd" id="2_blqgg"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_blqgg"]
+[ext_resource type="Texture2D" uid="uid://cd26j4sn6lueq" path="res://assets/images/tiles/tilesheet_seasons2.png" id="4_8wj2q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vasua"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxi1q"]
+resource_local_to_scene = true
+shader = ExtResource("3_blqgg")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgb7w"]
+atlas = ExtResource("4_8wj2q")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ty0xe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgb7w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Spike2" instance=ExtResource("1_oo1da")]
+script = ExtResource("2_blqgg")
+lock_rotation = false
+tileName = "TSpikeTile"
+
+[node name="Visual" parent="." index="1"]
+material = SubResource("ShaderMaterial_vasua")
+
+[node name="Sprite" parent="Visual" index="0"]
+material = SubResource("ShaderMaterial_rxi1q")
+sprite_frames = SubResource("SpriteFrames_ty0xe")
+animation = &"default"

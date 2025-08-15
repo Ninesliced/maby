@@ -1,0 +1,352 @@
+[gd_scene load_steps=26 format=3 uid="uid://bvbyb8jdqjcei"]
+
+[ext_resource type="Script" uid="uid://tk3v0572hok5" path="res://scenes/ui/main_menu/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="1_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://dnyvpk650r0jb" path="res://scenes/main_game.tscn" id="2_wu84c"]
+[ext_resource type="PackedScene" uid="uid://bi3akamp77mgs" path="res://backend/request/request.tscn" id="3_7b55j"]
+[ext_resource type="Texture2D" uid="uid://3tdc4o7fiqnb" path="res://assets/images/ui/rect/right_panel.png" id="5_8ln24"]
+[ext_resource type="Texture2D" uid="uid://dfrnsnqu87dp6" path="res://assets/images/ui/maby.png" id="5_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://k2pm4cv4l84n" path="res://assets/images/ui/rect/leaderboard_card.png" id="5_rtw2f"]
+[ext_resource type="Shader" uid="uid://dhrxdnevtv4vp" path="res://addons/shaker/components/vfx/shaders/outline2.gdshader" id="6_jk1qb"]
+[ext_resource type="Theme" uid="uid://c06a0wpkb3qyr" path="res://resources/theme/theme.tres" id="7_5dd4i"]
+[ext_resource type="PackedScene" uid="uid://bc11r74o1iibq" path="res://scenes/ui/main_menu/components/leaderboard_data_ui.tscn" id="8_flqon"]
+[ext_resource type="Texture2D" uid="uid://cqp5q5ic4y032" path="res://assets/images/ui/rect/close.png" id="9_a8gd2"]
+[ext_resource type="Texture2D" uid="uid://d1m076hphup2p" path="res://assets/images/ui/rect/refresh.png" id="10_5pajh"]
+[ext_resource type="Theme" uid="uid://db6861sl7f7rv" path="res://scenes/ui/main_menu/theme_small.tres" id="10_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://cncpqu3fcgw0s" path="res://assets/images/ui/rect/seed_input.png" id="11_lgwnu"]
+[ext_resource type="Material" uid="uid://ctsbqcehyf6ux" path="res://scenes/entities/action_pickable/action.tres" id="11_rcqid"]
+[ext_resource type="PackedScene" uid="uid://g63ms4dlkya7" path="res://scenes/ui/main_menu/components/tile_grid/tile_grid_ui.tscn" id="14_1ajci"]
+[ext_resource type="Theme" uid="uid://udemsrc3pygt" path="res://scenes/ui/main_menu/theme_blue.tres" id="14_j7ex8"]
+[ext_resource type="Script" uid="uid://deuauwcgdmwli" path="res://scenes/ui/main_menu/components/play_seed_of_the_day.gd" id="16_5pajh"]
+
+[sub_resource type="GDScript" id="GDScript_5pajh"]
+script/source = "extends Button
+
+
+func _on_username_text_changed(new_text: String) -> void:
+	pass # Replace with function body.
+"
+
+[sub_resource type="Shader" id="Shader_7b55j"]
+code = "shader_type canvas_item;
+
+uniform float lod: hint_range(0.0, 5) = 0.0;
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, lod);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7b55j"]
+shader = SubResource("Shader_7b55j")
+
+[sub_resource type="GDScript" id="GDScript_rcqid"]
+script/source = "extends Control
+
+func _ready():
+	hide()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dd4i"]
+shader = ExtResource("6_jk1qb")
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_7b55j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_bqqt6")
+main_menu_scene = ExtResource("2_wu84c")
+
+[node name="Request" parent="." node_paths=PackedStringArray("refresh_button") instance=ExtResource("3_7b55j")]
+unique_name_in_owner = true
+refresh_button = NodePath("../Play/Container/HBoxContainer/NinePatchRect/VBoxContainer/Header/RefreshButton")
+
+[node name="TileGridUi" parent="." instance=ExtResource("14_1ajci")]
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+z_index = 50
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.5
+offset_top = -81.0
+offset_right = 80.5
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_j7ex8")
+
+[node name="PlayButton" parent="HBoxContainer" instance=ExtResource("1_ekxnf")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TutorialButton" parent="HBoxContainer" instance=ExtResource("1_ekxnf")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Tutorial
+"
+script = SubResource("GDScript_5pajh")
+
+[node name="Quit" parent="HBoxContainer" instance=ExtResource("1_ekxnf")]
+layout_mode = 2
+text = "Quit"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7b55j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.14, 0.1204, 0.1302, 0.615686)
+
+[node name="Play" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_rcqid")
+
+[node name="Container" type="MarginContainer" parent="Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Play/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Play/Container/HBoxContainer"]
+custom_minimum_size = Vector2(180, 152)
+layout_mode = 2
+texture = ExtResource("5_rtw2f")
+patch_margin_left = 5
+patch_margin_top = 2
+patch_margin_right = 3
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Play/Container/HBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.38
+offset_right = -2.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Header" type="HBoxContainer" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="CloseButton" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer/Header" instance=ExtResource("1_ekxnf")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+theme = ExtResource("10_j7ex8")
+theme_override_constants/icon_max_width = 0
+text = ""
+icon = ExtResource("9_a8gd2")
+
+[node name="Label" type="Label" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer/Header"]
+material = SubResource("ShaderMaterial_5dd4i")
+custom_minimum_size = Vector2(126.585, 0)
+layout_mode = 2
+theme = ExtResource("7_5dd4i")
+theme_override_fonts/font = SubResource("FontVariation_7b55j")
+text = "Today's Scoreboard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RefreshButton" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer/Header" instance=ExtResource("1_ekxnf")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+theme = ExtResource("10_j7ex8")
+theme_override_constants/icon_max_width = 0
+text = ""
+icon = ExtResource("10_5pajh")
+
+[node name="Leaderboard" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer" instance=ExtResource("8_flqon")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Leaderboard2" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer" instance=ExtResource("8_flqon")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Leaderboard3" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer" instance=ExtResource("8_flqon")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Leaderboard4" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer" instance=ExtResource("8_flqon")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Leaderboard5" parent="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer" instance=ExtResource("8_flqon")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="right" type="VBoxContainer" parent="Play/Container/HBoxContainer"]
+layout_mode = 2
+
+[node name="SeedOfTheDay" type="NinePatchRect" parent="Play/Container/HBoxContainer/right"]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.9
+texture = ExtResource("5_8ln24")
+patch_margin_left = 5
+patch_margin_top = 3
+patch_margin_right = 5
+patch_margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Play/Container/HBoxContainer/right/SeedOfTheDay"]
+layout_mode = 0
+offset_left = 3.385
+offset_right = 95.385
+offset_bottom = 79.0
+
+[node name="Label2" type="Label" parent="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer"]
+material = ExtResource("11_rcqid")
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Seed of the Day"
+horizontal_alignment = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+texture = ExtResource("11_lgwnu")
+region_rect = Rect2(0, 0, 6, 8)
+patch_margin_left = 3
+patch_margin_top = 5
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Username" type="LineEdit" parent="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer/NinePatchRect2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -6.0
+offset_right = -4.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_5dd4i")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
+placeholder_text = "Username"
+max_length = 9
+context_menu_enabled = false
+
+[node name="PlaySeedOfTheDay" parent="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer" instance=ExtResource("1_ekxnf")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme = ExtResource("14_j7ex8")
+script = ExtResource("16_5pajh")
+
+[node name="panel" type="NinePatchRect" parent="Play/Container/HBoxContainer/right"]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.68
+texture = ExtResource("5_8ln24")
+region_rect = Rect2(0, 0, 11, 11)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 2
+patch_margin_bottom = 7
+script = ExtResource("1_bqqt6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Play/Container/HBoxContainer/right/panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Play/Container/HBoxContainer/right/panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+texture = ExtResource("11_lgwnu")
+region_rect = Rect2(0, 0, 6, 8)
+patch_margin_left = 3
+patch_margin_top = 5
+patch_margin_right = 2
+patch_margin_bottom = 2
+script = ExtResource("1_bqqt6")
+
+[node name="SeedInput" type="LineEdit" parent="Play/Container/HBoxContainer/right/panel/VBoxContainer/NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -6.0
+offset_right = -4.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_5dd4i")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
+placeholder_text = "Seed"
+max_length = 12
+context_menu_enabled = false
+
+[node name="PlayCustomSeed" parent="Play/Container/HBoxContainer/right/panel/VBoxContainer" instance=ExtResource("1_ekxnf")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme = ExtResource("14_j7ex8")
+
+[connection signal="pressed" from="HBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer/Header/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer/Header/RefreshButton" to="." method="_on_refresh_button_pressed"]
+[connection signal="text_changed" from="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer/NinePatchRect2/Username" to="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer/PlaySeedOfTheDay" method="_on_username_text_changed"]
+[connection signal="pressed" from="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer/PlaySeedOfTheDay" to="." method="_on_play_seed_of_the_day_button_pressed"]
+[connection signal="text_changed" from="Play/Container/HBoxContainer/right/panel/VBoxContainer/NinePatchRect/SeedInput" to="Play/Container/HBoxContainer/right/panel/VBoxContainer/NinePatchRect/SeedInput" method="_on_text_changed"]
+[connection signal="pressed" from="Play/Container/HBoxContainer/right/panel/VBoxContainer/PlayCustomSeed" to="." method="_on_play_button_pressed"]

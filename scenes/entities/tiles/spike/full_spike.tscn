@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbpq7l51w5vth"]
+
+[ext_resource type="PackedScene" uid="uid://lch1hj6crvy8" path="res://scenes/entities/tiles/spike/spike.tscn" id="1_rjogy"]
+[ext_resource type="Script" uid="uid://ccaqpjl4ug7fe" path="res://scenes/entities/tiles/spike/full_spike.gd" id="2_6ajxb"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_6ajxb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xug8s"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b2o10"]
+resource_local_to_scene = true
+shader = ExtResource("3_6ajxb")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[node name="Spike" instance=ExtResource("1_rjogy")]
+script = ExtResource("2_6ajxb")
+is_action_spawnable = false
+tileName = "FullSpikeTile"
+
+[node name="Visual" parent="." index="1"]
+material = SubResource("ShaderMaterial_xug8s")
+
+[node name="Sprite" parent="Visual" index="0"]
+material = SubResource("ShaderMaterial_b2o10")
+
+[node name="PopSoundEffect" type="AudioStreamPlayer2D" parent="." index="6"]
+
+[node name="RotationSoundEffect" parent="." index="8"]
+volume_db = -15.0
+
+[node name="IdleRotationSoundEffect" parent="." index="9"]
+volume_db = -15.0

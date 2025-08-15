@@ -1,4 +1,7 @@
 extends Node
 
+var main_menu_scene: PackedScene = preload("res://scenes/ui/main_menu/main_menu.tscn")
+
 func go_to_main_menu() -> void:
-    print("Going to main menu")
+    TransitionManager.change_scene(main_menu_scene, "circle_gradient", null, 1.0)
+    
