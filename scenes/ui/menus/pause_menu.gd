@@ -15,20 +15,24 @@ func _input(event):
 func _on_main_menu_button_pressed():
 	Global.go_to_main_menu()
 	resume_game()
-	pass # Replace with function body.
 
 
 func _on_resume_button_pressed():
 	resume_game()
-	pass # Replace with function body.
 
 
 func resume_game():
 	get_tree().paused = false
 	hide()
-	pass # Replace with function body.
 
 func pause_game():
 	get_tree().paused = true
 	show()
-	pass # Replace with function body.
+
+
+func _on_music_volume_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Music"), value / 100.)
+
+
+func _on_sfx_volume_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("SFX"), value / 100.)

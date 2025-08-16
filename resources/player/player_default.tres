@@ -1,16 +1,14 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=8 format=3 uid="uid://g6cd142ligtc"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=6 format=3 uid="uid://g6cd142ligtc"]
 
 [ext_resource type="Script" uid="uid://cb0m53acfjbnw" path="res://resources/actions/action.gd" id="1_lgkf5"]
 [ext_resource type="Resource" uid="uid://oyv5toem51nb" path="res://resources/actions/rotate_tile.tres" id="2_kbqvx"]
 [ext_resource type="Resource" uid="uid://chabm6c23hgt6" path="res://resources/actions/wolf_action.tres" id="2_yv5hl"]
-[ext_resource type="Resource" uid="uid://c7a8ehucedrdt" path="res://resources/actions/bomb.tres" id="3_kbqvx"]
 [ext_resource type="Script" uid="uid://do55m1a3u6q1y" path="res://resources/player/player_data.gd" id="3_yv5hl"]
-[ext_resource type="Resource" uid="uid://di38trked8gcm" path="res://resources/actions/cross_spike.tres" id="5_sma4s"]
 [ext_resource type="Resource" uid="uid://dvkufc28hsnvy" path="res://resources/skills/add_action_skills/add_temporary_carrot_skill.tres" id="7_vty05"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("3_yv5hl")
-actions = Array[ExtResource("1_lgkf5")]([ExtResource("5_sma4s"), ExtResource("2_yv5hl"), ExtResource("3_kbqvx"), ExtResource("2_kbqvx"), ExtResource("2_kbqvx")])
+actions = Array[ExtResource("1_lgkf5")]([ExtResource("2_yv5hl"), ExtResource("2_yv5hl"), ExtResource("2_kbqvx"), ExtResource("2_kbqvx"), ExtResource("2_kbqvx"), ExtResource("2_kbqvx")])
 skill = ExtResource("7_vty05")
 metadata/_custom_type_script = "uid://do55m1a3u6q1y"

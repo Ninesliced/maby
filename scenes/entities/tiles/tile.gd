@@ -109,6 +109,7 @@ func _play_rotation_sound() -> void:
     rotation_sound_effect.pitch_scale = randf_range(0.6, 1.0)
     # FIXME: Godot is broken
     rotation_sound_effect.volume_db = -5.0
+    print("Playing rotation sound")
     rotation_sound_effect.play()
 
 

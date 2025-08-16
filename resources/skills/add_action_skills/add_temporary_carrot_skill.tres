@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://8s44q13akl5k" path="res://assets/images/skills/carrot.png" id="2_bk4s2"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_07prw")
 action = ExtResource("1_61ysx")
 name = "Carrot Skill"

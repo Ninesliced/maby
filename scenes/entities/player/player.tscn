@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dxvmmk3gh1th5"]
+[gd_scene load_steps=21 format=4 uid="uid://dxvmmk3gh1th5"]
 
 [ext_resource type="Script" uid="uid://oxfpy1jnvlqm" path="res://scenes/entities/player/player.gd" id="1_nh4ur"]
 [ext_resource type="PackedScene" uid="uid://cwswecef6l2hi" path="res://scenes/entities/player/components/action_manager.tscn" id="2_635qg"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://dfg1tymra6u8s" path="res://scenes/entities/player/sprite.gd" id="6_8akj5"]
 [ext_resource type="Script" uid="uid://dnt575dxlnfdu" path="res://scenes/entities/player/normal.gd" id="6_bj7e2"]
 [ext_resource type="Script" uid="uid://dwqnuktxwdaje" path="res://scenes/entities/player/states/die.gd" id="7_1murt"]
+[ext_resource type="AudioStream" uid="uid://b03vg13som2qc" path="res://assets/sfx/work/action.ogg" id="11_7wli1"]
+[ext_resource type="AudioStream" uid="uid://o3dk3yuuufpr" path="res://assets/sfx/work/walk.ogg" id="11_j0oqr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bj7e2"]
 radius = 4.0
@@ -82,6 +84,7 @@ func _on_state_machine_state_changed(name: String) -> void:
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_nh4ur")
+test_player_data = ExtResource("2_bjvvg")
 player_data = ExtResource("2_bjvvg")
 
 [node name="SkillComponent" type="Node" parent="."]
@@ -153,7 +156,18 @@ offset_right = 24.0
 offset_bottom = -9.0
 script = SubResource("GDScript_5sj0x")
 
+[node name="WalkSoundEffect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("11_j0oqr")
+bus = &"SFX"
+
+[node name="ItemTakeSoundEffect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("11_7wli1")
+bus = &"SFX"
+
 [connection signal="on_idle" from="MovementComponent" to="Sprite" method="_on_movement_component_on_idle"]
+[connection signal="on_move" from="MovementComponent" to="." method="_on_movement_component_on_move"]
 [connection signal="on_move" from="MovementComponent" to="Sprite" method="_on_movement_component_on_move"]
 [connection signal="area_entered" from="LifeComponent/Hitbox" to="LifeComponent" method="_on_hitbox_area_entered"]
 [connection signal="state_changed" from="StateMachine" to="DebugState" method="_on_state_machine_state_changed"]
