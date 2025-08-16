@@ -177,6 +177,7 @@ func _on_area_body_exited(body: Node2D) -> void: # REFACTORABLE IN ANOTHER COMPO
     var tile: Tile = transform_with_1ddl_less(direction, true)
     if !tile:
         return
+    tile._play_idle_rotation_sound()
     
     
 func rotate_animated(new_rotation: int) -> void:

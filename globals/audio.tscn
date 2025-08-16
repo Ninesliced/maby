@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpccnib5jhng"]
+
+[ext_resource type="Script" uid="uid://bng2l8ie61lcn" path="res://globals/audio.gd" id="1_txo27"]
+[ext_resource type="AudioStream" uid="uid://bpdsn3u7k4n8x" path="res://assets/sfx/work/explode_short.ogg" id="2_3py8g"]
+[ext_resource type="AudioStream" uid="uid://crcfboaukdtof" path="res://assets/sfx/work/explode.ogg" id="3_xryno"]
+[ext_resource type="AudioStream" uid="uid://ct3kkknswudc0" path="res://assets/sfx/work/explode_long.ogg" id="4_vufea"]
+[ext_resource type="AudioStream" uid="uid://ihmp5eyi7gmb" path="res://assets/sfx/work/swap.ogg" id="5_ljprw"]
+[ext_resource type="AudioStream" uid="uid://s1pso4bpxokg" path="res://assets/sfx/work/woof.ogg" id="6_rwged"]
+
+[node name="Audio" type="Node"]
+script = ExtResource("1_txo27")
+
+[node name="ShortExplosionSoundEffect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_3py8g")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="ExplosionSoundEffect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_xryno")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="LongExplosionSoundEffect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_vufea")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="SwapSoundEffect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_ljprw")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="WolfSpawnSoundEffect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_rwged")
+volume_db = -10.0
+bus = &"SFX"

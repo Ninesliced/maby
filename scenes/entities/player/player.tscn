@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=4 uid="uid://dxvmmk3gh1th5"]
+[gd_scene load_steps=20 format=4 uid="uid://dxvmmk3gh1th5"]
 
 [ext_resource type="Script" uid="uid://oxfpy1jnvlqm" path="res://scenes/entities/player/player.gd" id="1_nh4ur"]
 [ext_resource type="PackedScene" uid="uid://cwswecef6l2hi" path="res://scenes/entities/player/components/action_manager.tscn" id="2_635qg"]
-[ext_resource type="Resource" uid="uid://g6cd142ligtc" path="res://resources/player/player_default.tres" id="2_bjvvg"]
 [ext_resource type="PackedScene" uid="uid://cxmkxm2gg6q2" path="res://addons/shaker/components/gameplay/state/state_machine.tscn" id="3_8akj5"]
 [ext_resource type="Script" uid="uid://cwmxitxtt2sh6" path="res://scenes/entities/player/components/skill_component.gd" id="3_ovg4i"]
 [ext_resource type="Script" uid="uid://ntrfe1v2r6jh" path="res://scenes/entities/player/components/life_component.gd" id="5_5sj0x"]
@@ -84,8 +83,6 @@ func _on_state_machine_state_changed(name: String) -> void:
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_nh4ur")
-test_player_data = ExtResource("2_bjvvg")
-player_data = ExtResource("2_bjvvg")
 
 [node name="SkillComponent" type="Node" parent="."]
 unique_name_in_owner = true

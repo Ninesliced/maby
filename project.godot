@@ -28,6 +28,7 @@ SignalBus="*res://Globals/signal_bus.gd"
 Enums="*res://globals/enums.gd"
 Debug="*res://globals/debug.gd"
 Global="*res://globals/global.gd"
+Audio="*res://globals/audio.tscn"
 
 [display]
 

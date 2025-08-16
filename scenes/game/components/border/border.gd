@@ -22,7 +22,7 @@ func _physics_process(delta):
 
 func _on_tile_mover_area_area_entered(area: Area2D) -> void:
 	var selected_actor = area.get_parent()
-	if (selected_actor is not Tile): #and (selected_actor is not Enemy):
+	if (selected_actor is not Tile) and (selected_actor is not Enemy):
 		return
 	# On bouge vers la droite
 	if !GameGlobal.map:

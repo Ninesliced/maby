@@ -61,8 +61,9 @@ func move_player(move_direction: Vector2i) -> void:
     var inside_direction : Enums.Direction = Enums.vector_to_direction(move_direction)
     var outside_direction : Enums.Direction = (inside_direction + 2) % 4
     
-    if current_tile == null or next_tile == null or not current_tile.can_pass(inside_direction) or not next_tile.can_pass(outside_direction):
-        return
+    if !Debug.enabled:
+        if current_tile == null or next_tile == null or not current_tile.can_pass(inside_direction) or not next_tile.can_pass(outside_direction):
+            return
             
     last_inside_direction = inside_direction # used to prevent player to go back to the previous tile
 

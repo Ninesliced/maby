@@ -21,6 +21,7 @@ func execute_action(tile: Tile) -> bool:
 		if !new_tile or new_tile.tile_bigger == null:
 			continue
 		new_tile.tile_bigger.play_full((i+1) * 0.1 + (j+1) * 0.1)
+	Audio.explosion_sound_effect.play()
 	return true
 
 func get_action_zone() -> Array[Vector2i]:

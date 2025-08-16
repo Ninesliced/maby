@@ -10,4 +10,5 @@ func execute_action(tile: Tile) -> bool:
     assert(map != null, "Map is not initialized")
 
     tile.transform_to_another_type(tile_to_transform, true)
+    Audio.short_explosion_sound_effect.play()
     return true

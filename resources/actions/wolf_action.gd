@@ -24,6 +24,8 @@ func _spawn_enemy_on_tile(tile: Tile) -> void:
 	enemy.target = player
 	player.get_parent().add_child(enemy)
 	enemy.grid_position = tile.grid_position
+	Audio.wolf_spawn_sound_effect.play()
+	Audio.explosion_sound_effect.play()
 
 func get_action_zone() -> Array[Vector2i]:
 	var list: Array[Vector2i] = []
