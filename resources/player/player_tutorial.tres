@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=4 format=3 uid="uid://pgo0f7l2ly4l"]
+
+[ext_resource type="Script" uid="uid://cb0m53acfjbnw" path="res://resources/actions/action.gd" id="1_rvidg"]
+[ext_resource type="Script" uid="uid://do55m1a3u6q1y" path="res://resources/player/player_data.gd" id="5_ol4sj"]
+[ext_resource type="Resource" uid="uid://dvkufc28hsnvy" path="res://resources/skills/add_action_skills/add_temporary_carrot_skill.tres" id="6_vuotf"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("5_ol4sj")
+actions = Array[ExtResource("1_rvidg")]([])
+skill = ExtResource("6_vuotf")
+metadata/_custom_type_script = "uid://do55m1a3u6q1y"

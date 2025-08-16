@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ccbddjuw4fas3"]
+[gd_scene load_steps=29 format=3 uid="uid://ccbddjuw4fas3"]
 
 [ext_resource type="Script" uid="uid://cv1j8sg413crl" path="res://scenes/game/tuto.gd" id="1_1oewy"]
 [ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="2_onjet"]
@@ -6,20 +6,23 @@
 [ext_resource type="Shader" uid="uid://owbdt1mxgdjt" path="res://scenes/entities/map/map.gdshader" id="3_ser3y"]
 [ext_resource type="PackedScene" uid="uid://dxvmmk3gh1th5" path="res://scenes/entities/player/player.tscn" id="5_bur5e"]
 [ext_resource type="PackedScene" uid="uid://ii53nhehe86f" path="res://scenes/entities/tiles/basics/tile_corner.tscn" id="5_ncf6p"]
-[ext_resource type="Script" uid="uid://cb0m53acfjbnw" path="res://resources/actions/action.gd" id="6_1sepu"]
+[ext_resource type="PackedScene" uid="uid://bhmw28bkvxtdp" path="res://scenes/entities/tiles/basics/tile_full.tscn" id="5_rpi45"]
 [ext_resource type="Script" uid="uid://dahg3gn860yf6" path="res://scenes/game/components/camera_2d.gd" id="6_bvb2u"]
 [ext_resource type="PackedScene" uid="uid://cgygutngd0574" path="res://scenes/entities/tiles/basics/tile_line.tscn" id="6_ipn0i"]
-[ext_resource type="Resource" uid="uid://chabm6c23hgt6" path="res://resources/actions/wolf_action.tres" id="7_1oewy"]
 [ext_resource type="PackedScene" uid="uid://d3nx65gycyxa3" path="res://scenes/entities/tiles/basics/tile_three.tscn" id="7_5ys21"]
-[ext_resource type="Resource" uid="uid://c7a8ehucedrdt" path="res://resources/actions/bomb.tres" id="8_rpi45"]
 [ext_resource type="PackedScene" uid="uid://bbdhvmyjyyqx2" path="res://scenes/entities/tiles/basics/tile_four.tscn" id="8_xaj8t"]
 [ext_resource type="Texture2D" uid="uid://bl4fg3bh5ms2e" path="res://assets/images/ui/cursor/cursor.png" id="9_drxqf"]
-[ext_resource type="Resource" uid="uid://oyv5toem51nb" path="res://resources/actions/rotate_tile.tres" id="9_pnfg4"]
-[ext_resource type="Script" uid="uid://do55m1a3u6q1y" path="res://resources/player/player_data.gd" id="10_6hfln"]
 [ext_resource type="Texture2D" uid="uid://drs8k6ai3lm32" path="res://assets/images/ui/cursor/cursor_click.png" id="10_bur5e"]
 [ext_resource type="Script" uid="uid://bai2h856cf72t" path="res://scenes/game/cursor.gd" id="11_bvb2u"]
+[ext_resource type="Script" uid="uid://do55m1a3u6q1y" path="res://resources/player/player_data.gd" id="11_ncf6p"]
+[ext_resource type="Resource" uid="uid://cce5qu6n6hqdn" path="res://resources/actions/carrot_temporary.tres" id="12_ipn0i"]
+[ext_resource type="PackedScene" uid="uid://1jdfma4sfqko" path="res://scenes/entities/tiles/spike/four_spike.tscn" id="12_xaj8t"]
+[ext_resource type="Texture2D" uid="uid://8s44q13akl5k" path="res://assets/images/skills/carrot.png" id="13_5ys21"]
+[ext_resource type="Script" uid="uid://b5beahxwtmbt3" path="res://resources/skills/add_action_skills/add_action_skill.gd" id="14_xaj8t"]
+[ext_resource type="PackedScene" uid="uid://d4khvtud3ww0l" path="res://scenes/ui/action_list/action_ui.tscn" id="19_5ys21"]
+[ext_resource type="Script" uid="uid://bg113k8m5bhdc" path="res://scenes/game/components/mouse_action_ui/action_current.gd" id="20_xaj8t"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ncf6p"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls6d8"]
 resource_local_to_scene = true
 shader = ExtResource("3_ser3y")
 shader_parameter/number_of_ground_cols = 8
@@ -27,10 +30,22 @@ shader_parameter/uniform_shadow = Color(0, 0, 0, 1)
 shader_parameter/color_fill = Color(1, 1, 1, 1)
 shader_parameter/force = 0.0
 
-[sub_resource type="Resource" id="Resource_ipn0i"]
+[sub_resource type="Resource" id="Resource_w0su0"]
 resource_local_to_scene = true
-script = ExtResource("10_6hfln")
-actions = Array[ExtResource("6_1sepu")]([ExtResource("7_1oewy"), ExtResource("8_rpi45"), ExtResource("9_pnfg4"), ExtResource("9_pnfg4"), null])
+script = ExtResource("14_xaj8t")
+action = ExtResource("12_ipn0i")
+name = "Carrot Skill"
+description = "Add a temporary carrot action in your loop"
+icon = ExtResource("13_5ys21")
+cooldown = 0
+max_cooldown = 5
+metadata/_custom_type_script = "uid://b5beahxwtmbt3"
+
+[sub_resource type="Resource" id="Resource_4wo6t"]
+resource_local_to_scene = true
+script = ExtResource("11_ncf6p")
+actions = []
+skill = SubResource("Resource_w0su0")
 metadata/_custom_type_script = "uid://do55m1a3u6q1y"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bur5e"]
@@ -61,20 +76,27 @@ size = Vector2(32, 32)
 [node name="Tuto" type="Node2D"]
 script = ExtResource("1_1oewy")
 
+[node name="ActionUI" parent="." instance=ExtResource("19_5ys21")]
+modulate = Color(1, 1, 1, 0.823529)
+z_index = 20
+
+[node name="ActionCurrentComponent" type="Node2D" parent="ActionUI"]
+script = ExtResource("20_xaj8t")
+
 [node name="Border" parent="." instance=ExtResource("2_ser3y")]
 speed = 0.0
 speed_increase_per_min = 0.0
 
 [node name="Map" parent="." instance=ExtResource("2_onjet")]
-material = SubResource("ShaderMaterial_ncf6p")
+material = SubResource("ShaderMaterial_ls6d8")
 position = Vector2(0, 11)
-tiles_degree_of_freedom = Array[PackedScene]([ExtResource("2_onjet"), ExtResource("5_ncf6p"), ExtResource("6_ipn0i"), ExtResource("7_5ys21"), ExtResource("8_xaj8t"), ExtResource("8_xaj8t"), ExtResource("8_xaj8t"), ExtResource("8_xaj8t")])
-grid_size = Vector2i(25, 5)
+tiles_degree_of_freedom = Array[PackedScene]([ExtResource("5_rpi45"), ExtResource("5_ncf6p"), ExtResource("6_ipn0i"), ExtResource("7_5ys21"), ExtResource("8_xaj8t"), ExtResource("12_xaj8t"), ExtResource("8_xaj8t"), ExtResource("8_xaj8t")])
+grid_size = Vector2i(41, 5)
 
 [node name="Player" parent="." instance=ExtResource("5_bur5e")]
 position = Vector2(15, 89)
 collision_mask = 17
-player_data = SubResource("Resource_ipn0i")
+player_data = SubResource("Resource_4wo6t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(112, 80)
