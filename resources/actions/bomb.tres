@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c7a8ehucedrdt"]
+[gd_resource type="Resource" script_class="MultipleTypeAction" load_steps=5 format=3 uid="uid://c7a8ehucedrdt"]
 
 [ext_resource type="Script" uid="uid://bkciqsy473h7u" path="res://resources/actions/multiple_type.gd" id="1_rkgp5"]
 [ext_resource type="PackedScene" uid="uid://bbdhvmyjyyqx2" path="res://scenes/entities/tiles/basics/tile_four.tscn" id="2_oaku5"]
@@ -13,6 +13,7 @@ region = Rect2(64, 0, 16, 16)
 [resource]
 script = ExtResource("1_rkgp5")
 target_tile_scene = ExtResource("2_oaku5")
+action_zone_type = "Square"
 name = "bomb"
 texture = SubResource("AtlasTexture_oaku5")
 temporary = true
