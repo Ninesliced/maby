@@ -2,10 +2,7 @@ extends Node
 class_name SpriteRandomizerComponent
 
 var animated_sprite: AnimatedSprite2D
-@export var prefix: String = "":
-	set(value):
-		prefix = value
-		randomize_sprites()
+@export var prefix: String = ""
 
 func _ready() -> void:
 	randomize_sprites()
@@ -20,9 +17,12 @@ func randomize_sprites() -> void:
 
 	var filtered_list: Array = list.filter(func(anim_name: String) -> bool: return anim_name.begins_with(prefix))
 	if filtered_list.size() == 0:
-		print("No animations found with prefix: ", prefix)
 		return
-	print("Available animations: ", list)
 	var random_animation = filtered_list[randi() % filtered_list.size()]
-	print("Random animation chosen: ", random_animation)
-	animated_sprite.play()
+	animated_sprite.play(random_animation)
+
+
+
+func _on_sprite_animation_changed():
+	prefix = animated_sprite.animation
+	randomize_sprites()
