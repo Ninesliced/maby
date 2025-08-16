@@ -2,7 +2,7 @@ extends Control
 class_name MainMenu
 
 @onready var play: Control = %Play
-@export var main_menu_scene: PackedScene
+var main_menu_scene : PackedScene = preload("res://scenes/main_game.tscn")
 @onready var play_button: Button = %PlayCustomSeed
 @onready var request: Node2D = %Request
 @onready var play_seed_of_the_day: Button = %PlaySeedOfTheDay
@@ -44,6 +44,7 @@ func _on_play_button_pressed():
 	GameGlobal.is_user_seed = (%SeedInput.text != "")
 	GameGlobal.rng_seed = inputed_seed
 	GameGlobal.is_seed_of_the_day = false
+	print(main_menu_scene.resource_name)
 	TransitionManager.change_scene(main_menu_scene, "circle_gradient", null, 1.0)
 
 
@@ -57,8 +58,8 @@ func _on_play_seed_of_the_day_button_pressed() -> void:
 	GameGlobal.username = %Username.text
 	if GameGlobal.username == "":
 		GameGlobal.username = "Noob"
-	GameGlobal.music_manager.calfed = false
-	GameGlobal.score = 0
+	# GameGlobal.music_manager.calfed = false
+	#FIXME: music _manager
 	TransitionManager.change_scene(main_menu_scene, "circle_gradient", null, 1.0)
 
 

@@ -1,9 +1,10 @@
 extends Node2D
-
+class_name Request
 @export var refresh_button: Button
 
 
 func _ready() -> void:
+	GameGlobal.request = self
 	%HTTPRequestGetSeed.request_completed.connect(_on_get_seed_completed)
 	%HTTPRequestGetLeaderboard.request_completed.connect(_on_get_leaderboard_completed)
 	%HTTPRequestGetRank.request_completed.connect(_on_get_rank_completed)

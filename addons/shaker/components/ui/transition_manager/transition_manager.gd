@@ -6,7 +6,6 @@ func change_scene(packed_scene: PackedScene, start="fade", end=null, speed=2.5) 
 	animation_player.play(start)
 	await animation_player.animation_finished
 	get_tree().change_scene_to_packed(packed_scene)
-	print("Scene changed to: ", packed_scene.resource_name)
 
 	await get_tree().process_frame
 	if animation_player.is_playing():

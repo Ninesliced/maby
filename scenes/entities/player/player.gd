@@ -11,7 +11,6 @@ class_name Player
 
 func _ready() -> void:
     player_data = test_player_data.duplicate(true)
-    player_data.skill = player_data.skill.duplicate(true)
     GameGlobal.player = self
 
 
