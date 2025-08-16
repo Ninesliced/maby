@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5vt5rh1kln8a"]
+
+[ext_resource type="PackedScene" uid="uid://bkuf38ni4q62k" path="res://scenes/entities/tiles/Tile.tscn" id="1_se004"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="2_ihx0l"]
+[ext_resource type="Script" uid="uid://bygj3qwqr7vkc" path="res://scenes/entities/tiles/tuto/function_tile.gd" id="2_supox"]
+[ext_resource type="Texture2D" uid="uid://cvv54r8ksi5vr" path="res://assets/images/tiles/spritesheet.png" id="4_65olu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3aj3"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65olu"]
+resource_local_to_scene = true
+shader = ExtResource("2_ihx0l")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcup5"]
+atlas = ExtResource("4_65olu")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3aj3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcup5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xt58"]
+radius = 13.0
+
+[node name="function_tile" instance=ExtResource("1_se004")]
+script = ExtResource("2_supox")
+function = 0
+
+[node name="Visual" parent="." index="1"]
+material = SubResource("ShaderMaterial_p3aj3")
+
+[node name="Sprite" parent="Visual" index="0"]
+material = SubResource("ShaderMaterial_65olu")
+sprite_frames = SubResource("SpriteFrames_p3aj3")
+
+[node name="Area2D" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(16, 16)
+shape = SubResource("CircleShape2D_3xt58")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

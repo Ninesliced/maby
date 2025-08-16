@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4khvtud3ww0l"]
+[gd_scene load_steps=7 format=3 uid="uid://d4khvtud3ww0l"]
 
 [ext_resource type="Script" uid="uid://bqx8jbasrlep3" path="res://scenes/ui/action_list/action_ui.gd" id="1_3ux37"]
-[ext_resource type="Texture2D" uid="uid://vcx7ddf1espq" path="res://assets/images/actions/action_spritesheet.png" id="1_c4u1s"]
 [ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="2_ccjly"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h53lr"]
@@ -9,10 +8,6 @@ resource_local_to_scene = true
 shader = ExtResource("2_ccjly")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/force = 0.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4clnl"]
-atlas = ExtResource("1_c4u1s")
-region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="Animation" id="Animation_jsuos"]
 length = 0.001
@@ -98,7 +93,6 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = SubResource("AtlasTexture_4clnl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

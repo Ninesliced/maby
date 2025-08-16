@@ -136,7 +136,6 @@ func _ready() -> void:
     var season_len : int = 25 / 4 #horrible valeur 25 = GameGlobal.map.grid_size.x hardcode
     var i : int = grid_position.x / season_len % 4
     var season = seasons[i]
-    %SpriteRandomizerComponent.prefix = season #FIXME: make it a var
     sprite.play(season)
 
 
