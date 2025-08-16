@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SwapTilesAction" load_steps=4 format=3 uid="uid://1ilhlygjlhif"]
+
+[ext_resource type="Script" uid="uid://crn17y245wiog" path="res://resources/actions/swap_tiles.gd" id="1_i7rlj"]
+[ext_resource type="Texture2D" uid="uid://vcx7ddf1espq" path="res://assets/images/actions/action_spritesheet.png" id="2_y73tw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po501"]
+atlas = ExtResource("2_y73tw")
+region = Rect2(80, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_i7rlj")
+ORIENTATION = "Vertical"
+name = "Vertical Swap"
+texture = SubResource("AtlasTexture_po501")
+temporary = false
+keep_always_one = false
+metadata/_custom_type_script = "uid://crn17y245wiog"

@@ -92,6 +92,12 @@ func swap_tiles(tile1_co : Vector2i,tile2_co : Vector2i,) -> void:
 	
 	tile1.grid_position = tile2_co
 	tile2.grid_position = tile1_co
+	
+	var temp_pos: Vector2 = tile1.position
+	tile1.position = tile2.position
+	tile2.position = temp_pos
+	
+	Audio.swap_sound_effect.play()
 
 func regenerate_grid() -> void:
 	clear_grid()
