@@ -2,7 +2,11 @@ extends Node2D
 class_name ActionPickable
 
 @export var actions : Array[ActionPickableData] = []
-var action: Action = null
+var action: Action = null :
+	set(value):
+		action = value
+		%Sprite2D.texture = action.texture
+
 var deleting: bool = false
 
 func _ready() -> void:
@@ -24,7 +28,6 @@ func _on_area_2d_body_entered(player: Node2D) -> void:
 func choose_an_random_action() -> void:
 	var random_value: float = randf_range(0.0, _get_weight_probability())
 	action = _get_action_by_probability(random_value)
-	%Sprite2D.texture = action.texture
 
 func _get_weight_probability() -> float:
 	var total_probability: float = 0.0

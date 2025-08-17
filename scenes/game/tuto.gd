@@ -3,8 +3,9 @@ extends Node2D
 var ACTION_SCENE: PackedScene = preload("res://scenes/entities/action_pickable/action_pickable.tscn")
 
 func _ready():
-	print("Tuto scene ready")
 	#init the game
+	GameGlobal.map.clear_grid()
+
 	GameGlobal.map.generate_grid_from_numbers([
 		[0 ,0 ,0 ,0 ,0 ,21,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
 		[0 ,0 ,0 ,0 ,0 ,21,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ],
@@ -23,6 +24,11 @@ func _ready():
 	action.action = load("res://resources/actions/carrot.tres")
 	action.position = Vector2i(8,8)
 	GameGlobal.map.grid[32][2].action_holder.add_child(action)
+
+	action = ACTION_SCENE.instantiate()
+	action.action = load("res://resources/actions/vertical_swap.tres")
+	action.position = Vector2i(8,8)
+	GameGlobal.map.grid[27][2].action_holder.add_child(action)
 	
 	# GameGlobal.spawn_enemy_on_tile(GameGlobal.map.grid[19][2])
 	var enemy : Wolf = preload("res://scenes/entities/enemies/wolf/wolf.tscn").instantiate()

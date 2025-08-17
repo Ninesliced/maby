@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ccbddjuw4fas3"]
+[gd_scene load_steps=31 format=3 uid="uid://ccbddjuw4fas3"]
 
 [ext_resource type="Script" uid="uid://cv1j8sg413crl" path="res://scenes/game/tuto.gd" id="1_1oewy"]
 [ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="2_onjet"]
@@ -20,10 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://8s44q13akl5k" path="res://assets/images/skills/carrot.png" id="13_5ys21"]
 [ext_resource type="PackedScene" uid="uid://c5vt5rh1kln8a" path="res://scenes/entities/tiles/tuto/function_tile.tscn" id="13_ls6d8"]
 [ext_resource type="Script" uid="uid://b5beahxwtmbt3" path="res://resources/skills/add_action_skills/add_action_skill.gd" id="14_xaj8t"]
+[ext_resource type="Script" uid="uid://cb0m53acfjbnw" path="res://resources/actions/action.gd" id="15_w0su0"]
 [ext_resource type="PackedScene" uid="uid://d4khvtud3ww0l" path="res://scenes/ui/action_list/action_ui.tscn" id="19_5ys21"]
 [ext_resource type="Script" uid="uid://bg113k8m5bhdc" path="res://scenes/game/components/mouse_action_ui/action_current.gd" id="20_xaj8t"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xaj8t"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wo6t"]
 resource_local_to_scene = true
 shader = ExtResource("3_ser3y")
 shader_parameter/number_of_ground_cols = 8
@@ -31,7 +32,7 @@ shader_parameter/uniform_shadow = Color(0, 0, 0, 1)
 shader_parameter/color_fill = Color(1, 1, 1, 1)
 shader_parameter/force = 0.0
 
-[sub_resource type="Resource" id="Resource_ls6d8"]
+[sub_resource type="Resource" id="Resource_1keyq"]
 resource_local_to_scene = true
 script = ExtResource("14_xaj8t")
 action = ExtResource("12_ipn0i")
@@ -42,11 +43,11 @@ cooldown = 0
 max_cooldown = 5
 metadata/_custom_type_script = "uid://b5beahxwtmbt3"
 
-[sub_resource type="Resource" id="Resource_w0su0"]
+[sub_resource type="Resource" id="Resource_7vxtw"]
 resource_local_to_scene = true
 script = ExtResource("11_ncf6p")
-actions = []
-skill = SubResource("Resource_ls6d8")
+actions = Array[ExtResource("15_w0su0")]([])
+skill = SubResource("Resource_1keyq")
 metadata/_custom_type_script = "uid://do55m1a3u6q1y"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bur5e"]
@@ -89,7 +90,7 @@ speed = 0.0
 speed_increase_per_min = 0.0
 
 [node name="Map" parent="." instance=ExtResource("2_onjet")]
-material = SubResource("ShaderMaterial_xaj8t")
+material = SubResource("ShaderMaterial_4wo6t")
 position = Vector2(0, 11)
 tiles_degree_of_freedom = Array[PackedScene]([ExtResource("5_rpi45"), ExtResource("5_ncf6p"), ExtResource("6_ipn0i"), ExtResource("7_5ys21"), ExtResource("8_xaj8t"), ExtResource("12_xaj8t"), ExtResource("13_ls6d8")])
 grid_size = Vector2i(41, 5)
@@ -97,7 +98,7 @@ grid_size = Vector2i(41, 5)
 [node name="Player" parent="." instance=ExtResource("5_bur5e")]
 position = Vector2(15, 89)
 collision_mask = 17
-player_data = SubResource("Resource_w0su0")
+player_data = SubResource("Resource_7vxtw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(112, 80)

@@ -30,6 +30,8 @@ func _ready() -> void:
 func get_tile_at(grid_pos: Vector2i) -> Tile:
 	return grid[grid_pos.x % grid_size.x][grid_pos.y % grid_size.y]
 
+func set_tile_at(grid_pos: Vector2i, tile: Tile) -> void:
+	grid[grid_pos.x % grid_size.x][grid_pos.y % grid_size.y] = tile
 
 ##PRIVATE
 
@@ -88,18 +90,22 @@ func generate_grid_from_numbers(list) -> void:
 			grid[x][y] = tile
 
 func swap_tiles(tile1_co : Vector2i,tile2_co : Vector2i,) -> void:
-	var tile1 : Tile = grid[tile1_co.x][tile1_co.y]
-	var tile2 : Tile = grid[tile2_co.x][tile2_co.y]
-	grid[tile1_co.x][tile1_co.y] = tile2
-	grid[tile2_co.x][tile2_co.y] = tile1
-	
+	var tile1 : Tile = get_tile_at(tile1_co)
+	var tile2 : Tile = get_tile_at(tile2_co)
+	set_tile_at(tile1_co, tile2)
+	set_tile_at(tile2_co, tile1)
+
 	tile1.grid_position = tile2_co
 	tile2.grid_position = tile1_co
 	
 	var temp_pos: Vector2 = tile1.position
-	tile1.position = tile2.position
-	tile2.position = temp_pos
-	
+	var tween = create_tween()
+	var tween2 = create_tween()
+	tween.tween_property(tile1, "position", tile2.position, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween2.tween_property(tile2, "position", temp_pos, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	tile1.tile_bigger.play_full()
+	tile2.tile_bigger.play_full()
 	Audio.swap_sound_effect.play()
 
 func regenerate_grid() -> void:
