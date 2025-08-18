@@ -1,11 +1,14 @@
 extends Node
 
+# PREGAME GLOBAL VARIABLES
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var rng_seed: Variant = 1232
 var is_seed_of_the_day: bool = false
 var is_user_seed: bool = false
 var username: String = ""
 
+
+# IN GAME GLOBAL VARIABLES
 var map: Map
 var player: Player:
 	set(value):
@@ -21,7 +24,7 @@ var hovered_tile: Tile:
 var score_manager: ScoreManager
 var request: Request
 		
-
+	
 signal on_player_added(player: Player)
 
 func _ready() -> void:
