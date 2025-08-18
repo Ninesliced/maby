@@ -23,6 +23,7 @@ func _on_mouse_area_input_event(_viewport:Node, event:InputEvent, _shape_idx:int
 @onready var tile_lock: TileAnimation = %TileLock as TileAnimation
 
 # @onready var outline: Node2D = %Outline
+@onready var visual: Node2D = %Visual
 @onready var outline_component: OutlineComponent = %OutlineComponent
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var action_holder: Node2D = %ActionHolder

@@ -17,13 +17,9 @@ class_name Map
 var grid : Array[Array] = []
 
 func _ready() -> void:
-	# await GameGlobal.ready
 	GameGlobal.map = self
-	print("Map ready")
 	_update_grid()
-	# print("Generate grid")
 	generate_grid()
-	# print(GameGlobal)	
 
 # PUBLIC METHODS
 
@@ -32,6 +28,7 @@ func get_tile_at(grid_pos: Vector2i) -> Tile:
 
 func set_tile_at(grid_pos: Vector2i, tile: Tile) -> void:
 	grid[grid_pos.x % grid_size.x][grid_pos.y % grid_size.y] = tile
+	tile.grid_position = Vector2i(grid_pos.x % grid_size.x, grid_pos.y % grid_size.y)
 
 ##PRIVATE
 
@@ -69,6 +66,14 @@ func clear_grid() -> void:
 				grid[x][y].queue_free()
 				grid[x][y] = null
 
+func clear_action_holders() -> void:
+	for x in range(grid_size.x):
+		for y in range(grid_size.y):
+			if grid[x][y] != null:
+				var children = grid[x][y].action_holder.get_children()
+				for child in children:
+					child.queue_free()
+
 func generate_grid_from_numbers(list) -> void:
 	print("Generate grid from numbers")
 	grid_size = Vector2(len(list[0]),len(list))
@@ -94,15 +99,22 @@ func swap_tiles(tile1_co : Vector2i,tile2_co : Vector2i,) -> void:
 	var tile2 : Tile = get_tile_at(tile2_co)
 	set_tile_at(tile1_co, tile2)
 	set_tile_at(tile2_co, tile1)
-
-	tile1.grid_position = tile2_co
-	tile2.grid_position = tile1_co
 	
 	var temp_pos: Vector2 = tile1.position
-	var tween = create_tween()
-	var tween2 = create_tween()
-	tween.tween_property(tile1, "position", tile2.position, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween2.tween_property(tile2, "position", temp_pos, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	var visual_pos: Vector2 = tile1.visual.global_position
+	var visual2_pos: Vector2 = tile2.visual.global_position
+
+	tile1.position = tile2.position
+	tile2.position = temp_pos
+
+	tile1.visual.global_position = visual_pos
+	tile2.visual.global_position = visual2_pos
+
+	var tween = get_tree().create_tween()
+	var tween2 = get_tree().create_tween()
+	tween.tween_property(tile1.visual, "position", Vector2(0, 0), 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween2.tween_property(tile2.visual, "position", Vector2(0, 0), 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	tile1.tile_bigger.play_full()
 	tile2.tile_bigger.play_full()

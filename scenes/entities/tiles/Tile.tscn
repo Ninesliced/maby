@@ -134,12 +134,13 @@ chance_action_spawn = 0.05
 unique_name_in_owner = true
 
 [node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
 material = ExtResource("2_iawyn")
-position = Vector2(16, 16)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Visual"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_1qs4h")
+position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_1163x")
 speed_scale = 0.0
 
