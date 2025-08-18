@@ -46,6 +46,7 @@ script = ExtResource("1_d7stj")
 [node name="AreaSpike" type="Area2D" parent="."]
 collision_layer = 132
 collision_mask = 0
+input_pickable = false
 
 [node name="SpikeCollision" type="CollisionShape2D" parent="AreaSpike"]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://qgas0f5a707u"]
+[gd_scene load_steps=14 format=3 uid="uid://qgas0f5a707u"]
 
 [ext_resource type="Script" uid="uid://dagd8pn234k01" path="res://scenes/entities/enemies/wolf/wolf.gd" id="1_jqx28"]
 [ext_resource type="Texture2D" uid="uid://b605qj4yor8p7" path="res://assets/images/enemy/wolf_animation.png" id="2_r6xaq"]
@@ -83,15 +83,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hptor"]
-radius = 2.0
-
 [node name="Wolf" type="Node2D"]
 script = ExtResource("1_jqx28")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 128
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
@@ -101,13 +99,6 @@ shape = SubResource("CircleShape2D_r6xaq")
 sprite_frames = SubResource("SpriteFrames_ooidh")
 animation = &"idel"
 autoplay = "idel"
-
-[node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-shape = SubResource("CircleShape2D_hptor")
 
 [node name="WolfGrowlSoundEffect" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

@@ -126,7 +126,6 @@ func _ready() -> void:
     
     if is_action_spawnable:
         if GameGlobal.rng.randf() < chance_action_spawn:
-            #FIXME commented but it's spawning actions
             var action_load: PackedScene = load("res://scenes/entities/action_pickable/action_pickable.tscn")
             var action = action_load.instantiate()
             action.choose_an_random_action()
