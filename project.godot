@@ -49,7 +49,9 @@ Player=""
 
 [gui]
 
+common/snap_controls_to_pixels=false
 theme/custom_font="uid://8i46uymhn3cb"
+common/snap/snap_2d_transforms_to_pixel=false
 
 [input]
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SwapTilesAction" load_steps=4 format=3 uid="uid://ch1jfvofkllh6"]
 
-[ext_resource type="Script" uid="uid://crn17y245wiog" path="res://resources/actions/swap_tiles.gd" id="1_b38wv"]
+[ext_resource type="Script" path="res://resources/actions/swap_tiles.gd" id="1_b38wv"]
 [ext_resource type="Texture2D" uid="uid://vcx7ddf1espq" path="res://assets/images/actions/action_spritesheet.png" id="2_syurd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3klk"]

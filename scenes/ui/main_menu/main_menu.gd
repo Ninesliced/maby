@@ -11,11 +11,11 @@ var seed_of_the_day: String = ""
 @export var tutorial_scene: PackedScene = preload("res://scenes/main_tuto.tscn")
 @onready var leaderboards: Array[HBoxContainer] = [%Leaderboard, %Leaderboard2, %Leaderboard3, %Leaderboard4, %Leaderboard5]
 
-@onready var hbox_container: VBoxContainer = %HBoxContainer
+@onready var main: VBoxContainer = %Main
 func _ready():
 	UIManager.first_unclosable = true
 	UIManager._stack.clear() # HACK
-	UIManager.set_ui(hbox_container, play_button)
+	UIManager.set_ui(main, play_button)
 	%Username.text = GameGlobal.username
 	if GameGlobal.username != "":
 		play_seed_of_the_day.is_username_valid = true

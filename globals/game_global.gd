@@ -1,4 +1,5 @@
 extends Node
+# ONLY DATA WHICH IS USED IN-GAME
 
 # PREGAME GLOBAL VARIABLES
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()

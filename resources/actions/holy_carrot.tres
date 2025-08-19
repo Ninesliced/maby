@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="HolyCarrotAction" load_steps=5 format=3 uid="uid://cyjiydjjer2r6"]
 
-[ext_resource type="Script" uid="uid://b1oislektu32l" path="res://resources/actions/holy_carrot.gd" id="1_8an8d"]
+[ext_resource type="Script" path="res://resources/actions/holy_carrot.gd" id="1_8an8d"]
 [ext_resource type="PackedScene" uid="uid://wignnaopo2ag" path="res://scenes/entities/tiles/carrot/tile_carrot.tscn" id="2_tutws"]
 [ext_resource type="Texture2D" uid="uid://vcx7ddf1espq" path="res://assets/images/actions/action_spritesheet.png" id="3_p0h2i"]
 

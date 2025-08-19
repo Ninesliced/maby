@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b3gxctx2jih0x"
+path="res://.godot/imported/select_character_ui_spritesheet.aseprite-9c0666a5de3e11d827c1bf50a591e784.res"
+
+[deps]
+
+source_file="res://assets/images/ui/select_character/select_character_ui_spritesheet.aseprite"
+dest_files=["res://.godot/imported/select_character_ui_spritesheet.aseprite-9c0666a5de3e11d827c1bf50a591e784.res"]
+
+[params]
+

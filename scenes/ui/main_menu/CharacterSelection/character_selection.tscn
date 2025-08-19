@@ -1,0 +1,359 @@
+[gd_scene load_steps=13 format=3 uid="uid://bh20tyhxqduvh"]
+
+[ext_resource type="Texture2D" uid="uid://bwp80crnkfddc" path="res://assets/images/ui/select_character/select_character_ui_spritesheet.png" id="1_15duy"]
+[ext_resource type="Script" uid="uid://cywmoueioqmuq" path="res://scenes/ui/main_menu/CharacterSelection/character_selection.gd" id="1_gmmq8"]
+[ext_resource type="PackedScene" uid="uid://d4khvtud3ww0l" path="res://scenes/ui/action_list/action_ui.tscn" id="2_gmmq8"]
+[ext_resource type="Texture2D" uid="uid://2mhkwx4u5d0j" path="res://assets/images/player/player_idle.png" id="3_fi1ma"]
+[ext_resource type="PackedScene" uid="uid://c4edoby56uxvt" path="res://scenes/ui/in_game/skill_ui.tscn" id="4_c37ax"]
+[ext_resource type="Theme" uid="uid://dcy1yh8ymfebr" path="res://scenes/ui/main_menu/CharacterSelection/small_green_button.tres" id="5_82skw"]
+[ext_resource type="PackedScene" uid="uid://d087lin86ikxf" path="res://scenes/ui/main_menu/CharacterSelection/character_button.tscn" id="6_2s6w1"]
+[ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="7_jxy36"]
+
+[sub_resource type="FontVariation" id="FontVariation_is50t"]
+spacing_top = -2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64ugd"]
+atlas = ExtResource("3_fi1ma")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03ujm"]
+atlas = ExtResource("1_15duy")
+region = Rect2(9, 7, 13, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is50t"]
+atlas = ExtResource("1_15duy")
+region = Rect2(10, 27, 13, 6)
+
+[node name="character_selection" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_gmmq8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CharacterSelection" type="NinePatchRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(184, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_15duy")
+region_rect = Rect2(0, 0, 8, 25)
+patch_margin_left = 3
+patch_margin_top = 22
+patch_margin_right = 3
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/CharacterSelection"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 131.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Character Selection"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CharacterSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CharacterSelection/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="CharacterInformation" type="NinePatchRect" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_15duy")
+region_rect = Rect2(30, 5, 4, 4)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="_" type="VBoxContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameContainer" type="NinePatchRect" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_"]
+custom_minimum_size = Vector2(72, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_15duy")
+region_rect = Rect2(9, 0, 4, 5)
+patch_margin_left = 2
+patch_margin_top = 3
+patch_margin_right = 1
+patch_margin_bottom = 3
+
+[node name="CharacterName" type="Label" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/NameContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_is50t")
+theme_override_font_sizes/font_size = 8
+text = "maby"
+
+[node name="CharacterActions" type="MarginContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="bg" type="NinePatchRect" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+texture = ExtResource("1_15duy")
+region_rect = Rect2(20, 0, 4, 4)
+patch_margin_left = 2
+patch_margin_top = 3
+patch_margin_right = 1
+patch_margin_bottom = 3
+
+[node name="_" type="MarginContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_right = 1
+
+[node name="ActionVBox" type="HBoxContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 1
+
+[node name="Node2D" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Node2D2" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Node2D5" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Node2D6" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Node2D3" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Node2D4" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CharacterDetails" type="HBoxContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails/VBoxContainer"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("1_15duy")
+region_rect = Rect2(9, 0, 4, 5)
+patch_margin_left = 3
+patch_margin_top = 1
+patch_margin_right = 2
+patch_margin_bottom = 3
+
+[node name="CharacterTexture" type="TextureRect" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails/VBoxContainer/NinePatchRect"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_64ugd")
+expand_mode = 3
+stretch_mode = 3
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"pending_changes": {},
+"slice_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://assets/images/player/player.ase",
+"source_uid": 7459505762053098952
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5e46b245de9524e0748fc82bdecce78d"
+
+[node name="SkillUI" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails/VBoxContainer" instance=ExtResource("4_c37ax")]
+unique_name_in_owner = true
+layout_mode = 2
+script = null
+
+[node name="SkillDetails" type="NinePatchRect" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_15duy")
+region_rect = Rect2(0, 26, 8, 17)
+patch_margin_left = 4
+patch_margin_top = 15
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="SkillName" type="Label" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails/SkillDetails"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_is50t")
+theme_override_font_sizes/font_size = 8
+text = "ssd"
+
+[node name="SkillDescription" type="Label" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails/SkillDetails"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 14.0
+offset_right = -1.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_is50t")
+theme_override_font_sizes/font_size = 6
+text = "ssd"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Slider" type="NinePatchRect" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(29, 0)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_15duy")
+region_rect = Rect2(30, 5, 4, 4)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="CharactersVbox" type="VBoxContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Up" type="Button" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+theme = ExtResource("5_82skw")
+icon = SubResource("AtlasTexture_03ujm")
+icon_alignment = 1
+
+[node name="CharacterButton" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox" instance=ExtResource("6_2s6w1")]
+layout_mode = 2
+
+[node name="Down" type="Button" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+theme = ExtResource("5_82skw")
+icon = SubResource("AtlasTexture_is50t")
+icon_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Right" type="NinePatchRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 115)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_15duy")
+region_rect = Rect2(0, 0, 8, 25)
+patch_margin_left = 3
+patch_margin_top = 22
+patch_margin_right = 3
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Right"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 131.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Difficulty"
+
+[node name="Play" parent="HBoxContainer/VBoxContainer" instance=ExtResource("7_jxy36")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]

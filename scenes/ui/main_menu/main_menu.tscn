@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bvbyb8jdqjcei"]
+[gd_scene load_steps=26 format=3 uid="uid://bvbyb8jdqjcei"]
 
 [ext_resource type="Script" uid="uid://tk3v0572hok5" path="res://scenes/ui/main_menu/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="1_ekxnf"]
@@ -17,14 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://g63ms4dlkya7" path="res://scenes/ui/main_menu/components/tile_grid/tile_grid_ui.tscn" id="14_1ajci"]
 [ext_resource type="Theme" uid="uid://udemsrc3pygt" path="res://scenes/ui/main_menu/theme_blue.tres" id="14_j7ex8"]
 [ext_resource type="Script" uid="uid://deuauwcgdmwli" path="res://scenes/ui/main_menu/components/play_seed_of_the_day.gd" id="16_5pajh"]
-
-[sub_resource type="GDScript" id="GDScript_5pajh"]
-script/source = "extends Button
-
-
-func _on_username_text_changed(new_text: String) -> void:
-	pass # Replace with function body.
-"
+[ext_resource type="PackedScene" uid="uid://bh20tyhxqduvh" path="res://scenes/ui/main_menu/CharacterSelection/character_selection.tscn" id="18_wv6bh"]
 
 [sub_resource type="Shader" id="Shader_7b55j"]
 code = "shader_type canvas_item;
@@ -38,6 +31,14 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7b55j"]
 shader = SubResource("Shader_7b55j")
+
+[sub_resource type="GDScript" id="GDScript_5pajh"]
+script/source = "extends Button
+
+
+func _on_username_text_changed(new_text: String) -> void:
+	pass # Replace with function body.
+"
 
 [sub_resource type="GDScript" id="GDScript_rcqid"]
 script/source = "extends Control
@@ -71,7 +72,18 @@ refresh_button = NodePath("../Play/Container/HBoxContainer/NinePatchRect/VBoxCon
 
 [node name="TileGridUi" parent="." instance=ExtResource("14_1ajci")]
 
-[node name="HBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7b55j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.14, 0.1204, 0.1302, 0.615686)
+
+[node name="Main" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 z_index = 50
 layout_mode = 1
@@ -88,35 +100,24 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Main"]
 layout_mode = 2
 texture = ExtResource("5_j7ex8")
 
-[node name="PlayButton" parent="HBoxContainer" instance=ExtResource("1_ekxnf")]
+[node name="PlayButton" parent="Main" instance=ExtResource("1_ekxnf")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TutorialButton" parent="HBoxContainer" instance=ExtResource("1_ekxnf")]
+[node name="TutorialButton" parent="Main" instance=ExtResource("1_ekxnf")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Tutorial
 "
 script = SubResource("GDScript_5pajh")
 
-[node name="Quit" parent="HBoxContainer" instance=ExtResource("1_ekxnf")]
+[node name="Quit" parent="Main" instance=ExtResource("1_ekxnf")]
 layout_mode = 2
 text = "Quit"
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_7b55j")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.14, 0.1204, 0.1302, 0.615686)
 
 [node name="Play" type="Control" parent="."]
 unique_name_in_owner = true
@@ -340,9 +341,13 @@ custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 theme = ExtResource("14_j7ex8")
 
-[connection signal="pressed" from="HBoxContainer/PlayButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="HBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="character_selection" parent="." instance=ExtResource("18_wv6bh")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Main/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="Main/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer/Header/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Play/Container/HBoxContainer/NinePatchRect/VBoxContainer/Header/RefreshButton" to="." method="_on_refresh_button_pressed"]
 [connection signal="text_changed" from="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer/NinePatchRect2/Username" to="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer/PlaySeedOfTheDay" method="_on_username_text_changed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d087lin86ikxf"]
+
+[ext_resource type="Theme" uid="uid://ckag60saxfguu" path="res://scenes/ui/main_menu/CharacterSelection/character_button.tres" id="1_t3w6g"]
+
+[node name="CharacterButton" type="Button"]
+custom_minimum_size = Vector2(8, 4)
+size_flags_horizontal = 4
+theme = ExtResource("1_t3w6g")
