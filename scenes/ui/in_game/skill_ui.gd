@@ -1,5 +1,6 @@
 extends Control
 class_name SkillUI
+
 @onready var skill_icon: TextureRect = %SkillIcon
 @export var disabled_color: Color = Color(0.5, 0.5, 0.5, 1)
 

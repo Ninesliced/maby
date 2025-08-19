@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bx68eqiiepmt2"]
+[gd_scene load_steps=22 format=3 uid="uid://bx68eqiiepmt2"]
 
 [ext_resource type="Script" uid="uid://bw7tomdqk6vre" path="res://scenes/game/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bi3akamp77mgs" path="res://backend/request/request.tscn" id="2_5v6r0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d4khvtud3ww0l" path="res://scenes/ui/action_list/action_ui.tscn" id="2_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://bu0rheggw347" path="res://scenes/entities/map/map.tscn" id="3_iywne"]
 [ext_resource type="Script" uid="uid://bg113k8m5bhdc" path="res://scenes/game/components/mouse_action_ui/action_current.gd" id="3_rysoc"]
+[ext_resource type="Script" uid="uid://bqx8jbasrlep3" path="res://scenes/ui/action_list/action_ui.gd" id="4_10c2w"]
 [ext_resource type="PackedScene" uid="uid://dxvmmk3gh1th5" path="res://scenes/entities/player/player.tscn" id="4_p57ef"]
 [ext_resource type="Script" uid="uid://dahg3gn860yf6" path="res://scenes/game/components/camera_2d.gd" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://v6wht25gui7" path="res://scenes/game/components/border/border.tscn" id="6_p57ef"]
@@ -19,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://8s44q13akl5k" path="res://assets/images/skills/carrot.png" id="15_1iff4"]
 [ext_resource type="Script" uid="uid://b5beahxwtmbt3" path="res://resources/skills/add_action_skills/add_action_skill.gd" id="16_4vuph"]
 
-[sub_resource type="Resource" id="Resource_uyinl"]
+[sub_resource type="Resource" id="Resource_pg2xm"]
 resource_local_to_scene = true
 script = ExtResource("16_4vuph")
 action = ExtResource("14_3jaai")
@@ -30,11 +31,12 @@ cooldown = 0
 max_cooldown = 5
 metadata/_custom_type_script = "uid://b5beahxwtmbt3"
 
-[sub_resource type="Resource" id="Resource_10c2w"]
+[sub_resource type="Resource" id="Resource_gc57s"]
 resource_local_to_scene = true
 script = ExtResource("13_8b66f")
+name = "Maby"
 actions = Array[ExtResource("9_uyinl")]([ExtResource("10_10c2w"), ExtResource("11_pg2xm"), ExtResource("10_10c2w"), ExtResource("10_10c2w"), ExtResource("12_gc57s")])
-skill = SubResource("Resource_uyinl")
+skill = SubResource("Resource_pg2xm")
 metadata/_custom_type_script = "uid://do55m1a3u6q1y"
 
 [node name="Game" type="Node2D"]
@@ -46,6 +48,7 @@ position = Vector2(16, 112)
 [node name="ActionUI" parent="." instance=ExtResource("2_ssvqc")]
 modulate = Color(1, 1, 1, 0.823529)
 z_index = 20
+script = ExtResource("4_10c2w")
 
 [node name="ActionCurrentComponent" type="Node2D" parent="ActionUI"]
 script = ExtResource("3_rysoc")
@@ -61,7 +64,7 @@ grid_size = Vector2i(25, 5)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("4_p57ef")]
 position = Vector2(80, 104)
-player_data = SubResource("Resource_10c2w")
+player_data = SubResource("Resource_gc57s")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 91)

@@ -42,7 +42,7 @@ func _pop_action_ui_at(number: int) -> void:
 
 func _append_action_ui(action: Action, index: int) -> void:
 	var action_ui: ActionUI = _create_action_ui(action, index)
-	action_ui.position = Vector2(index * 18, 0)
+	action_ui.position = Vector2(index * 18, -8)
 	update_ui()
 
 func _create_action_ui(action: Action, index: int):
@@ -69,4 +69,4 @@ func _reposition_action_ui():
 	await tween.finished
 
 func _get_position(i: int) -> Vector2:
-		return Vector2(i * 18, 0)
+		return Vector2(i * 18 - 8, -8)

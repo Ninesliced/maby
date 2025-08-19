@@ -17,10 +17,10 @@ var current_character_index: int = 0
 var current_character: PlayerData
 
 func _ready() -> void:
-    if !Global.characters.is_empty():
-        return
-    
+	if !Global.characters.is_empty():
+		return
+	
 
 
 func _on_play_pressed() -> void:
-    pass # Replace with function body.
+	pass # Replace with function body.

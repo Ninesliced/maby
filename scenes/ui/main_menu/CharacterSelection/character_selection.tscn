@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bh20tyhxqduvh"]
+[gd_scene load_steps=14 format=3 uid="uid://bh20tyhxqduvh"]
 
 [ext_resource type="Texture2D" uid="uid://bwp80crnkfddc" path="res://assets/images/ui/select_character/select_character_ui_spritesheet.png" id="1_15duy"]
 [ext_resource type="Script" uid="uid://cywmoueioqmuq" path="res://scenes/ui/main_menu/CharacterSelection/character_selection.gd" id="1_gmmq8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4edoby56uxvt" path="res://scenes/ui/in_game/skill_ui.tscn" id="4_c37ax"]
 [ext_resource type="Theme" uid="uid://dcy1yh8ymfebr" path="res://scenes/ui/main_menu/CharacterSelection/small_green_button.tres" id="5_82skw"]
 [ext_resource type="PackedScene" uid="uid://d087lin86ikxf" path="res://scenes/ui/main_menu/CharacterSelection/character_button.tscn" id="6_2s6w1"]
+[ext_resource type="Script" uid="uid://bdtkmmtkxru44" path="res://scenes/ui/main_menu/CharacterSelection/character_selection_skill_ui.gd" id="6_fi1ma"]
 [ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="7_jxy36"]
 
 [sub_resource type="FontVariation" id="FontVariation_is50t"]
@@ -237,9 +238,9 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "5e46b245de9524e0748fc82bdecce78d"
 
 [node name="SkillUI" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails/VBoxContainer" instance=ExtResource("4_c37ax")]
-unique_name_in_owner = true
 layout_mode = 2
-script = null
+script = ExtResource("6_fi1ma")
+disabled_color = Color(0.5, 0.5, 0.5, 1)
 
 [node name="SkillDetails" type="NinePatchRect" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails"]
 layout_mode = 2
