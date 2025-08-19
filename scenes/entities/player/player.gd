@@ -9,6 +9,8 @@ class_name Player
 
 func _ready() -> void:
     GameGlobal.player = self
+    if GameGlobal.player_data:
+        player_data = GameGlobal.player_data
 
 
 # HELPER METHODS

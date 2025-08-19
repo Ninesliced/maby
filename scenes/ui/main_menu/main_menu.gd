@@ -12,6 +12,8 @@ var seed_of_the_day: String = ""
 @onready var leaderboards: Array[HBoxContainer] = [%Leaderboard, %Leaderboard2, %Leaderboard3, %Leaderboard4, %Leaderboard5]
 
 @onready var main: VBoxContainer = %Main
+@onready var character_selection: Control = $CharacterSelection
+
 func _ready():
 	UIManager.first_unclosable = true
 	UIManager._stack.clear() # HACK
@@ -21,6 +23,8 @@ func _ready():
 		play_seed_of_the_day.is_username_valid = true
 	if !GameGlobal.is_seed_of_the_day and GameGlobal.is_user_seed:
 		%SeedInput.text = GameGlobal.rng_seed
+
+
 		
 func _on_play_pressed():
 	UIManager.set_ui(play)
@@ -44,8 +48,8 @@ func _on_play_button_pressed():
 	GameGlobal.is_user_seed = (%SeedInput.text != "")
 	GameGlobal.rng_seed = inputed_seed
 	GameGlobal.is_seed_of_the_day = false
-	print(main_menu_scene.resource_name)
-	TransitionManager.change_scene(main_menu_scene, "circle_gradient", null, 1.0)
+	UIManager.set_ui(character_selection)
+	# TransitionManager.change_scene(main_menu_scene, "circle_gradient", null, 1.0)
 
 
 func _on_tutorial_button_pressed():

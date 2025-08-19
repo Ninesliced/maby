@@ -121,7 +121,6 @@ text = "Quit"
 
 [node name="Play" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 z_index = 100
 layout_mode = 1
 anchors_preset = 15
@@ -278,6 +277,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 theme = ExtResource("14_j7ex8")
+text = "Select"
 script = ExtResource("16_5pajh")
 
 [node name="panel" type="NinePatchRect" parent="Play/Container/HBoxContainer/right"]
@@ -340,9 +340,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 theme = ExtResource("14_j7ex8")
+text = "Select"
 
-[node name="character_selection" parent="." instance=ExtResource("18_wv6bh")]
+[node name="CharacterSelection" parent="." instance=ExtResource("18_wv6bh")]
 visible = false
+z_index = 100
 layout_mode = 1
 
 [connection signal="pressed" from="Main/PlayButton" to="." method="_on_play_pressed"]
@@ -354,3 +356,5 @@ layout_mode = 1
 [connection signal="pressed" from="Play/Container/HBoxContainer/right/SeedOfTheDay/VBoxContainer/PlaySeedOfTheDay" to="." method="_on_play_seed_of_the_day_button_pressed"]
 [connection signal="text_changed" from="Play/Container/HBoxContainer/right/panel/VBoxContainer/NinePatchRect/SeedInput" to="Play/Container/HBoxContainer/right/panel/VBoxContainer/NinePatchRect/SeedInput" method="_on_text_changed"]
 [connection signal="pressed" from="Play/Container/HBoxContainer/right/panel/VBoxContainer/PlayCustomSeed" to="." method="_on_play_button_pressed"]
+
+[editable path="CharacterSelection"]

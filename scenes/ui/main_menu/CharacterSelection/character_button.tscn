@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://d087lin86ikxf"]
+[gd_scene load_steps=4 format=3 uid="uid://d087lin86ikxf"]
 
 [ext_resource type="Theme" uid="uid://ckag60saxfguu" path="res://scenes/ui/main_menu/CharacterSelection/character_button.tres" id="1_t3w6g"]
+[ext_resource type="Script" uid="uid://4nqf0beo7rt2" path="res://scenes/ui/main_menu/CharacterSelection/character_button.gd" id="2_ltor6"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ltor6"]
 
 [node name="CharacterButton" type="Button"]
 custom_minimum_size = Vector2(8, 4)
 size_flags_horizontal = 4
 theme = ExtResource("1_t3w6g")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_ltor6")
+script = ExtResource("2_ltor6")

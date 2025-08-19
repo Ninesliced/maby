@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=8 format=3 uid="uid://ulwyhkon34om"]
+
+[ext_resource type="Script" uid="uid://cb0m53acfjbnw" path="res://resources/actions/action.gd" id="1_86rg6"]
+[ext_resource type="Resource" uid="uid://di38trked8gcm" path="res://resources/actions/cross_spike.tres" id="2_pl47i"]
+[ext_resource type="Resource" uid="uid://c7a8ehucedrdt" path="res://resources/actions/bomb.tres" id="3_ie55j"]
+[ext_resource type="Texture2D" uid="uid://8s44q13akl5k" path="res://assets/images/skills/carrot.png" id="4_pl47i"]
+[ext_resource type="Script" uid="uid://do55m1a3u6q1y" path="res://resources/player/player_data.gd" id="6_iuf5t"]
+[ext_resource type="Resource" uid="uid://dvkufc28hsnvy" path="res://resources/skills/add_action_skills/add_temporary_carrot_skill.tres" id="7_sr5ef"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86rg6"]
+atlas = ExtResource("4_pl47i")
+region = Rect2(6, 6, 14, 14)
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("6_iuf5t")
+name = "player 2"
+icon = SubResource("AtlasTexture_86rg6")
+actions = Array[ExtResource("1_86rg6")]([ExtResource("2_pl47i"), ExtResource("3_ie55j")])
+skill = ExtResource("7_sr5ef")
+metadata/_custom_type_script = "uid://do55m1a3u6q1y"

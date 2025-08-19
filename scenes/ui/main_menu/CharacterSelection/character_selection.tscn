@@ -2,28 +2,33 @@
 
 [ext_resource type="Texture2D" uid="uid://bwp80crnkfddc" path="res://assets/images/ui/select_character/select_character_ui_spritesheet.png" id="1_15duy"]
 [ext_resource type="Script" uid="uid://cywmoueioqmuq" path="res://scenes/ui/main_menu/CharacterSelection/character_selection.gd" id="1_gmmq8"]
-[ext_resource type="PackedScene" uid="uid://d4khvtud3ww0l" path="res://scenes/ui/action_list/action_ui.tscn" id="2_gmmq8"]
 [ext_resource type="Texture2D" uid="uid://2mhkwx4u5d0j" path="res://assets/images/player/player_idle.png" id="3_fi1ma"]
 [ext_resource type="PackedScene" uid="uid://c4edoby56uxvt" path="res://scenes/ui/in_game/skill_ui.tscn" id="4_c37ax"]
-[ext_resource type="Theme" uid="uid://dcy1yh8ymfebr" path="res://scenes/ui/main_menu/CharacterSelection/small_green_button.tres" id="5_82skw"]
-[ext_resource type="PackedScene" uid="uid://d087lin86ikxf" path="res://scenes/ui/main_menu/CharacterSelection/character_button.tscn" id="6_2s6w1"]
 [ext_resource type="Script" uid="uid://bdtkmmtkxru44" path="res://scenes/ui/main_menu/CharacterSelection/character_selection_skill_ui.gd" id="6_fi1ma"]
+[ext_resource type="PackedScene" uid="uid://bdnlnhk5r3btg" path="res://scenes/ui/components/small_button.tscn" id="7_gmmq8"]
 [ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="7_jxy36"]
 
 [sub_resource type="FontVariation" id="FontVariation_is50t"]
 spacing_top = -2
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_64ugd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_15duy"]
 atlas = ExtResource("3_fi1ma")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="FontVariation" id="FontVariation_15duy"]
+spacing_top = -4
+spacing_bottom = -10
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_15duy"]
+load_path = "res://.godot/imported/select_character_ui_spritesheet.png-8daca394053218673abd829dc5585045.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03ujm"]
-atlas = ExtResource("1_15duy")
-region = Rect2(9, 7, 13, 7)
+atlas = SubResource("CompressedTexture2D_15duy")
+region = Rect2(11, 7, 11, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_is50t"]
-atlas = ExtResource("1_15duy")
-region = Rect2(10, 27, 13, 6)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmmq8"]
+atlas = SubResource("CompressedTexture2D_15duy")
+region = Rect2(12, 27, 11, 6)
 
 [node name="character_selection" type="MarginContainer"]
 anchors_preset = 15
@@ -151,36 +156,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 1
 
-[node name="Node2D" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Node2D2" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Node2D5" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Node2D6" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Node2D3" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Node2D4" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterActions/_/ActionVBox" instance=ExtResource("2_gmmq8")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="CharacterDetails" type="HBoxContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -208,7 +183,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_64ugd")
+texture = SubResource("AtlasTexture_15duy")
 expand_mode = 3
 stretch_mode = 3
 metadata/_aseprite_wizard_interface_config_ = {
@@ -238,6 +213,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "5e46b245de9524e0748fc82bdecce78d"
 
 [node name="SkillUI" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/CharacterInformation/_/CharacterDetails/VBoxContainer" instance=ExtResource("4_c37ax")]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("6_fi1ma")
 disabled_color = Color(0.5, 0.5, 0.5, 1)
@@ -273,14 +249,16 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 offset_left = 1.0
-offset_top = 14.0
+offset_top = 16.0
 offset_right = -1.0
 offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = SubResource("FontVariation_is50t")
-theme_override_font_sizes/font_size = 6
-text = "ssd"
+theme_override_colors/font_color = Color(0.890196, 0.945098, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_15duy")
+theme_override_font_sizes/font_size = 5
+text = "Add a temporary carrot in your hand"
+autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -309,23 +287,16 @@ theme_override_constants/margin_bottom = 2
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Up" type="Button" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox"]
+[node name="Up" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox" instance=ExtResource("7_gmmq8")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 11)
 layout_mode = 2
-theme = ExtResource("5_82skw")
 icon = SubResource("AtlasTexture_03ujm")
 icon_alignment = 1
 
-[node name="CharacterButton" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox" instance=ExtResource("6_2s6w1")]
-layout_mode = 2
-
-[node name="Down" type="Button" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox"]
+[node name="Down" parent="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox" instance=ExtResource("7_gmmq8")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 11)
 layout_mode = 2
-theme = ExtResource("5_82skw")
-icon = SubResource("AtlasTexture_is50t")
+icon = SubResource("AtlasTexture_gmmq8")
 icon_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
@@ -357,4 +328,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 
+[connection signal="pressed" from="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox/Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="HBoxContainer/CharacterSelection/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/CharactersVbox/Down" to="." method="_on_down_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]

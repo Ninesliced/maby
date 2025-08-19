@@ -7,7 +7,7 @@ var rng_seed: Variant = 1232
 var is_seed_of_the_day: bool = false
 var is_user_seed: bool = false
 var username: String = ""
-
+var player_data: PlayerData = null
 
 # IN GAME GLOBAL VARIABLES
 var map: Map
@@ -29,7 +29,6 @@ var request: Request
 signal on_player_added(player: Player)
 
 func _ready() -> void:
-	print("ready")
 	rng.randi()
 
 func reset() -> void:
