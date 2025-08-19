@@ -51,6 +51,7 @@ func _create_action_ui(action: Action, index: int):
 	action_ui_list.insert(index, action_ui)
 	action_ui.set_texture(action.texture)
 	action_ui.play_add()
+	# action_ui.modulate = Color(1,0,0,1)
 	return action_ui
 
 func update_ui():
