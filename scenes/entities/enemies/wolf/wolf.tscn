@@ -95,6 +95,15 @@ input_pickable = false
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_r6xaq")
 
+[node name="BorderCollisionChecker" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderCollisionChecker"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_r6xaq")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ooidh")
 animation = &"idel"
@@ -112,4 +121,5 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="BorderCollisionChecker" to="." method="_on_area_2d_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

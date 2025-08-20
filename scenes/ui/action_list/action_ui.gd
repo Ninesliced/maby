@@ -4,6 +4,8 @@ class_name ActionUI
 @onready var texture_rect: TextureRect = %TextureRect
 
 func set_texture(texture: Texture2D) -> void:
+	if !texture_rect:
+		return
 	texture_rect.texture = texture
 
 func play_add() -> void:

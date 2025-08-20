@@ -7,10 +7,13 @@ class_name Player
 @onready var movement_component: MovementComponent = %MovementComponent
 @onready var skill_component: SkillComponent = %SkillComponent
 
-func _ready() -> void:
+func _enter_tree() -> void:
     GameGlobal.player = self
     if GameGlobal.player_data:
         player_data = GameGlobal.player_data
+
+func _ready() -> void:
+    GameGlobal.player = self
 
 
 # HELPER METHODS

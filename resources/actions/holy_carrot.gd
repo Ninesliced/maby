@@ -23,6 +23,7 @@ func place_row(start_position: Vector2i, number: int) -> void:
 		if current_tile == null:
 			continue
 		var new_tile: Tile = current_tile.transform_to_another_type(target_tile_scene, false)
+		new_tile.tile_bigger.play_full()
 		await new_tile.get_tree().create_timer(0.1).timeout
 		
 

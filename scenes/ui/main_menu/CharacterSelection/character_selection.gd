@@ -74,8 +74,7 @@ func set_character(index: int) -> void:
 	_update_actions()
 
 	# Game
-	GameGlobal.player_data = current_character
-
+	GameGlobal.player_data = current_character.duplicate(true)
 	
 
 

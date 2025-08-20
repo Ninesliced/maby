@@ -54,6 +54,7 @@ func _on_play_button_pressed():
 
 func _on_tutorial_button_pressed():
 	GameGlobal.is_seed_of_the_day = false
+	GameGlobal.player_data = preload("res://resources/player/player_tutorial.tres").duplicate(true)
 	TransitionManager.change_scene(tutorial_scene, "circle_gradient", null, 1.0)
 
 
